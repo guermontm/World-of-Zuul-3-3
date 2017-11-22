@@ -21,7 +21,7 @@ public class FFdebugCalc {
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
                 max = array[i];
-                // commentaire pour le commit de Pauline
+                // commentaire pour le commit de PopoPauline
             }
         }
         return max;
