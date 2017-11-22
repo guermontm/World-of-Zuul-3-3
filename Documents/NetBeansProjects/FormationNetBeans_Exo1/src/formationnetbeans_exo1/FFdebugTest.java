@@ -28,6 +28,7 @@ public class FFdebugTest {
     public void setMyArray(int[] myArray) {
         this.myArray = myArray;
     }
+    
 
     public int getMyInt() {
         return myInt;

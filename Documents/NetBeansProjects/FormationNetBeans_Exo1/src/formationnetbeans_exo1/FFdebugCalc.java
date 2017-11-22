@@ -14,6 +14,7 @@ public class FFdebugCalc {
                 max = array[i];
             }
         }
+        
         return max;
     }
 
