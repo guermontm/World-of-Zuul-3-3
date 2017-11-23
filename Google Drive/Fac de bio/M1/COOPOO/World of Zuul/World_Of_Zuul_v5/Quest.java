@@ -107,8 +107,6 @@ public class Quest
      * steps : going to see PG in TD4, then going to find the other members of the group
      * the members of the group are scattered in the building and finding them starts other quests
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
      */
     public void questFindingSubject ()
     {
