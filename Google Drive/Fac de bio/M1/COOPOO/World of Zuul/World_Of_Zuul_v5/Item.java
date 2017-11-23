@@ -17,7 +17,6 @@ abstract public class Item
     /**
      * Constructor for objects of class Item
      * The type of the item. 1 = non player character, 2 = container, 3 = object.
-     
      */
     public Item( )
     {
@@ -62,7 +61,6 @@ abstract public class Item
         else if (isLock == false)
         {
             isLock = true;
-            
         }
         
     }

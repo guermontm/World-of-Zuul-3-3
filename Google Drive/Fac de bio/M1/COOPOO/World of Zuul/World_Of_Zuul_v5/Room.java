@@ -15,7 +15,7 @@ public class Room
     // Description of the room that is displayed when the player enters
     protected String roomDescription;
     // List of items in the room
-    protected ArrayList <Item> ListRoomItem;
+    protected ArrayList <Item> listRoomItem;
 
     // // The four exits of the room.
     // private Room northExit;
@@ -33,8 +33,8 @@ public class Room
     {
         // initialise instance variables
         roomName = "Default Room";
-        roomDescription = "You are not supposed to see this. If you see this, shit went wrong at some point. Please report.";
-        ListRoomItem = new ArrayList<Item>();
+        roomDescription = "You are not supposed to see this. If you see this, something went wrong at some point. Please report.";
+        listRoomItem = new ArrayList<Item>();
         mapRoom = new HashMap<String,Room>();
     }
 
@@ -101,8 +101,29 @@ public class Room
     }
     
     public void addItem (Item newItem){
-        ListRoomItem.add(newItem); 
-        
+        listRoomItem.add(newItem); 
+    }
+
+    /**
+    * Getter for the items in the room.
+    *  @return array list of items.
+    */
+    public ArrayList<Item> getItems()
+    {
+        return listRoomItem;
+    }
+
+    /**
+    *   Printer for all the items in the room.
+    *   Displays the items in the list.
+    */
+    public void printItems()
+    {
+        int i=0;
+        for (i=0;i<=listRoomItem.size();i++)
+        {
+            System.out.println(i + "\t:\t"+listRoomItem.get(i).itemName);
+        }
     }
 
 }

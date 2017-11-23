@@ -1,9 +1,10 @@
 import java.awt.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * The main class of the game. 
- * When a new game starts, the user can choose if he is player 1, 2 or 3. 
- * Then, the game is launched. 
+ * When a new game s * Then, the game is launched. 
  * The user appears in a room and the main quest is activated.
  * In the constructor we call every other constructors.
  * This class is where we call all the methods from the other classes in order for the game to run.
@@ -19,6 +20,8 @@ public class Game
     protected Player thePlayer; 
     // the CommandLetter attribute which analyse the command of the user 
     private CommandLetter commandLetter;
+    TestTimer timerPlayer;
+    RandomEvent event;
 
     char character;
 
@@ -29,6 +32,8 @@ public class Game
     private int randomInt;
 
     private HashMap<Room,String> minimap;
+    // Attic & basement have been added to check the up & down directions.
+    Room annieOffice, classRoom, downstairsCorridor1, downstairsCorridor2, upstairsCorridor1, upstairsCorridor2, upStairs, downStairs, pgOffice, tp1, td1, td4, wc, hall, theatre, downstairsLift, upstairsLift, restRoom; 
 
     /**
      * Constructor for objects of class Game
@@ -49,6 +54,11 @@ public class Game
         {
             thePlayer = new TypeThree();
         }
+
+        timerPlayer = new TestTimer();
+        timerPlayer.main();
+
+        event = new RandomEvent(thePlayer);
 
         commandLetter = new CommandLetter();        
         // // the game begins in the hall
@@ -89,6 +99,10 @@ public class Game
             // go west
             changeRoom("west");
         }
+        else if ((character=='i') || (character =='I'))
+        {
+            interact();
+        }
         else if ((character=='h') || (character =='H'))
         {
             printHelp();
@@ -112,32 +126,45 @@ public class Game
      */
     public void getInformationPlayer()
     {
+        System.out.println("Your stats:");
+        System.out.println(thePlayer.getStrStat());
+        System.out.println(thePlayer.getStaStat());
+        System.out.println(thePlayer.getIntStat());
+        System.out.println(thePlayer.getStressStat());
+        System.out.println(thePlayer.getSpeStat());
+        System.out.println(thePlayer.getMoney());
+        if (!thePlayer.getCrowbar())
+        {
+            System.out.println("You aren't carrying anything special, except for your papers and stuff.");
+        }
+        else
+        {
+            System.out.println("You have your crownbar in your inventory. You love that thing.");
+        }
 
     }
 
     private void createRooms()
     {
-        // Attic & basement have been added to check the up & down directions.
-        Room annieOffice, classRoom, downstairsCorridor1, downstairsCorridor2, upstairsCorridor1, upstairsCorridor2, upStairs, downStairs, pgOffice, tp1, td1, td4, wc, hall, theatre, downstairsLift, upstairsLift, restRoom; 
       
         // For the map display
         minimap = new HashMap<Room,String>();
 
         // create the rooms
-        annieOffice = new Room("Mrs. Geniet's Office", "The office of Mrs. Genient, the teacher of all GPhy students..");
-        classRoom = new Room("Classroom","The classroom where the main courses are.");
         downstairsCorridor1 = new Room("Corridor", "A corridor in the b2 building.");
         downstairsCorridor2 = new Room("Corridor", "Another corridor.");
         upstairsCorridor1 = new Room("Corridor", "A corridor in the b2 building, at the first story.");
         upstairsCorridor2 = new Room("Corridor", "Another corridor, at the first story.");
         downstairsLift = new Room("Lift", "The lift (elevator). You are level 1 (downstairs)");
         upstairsLift = new Room("Lift", "The lift which connects the two levels. You are level 2 (upstairs).");
+        annieOffice = new Room("Mrs. Geniet's Office", "The office of Mrs. Genient, the teacher of all GPhy students..");
+        downStairs = new Room("Staircase", "The stairs that connect the two levels together. Climbing them can get exhausting.");
+        classRoom = new Room("Classroom","The classroom where the main courses are.");
+        upStairs = new Room("Staircase", "You are at the top of the staircase.");
         pgOffice = new Room("Mr. Girard's Office", "The big bo$$");
         restRoom = new Room("Resting room", "A room for resting with sofas and coffee.");
-        hall = new Room("B2 entrance", "The entrance of the b2 building.");
-        downStairs = new Room("Staircase", "The stairs that connect the two levels together. Climbing them can get exhausting.");
-        upStairs = new Room("Staircase", "You are at the top of the staircase.");
         theatre = new Room("Amphitheatre", "The amphitheatre where the oral presentations are being held.");
+        hall = new Room("B2 entrance", "The entrance of the b2 building.");
         tp1 = new Room("TP1", "A classroom with and lot of computers, for practical exercises.");
         td1 = new Room("TD1", "A fairly small classroom.");
         td4 = new Room("TD4", "A small classroom.");
@@ -166,7 +193,6 @@ public class Game
         restRoom.setExits(upStairs, null, null, tp1);
         upStairs.setExits(null, null, restRoom, upstairsCorridor2);
 
-
         minimap.put(theatre,"Lecture theatre");
         minimap.put(hall, "Hall");
         minimap.put(downstairsLift,"Lift");
@@ -187,7 +213,6 @@ public class Game
         
         currentRoom = hall;  // The game starts witht he plater located in the hall.
     }
-
 
     /**
      * allows the player to change room, depends on the exits 
@@ -225,6 +250,12 @@ public class Game
             }
             System.out.println();
 
+            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2))
+            {
+                int randomNum = ThreadLocalRandom.current().nextInt(0,9);
+                rEvent(randomInt);
+            }
+
         }   
     }
 
@@ -261,7 +292,32 @@ public class Game
      */
     public void rEvent(int randomInt)
     {
-
+        if (randomInt <2)
+        {
+            event.hiddenCandy();
+        }
+        else if (randomInt <3)
+        {
+            event.allanJoke();
+        }
+        else if (randomInt <4)
+        {
+            event.pillowAttack();
+        }
+        else if (randomInt <5)
+        {
+            event.adaHelp();
+        }
+        else if (randomInt <6)
+        {
+            event.penguinHug();
+        }
+        else if (randomInt <7)
+        {
+            event.teacherMeeting();
+        }
+        else
+            event.conversation();
     }
 
     /**
@@ -270,8 +326,7 @@ public class Game
      */
     public void explore()
     {
-
-    }
+        currentRoom.printItems();    }
 
     /**
      * Method interact allow interacting with the item of the room if it is possible 
@@ -279,6 +334,19 @@ public class Game
      */
     public void interact()
     {
+        System.out.println("What item do you want to interact with ?");
+        currentRoom.printItems();
+        
+        int n = Integer.parseInt(System.console().readLine());
+        // < or == ?
+        for (int i=0;i<currentRoom.listRoomItem.size();i++)
+        {
+            // Player wishes to interact with object of index i
+            if (n == i)
+            {
+                System.out.print("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+            }
+        }
 
     }
 
@@ -343,7 +411,6 @@ public class Game
      */
     public boolean quit()
     {
-        System.out.print("Test test test");
         System.out.println("Are you sure? [Y/N]");
         char character;
         Scanner reader;
