@@ -16,12 +16,6 @@ public class Room
     protected String roomDescription;
     // List of items in the room
     protected ArrayList <Item> listRoomItem;
-
-    // // The four exits of the room.
-    // private Room northExit;
-    // private Room southExit;
-    // private Room westExit;
-    // private Room eastExit;
     
     // Hasmap containing all the rooms and their direction. Used to position the player.
     protected HashMap<String,Room> mapRoom;
@@ -66,15 +60,6 @@ public class Room
     {
         return roomDescription;
     }
-
-    // /**
-    // * Getter for all the exits in the room.
-    // * @return a String with all the exits concatenated.
-    // */
-    // public String getAllExits()
-    // {
-    //     return ("\nNorth: " + northExit.roomName + "\nSouth: " + southExit.roomName + "\nEast:" + eastExit.roomName + "\nWest:" + westExit.roomName + "\n");
-    // }
 
     /**
     * Setter for the four exits of the room.
