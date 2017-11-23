@@ -4,13 +4,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The main class of the game. 
- * When a new game s * Then, the game is launched. 
+ * When a new game is chreated and play(int) is called, the game is launched. 
  * The user appears in a room and the main quest is activated.
  * In the constructor we call every other constructors.
  * This class is where we call all the methods from the other classes in order for the game to run.
  *
  * @author (Grp5)
- * @version (a version number or a date)
+ * @version (V4 - 23/11/17)
  */
 public class Game
 {
@@ -22,6 +22,7 @@ public class Game
     private CommandLetter commandLetter;
     TestTimer timerPlayer;
     RandomEvent event;
+    private Quest onGoingQuest;
 
     char character;
 
@@ -326,7 +327,8 @@ public class Game
      */
     public void explore()
     {
-        currentRoom.printItems();    }
+        currentRoom.printItems();    
+    }
 
     /**
      * Method interact allow interacting with the item of the room if it is possible 
@@ -352,11 +354,11 @@ public class Game
 
     /**
      * Method onGoingQuest allow knowing the quest started and not finished
-     *
+     * Stub for now
      */
     public void onGoingQuest()
     {
-
+        
     }
 
     /**
