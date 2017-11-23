@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Item
+comment0.text=\r\n\ The\ class\ item\ manage\ all\ the\ the\ items\ in\ a\ room.\ \r\n\ This\ items\ can\ be\ a\ non\ player\ character,\ a\ container\ or\ a\ object.\ \r\n\ The\ item\ has\ a\ name\ when\ it\ is\ create.\ \r\n\r\n\ @author\ (Grp5)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Item()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Item\r\n\ The\ type\ of\ the\ item.\ 1\ \=\ non\ player\ character,\ 2\ \=\ container,\ 3\ \=\ object.\r\n\ \ \ \ \ \r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ A\ method\ for\ knowing\ the\ name\ of\ the\ item\ \r\n\r\n\ @return\ \ \ \ return\ the\ name\ of\ the\ item\ \r\n
+comment3.params=
+comment3.target=boolean\ getLock()
+comment3.text=\r\n\ Method\ which\ allow\ knowing\ the\ state\ of\ the\ item.\ \r\n\r\n\ @return\ \ a\ boolean\r\n\ True\ \=\ the\ item\ is\ lock\ and\ the\ player\ cannot\ interact,\ \r\n\ False\ \=\ the\ item\ is\ unlock\ and\ the\ player\ can\ interact.\ \r\n
+comment4.params=
+comment4.target=void\ setLock()
+comment4.text=\r\n\ Method\ which\ allow\ changing\ the\ state\ of\ the\ item.\ \r\n\ If\ the\ item\ is\ lock\ it\ became\ unlock,\ \r\n\ and\ if\ it\ is\ unlock\ the\ item\ became\ lock.\ \r\n\r\n
+numComments=5
