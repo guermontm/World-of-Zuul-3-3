@@ -108,69 +108,69 @@ abstract class Player
     
     public void addStat (String whatStat, int value)
     {
-         switch(whatStat) {
-             case"strStat":
-             setStr(getStrStat() + value);
-             break;
-             
-             case"speStat":
-             setSpe(getSpeStat() + value);
-             break;
-             
-             case"staStat":
-             setSta(getStaStat() + value);
-             break;
-             
-             case"stressStat":
-             setStress(getStressStat() + value);
-             break;
-             
-             case"intStat":
-             setInt(getIntStat() + value);
-             break;
-             default: System.out.print("Not possible");
+        switch(whatStat) {
+            case"strStat":
+                setStr(getStrStat() + value);
+            break;
+
+            case"speStat":
+                setSpe(getSpeStat() + value);
+            break;
+
+            case"staStat":
+                setSta(getStaStat() + value);
+            break;
+
+            case"stressStat":
+                setStress(getStressStat() + value);
+            break;
+
+            case"intStat":
+                setInt(getIntStat() + value);
+            break;
+            default: System.out.print("Not possible");
             }
     }
 
     public void substractStat (String whatStat, int value)
     {
-         switch(whatStat) {
+        switch(whatStat) {
              
-             case"strStat":
-             if (getStrStat() > 0) 
-             {
-             setStr(getStrStat() - value);
-             }
-             break;
+            case"strStat":
+                if (getStrStat() > 0) 
+                {
+                    setStr(getStrStat() - value);
+                }
+            break;
              
-             case"speStat":
-            if (getSpeStat() > 0) 
-            {
-             setSpe(getSpeStat() - value);
-            }
-             break;
-             
-             case"staStat":
-            if (getStaStat() > 0) 
-            {
-             setSta(getStaStat() - value);
-            }
-             break;
-             
-             case"stressStat":
-             if (getStressStat() > 0) 
-             {
-             setStress(getStressStat() - value);
-             }
-             break;
-             
-             case"intStat":
-             if (getIntStat() > 0) 
-            {
-             setInt(getIntStat() - value);
-            }
-             break;
-             default: System.out.print("Not possible");
+            case"speStat":
+                if (getSpeStat() > 0) 
+                {
+                  setSpe(getSpeStat() - value);
+                }
+            break;
+
+            case"staStat":
+                if (getStaStat() > 0) 
+                {
+                    setSta(getStaStat() - value);
+                }
+            break;
+
+            case"stressStat":
+                if (getStressStat() > 0) 
+                {
+                    setStress(getStressStat() - value);
+                }
+            break;
+
+            case"intStat":
+                if (getIntStat() > 0) 
+                {
+                    setInt(getIntStat() - value);
+                }
+            break;
+            default: System.out.print("Not possible");
             }
     }
 }
