@@ -18,9 +18,9 @@ public class NPC extends Item
     public NPC(String name,boolean isLock)
     {
         // the name is given at the creation of the item  
-        itemName=name;
+        super.itemName=name;
         // the islock is given at the creation of the item 
-        isLock=isLock;
+        super.isLock=isLock;
 
         sentences = new Sentences();
     }
