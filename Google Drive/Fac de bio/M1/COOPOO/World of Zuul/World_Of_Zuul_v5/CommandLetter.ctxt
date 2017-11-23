@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=CommandLetter
+comment0.text=\r\n\ This\ class\ take\ a\ character\ and\ check\ if\ this\ character\ is\ one\ the\ accept\ command.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=CommandLetter()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CommandLetter\r\n
+comment2.params=
+comment2.target=char\ readCommand()
+comment2.text=\r\n\ Method\ readCommand\ allows\ checking\ if\ the\ character\ enter\ is\ a\ command\ or\ not\ \r\n\r\n\ @return\ a\ char\ that\ can\ be\ the\ command\ letter\ or\ an\ error\ message\ ("\!")\ \r\n
+comment3.params=
+comment3.target=boolean\ getValid()
+numComments=4
