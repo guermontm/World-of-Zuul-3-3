@@ -62,6 +62,7 @@ abstract public class Item
         else if (isLock == false)
         {
             isLock = true;
+            
         }
         
     }

@@ -23,6 +23,7 @@ public class NPC extends Item
         super.isLock=isLock;
 
         sentences = new Sentences();
+        
     }
 
     /**
