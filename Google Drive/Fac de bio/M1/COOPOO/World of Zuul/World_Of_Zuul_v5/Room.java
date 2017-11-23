@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 /**
  * The Room class. Corresponds to the room in which the player is.
@@ -14,7 +15,7 @@ public class Room
     // Description of the room that is displayed when the player enters
     protected String roomDescription;
     // List of items in the room
-    protected Item roomItem;
+    protected ArrayList <Item> ListRoomItem;
 
     // // The four exits of the room.
     // private Room northExit;
@@ -33,7 +34,7 @@ public class Room
         // initialise instance variables
         roomName = "Default Room";
         roomDescription = "You are not supposed to see this. If you see this, shit went wrong at some point. Please report.";
-        //roomItem = new Item("Testitem", 1, false);
+        ListRoomItem = new ArrayList<Item>();
         mapRoom = new HashMap<String,Room>();
     }
 
@@ -97,6 +98,11 @@ public class Room
     public HashMap<String,Room> getExits()
     {
         return(mapRoom);
+    }
+    
+    public void addItem (Item newItem){
+        ListRoomItem.add(newItem); 
+        
     }
 
 }

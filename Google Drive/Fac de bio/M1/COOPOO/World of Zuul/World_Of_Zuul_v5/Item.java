@@ -1,4 +1,3 @@
-import java.util.Scanner;
 /**
  * The class item manage all the the items in a room. 
  * This items can be a non player character, a container or a object. 
@@ -7,7 +6,7 @@ import java.util.Scanner;
  * @author (Grp5)
  * @version (a version number or a date)
  */
-public class Item
+abstract public class Item
 {
     // The name of the item, defined when the object is created
     protected String itemName;
@@ -64,5 +63,6 @@ public class Item
         {
             isLock = true;
         }
+        
     }
 }
