@@ -80,8 +80,6 @@ public class Quest
      * return the description of the quest (where to go, what to do), 
      * can be used to be said by a NPC and in the help menu
      * 
-     * @param  the number of the quest
-     * @return a string with the description
      */
     public void getDescription()
     {
@@ -131,7 +129,6 @@ public class Quest
         questTable[1][2] = "currently running";
         questTable[2][2] = "currently running";
         questTable[3][2] = "currently running";
-        questTable[1][2] = "currently running";
         questTable[0][2] = "finished";
 
         //unlock Nolan and Martin in the toilets and in TP1
@@ -208,14 +205,14 @@ public class Quest
     
     {
         // il faut aller dans l'ascenceur pour choper le pied de biche
-        if (game.thePlayer.getStrStat >= 7){
+        //if (game.thePlayer.getStrStat >= 7){
             //discussion spéciale avec le gardien et à la fin
            // game.thePlayer.crowbar = true;
-        }
+        //}
         //objet porte qui est bloqué et qui sera débloqué quand on aura le pied de biche
-        if ((game.thePlayer.crowbar == true) || (game.thePlayer.getStrStat = 10)){  
-            toiletDoor.setLock(); //débloque la salle
-        }
+        //if ((game.thePlayer.crowbar == true) || (game.thePlayer.getStrStat = 10)){  
+        toiletDoor.setLock(); //débloque la salle
+        //}
         //nolan apparait sur l'image et il dit allons coder babe
         //fin de la quete
         // si l'autre quete est finie alors on passe aux quetes suivantes
@@ -234,7 +231,7 @@ public class Quest
     public void questCode()
     {
         //coder sur l'ordi en tp1, il faut avoir une intel sup à 7
-        if (game.thePlayer.getIntStat() >=7){
+        //if (game.thePlayer.getIntStat() >=7){
             computer.setLock();
             //message qui dit qu'on a fini de coder
             //fin de la quete, nolan et martin rentrent chez eux
@@ -244,7 +241,7 @@ public class Quest
             questTable[7][2] = "currently running";
             //unlock the closet with the keys for the office
             closet.setLock();
-        }
+        //}
     }
     /**
      * Method for the last quest of the game 
@@ -255,9 +252,9 @@ public class Quest
         //enlever la key du closet quand le player interagit avec
         //game.thePlayer.key = true; //rajouter boolean dans player
         //unlock the door when you have the key --> dans le hashmap
-        if (game.thePlayer.key == true){
+        //if (game.thePlayer.key == true){
             //discussion avec PG pour finir, discussion avec des choix --> plusieurs fins possibles
-        }
+        //}
         //fin de la quete et du jeu
         questTable[7][2] = "finished";
     }
