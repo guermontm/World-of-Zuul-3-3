@@ -44,7 +44,7 @@ public class RandomEvent
      */
     public void allanJoke()
     {
-        player.setStr(0);
+        player.setStress(0);
         System.out.println("Allan tells you a joke so funny that you are not stressed anymore!");
     }
 
