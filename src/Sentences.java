@@ -61,14 +61,13 @@ public class Sentences
     private String sentenceClement1, sentenceClement2;
     
     //Initialisation of conversation sentences for NPC
-    private String sentenceMainMrsGeniet1, sentenceMainMrsGeniet2,sentenceMainMrsGeniet3; //
+    private String sentenceMainMrsGeniet1, sentenceMainMrsGeniet2,sentenceMainMrsGeniet3,sentenceMainMrsGeniet4; //
     private String sentenceMainAxel1, sentenceMainAxel2, sentenceMainAxel3, sentenceMainAxel4, sentenceMainAxel5, sentenceMainAxel6; //6 Axel
     private String sentenceMainMartin1, sentenceMainMartin2, sentenceMainMartin3, sentenceMainMartin4, sentenceMainMartin5, sentenceMainMartin6,
     sentenceMainMartin7, sentenceMainMartin8; // 8
     private String sentenceMainNolan1, sentenceMainNolan2, sentenceMainNolan3, sentenceMainNolan4, sentenceMainNolan5, sentenceMainNolan6, 
     sentenceMainNolan7, sentenceMainNolan8; //8
-    private String sentenceMainGuardian1, sentenceMainGuardian2, sentenceMainGuardian3, sentenceMainGuardian4, sentenceMainGuardian5, sentenceMainGuardian6,
-    sentenceMainGuardian7, sentenceMainGuardian8; 
+    private String sentenceMainGuardian1, sentenceMainGuardian2, sentenceMainGuardian3, sentenceMainGuardian4, sentenceMainGuardian5, sentenceMainGuardian6; //6 
     private String sentenceMainPGTD1, sentenceMainPGTD2, sentenceMainPGTD3, sentenceMainPGTD4, sentenceMainPGTD5,
     sentenceMainPGTD6, sentenceMainPGTD7; //7
     private String sentenceMainPGEnd1, sentenceMainPGEnd2, sentenceMainPGEnd3, sentenceMainPGEnd4, sentenceMainPGEnd5, 
@@ -86,7 +85,7 @@ public class Sentences
     sentenceMainPlayerToNolan4, sentenceMainPlayerToNolan5, sentenceMainPlayerToNolan6, 
     sentenceMainPlayerToNolan7, sentenceMainPlayerToNolan8, sentenceMainPlayerToNolan9, sentenceMainPlayerToNolan10; //10
     private String sentenceMainPlayerToGuardian1, sentenceMainPlayerToGuardian2, 
-    sentenceMainPlayerToGuardian3, sentenceMainPlayerToGuardian4, sentenceMainPlayerToGuardian5; //
+    sentenceMainPlayerToGuardian3, sentenceMainPlayerToGuardian4, sentenceMainPlayerToGuardian5, sentenceMainPlayerToGuardian6; //
     private String sentenceMainPlayerToPGTD1, sentenceMainPlayerToPGTD2, sentenceMainPlayerToPGTD3, 
     sentenceMainPlayerToPGTD4, sentenceMainPlayerToPGTD5, sentenceMainPlayerToPGTD6; //6 to PG
     private String sentenceMainPlayerToPGEnd1, sentenceMainPlayerToPGEnd2, sentenceMainPlayerToPGEnd3, 
@@ -154,8 +153,8 @@ public class Sentences
        sentenceMorgane1="[Morgane] *Burp*";
        sentenceMorgane2="[Morgane] It's not because you are in a game that you have to speak to everybody, bitc*";
        
-       sentenceMarie1="[Marie] ";
-       sentenceMarie2="[Marie] ";
+       sentenceMarie1="[Marie] Come with us to the escape game tonight !";
+       sentenceMarie2="[Marie] Don't forget there are 9 other projects to finish after the COOPOO subject !";
        
        sentenceMrsGeniet1="[Mrs Geniet] chut";
        sentenceMrsGeniet2="[Mrs Geniet] I am listening to the students";
@@ -199,8 +198,9 @@ public class Sentences
        
        //The conversation sentences for NPC
        sentenceMainMrsGeniet1="[Mrs Geniet] Yes? What do you want from me?";
-       sentenceMainMrsGeniet2="[Mrs Geniet] ";
-       sentenceMainMrsGeniet3="[Mrs Geniet] ";
+       sentenceMainMrsGeniet2="[Mrs Geniet] Hum.. okey.. take the keys of my office. ";
+       sentenceMainMrsGeniet3="[Mrs Geniet] But do not forget to bring them back, and close the door.";
+       sentenceMainMrsGeniet4="[Mrs Geniet] Are you kinding me ?! You do it on purpose ?! you are fired from GPhy.";
        
        sentenceMainAxel1="[Axel] Ah ! You are finally here ! Have you already done your COOPOO exercise?";
        sentenceMainAxel2="[Axel] Humm, you're going to have problems if you do not do it today";
@@ -227,21 +227,19 @@ public class Sentences
        sentenceMainNolan7="[Nolan] Yes, well, get me out of here, solve quickly that ! Faster !";
        sentenceMainNolan8="[Nolan] Bweeerk, no ! Ahah, hurry up to help me please !";
        
-       sentenceMainGuardian1="[The Guardian] ";
-       sentenceMainGuardian2="[The Guardian] ";
-       sentenceMainGuardian3="[The Guardian] ";
-       sentenceMainGuardian4="[The Guardian] ";
-       sentenceMainGuardian5="[The Guardian] ";
-       sentenceMainGuardian6="[The Guardian] ";
-       sentenceMainGuardian7="[The Guardian] ";
-       sentenceMainGuardian8="[The Guardian] ";
+       sentenceMainGuardian1="[The Guardian] Hello. I can feel that you need help.";
+       sentenceMainGuardian2="[The Guardian] I am The Guardian and I seek the path of wisdom. I maintain the elevator. I live in it too. I meditate in it. ";
+       sentenceMainGuardian3="[The Guardian] Only you can save him. I entrust you my legendary weapon. Take this crow-bar, take care of it.";
+       sentenceMainGuardian4="[The Guardian] Nothing is weird, if it exists. I entrust you my legendary weapon, my crow-bar. Complete your destiny.";
+       sentenceMainGuardian5="[The Guardian] A weapon is ineffective if you do not have the necessary strength. Go ahead.";
+       sentenceMainGuardian6="[The Guardian] Take care. You have to be strong to use it.";
        
        sentenceMainPGTD1="[PG] Yes, hello?";
        sentenceMainPGTD2="[PG] It's time to start, right? It is to return for 18h, don't forget it...";
        sentenceMainPGTD3="[PG] Rude ! Start by saying hello !! "; // +1 stess
-       sentenceMainPGTD4="[PG] No, but what is this behavior? Imagine yourself in a professional environment! You are not worthy of being a Gphy. Go away";//Game over
+       sentenceMainPGTD4="[PG] No, but what is this behavior? Imagine yourself in a professional environment... You are not worthy of being a Gphy. Go away";//Game over
        sentenceMainPGTD5="[PG] Hum.. Ok, be careful next time...";
-       sentenceMainPGTD6="[PG] Ah, because you're going to watch them and do nothing? Pff, go to work !"; // +1 stress
+       sentenceMainPGTD6="[PG] Ah, because you're going to watch them and do nothing? Pff, go to work..."; // +1 stress
        sentenceMainPGTD7="[PG] Yes... Do not waste your time remaining. This is not very serious...";
        
        sentenceMainPGEnd1="[PG] ";
@@ -258,6 +256,7 @@ public class Sentences
        listMainMrsGeniet.add(sentenceMainMrsGeniet1);
        listMainMrsGeniet.add(sentenceMainMrsGeniet2);
        listMainMrsGeniet.add(sentenceMainMrsGeniet3);
+       listMainMrsGeniet.add(sentenceMainMrsGeniet4);
        
        listMainAxel.add(sentenceMainAxel1);
        listMainAxel.add(sentenceMainAxel2);
@@ -290,8 +289,6 @@ public class Sentences
        listMainGuardian.add(sentenceMainGuardian4);
        listMainGuardian.add(sentenceMainGuardian5);
        listMainGuardian.add(sentenceMainGuardian6);
-       listMainGuardian.add(sentenceMainGuardian7);
-       listMainGuardian.add(sentenceMainGuardian8);
 
        listMainPGTD.add(sentenceMainPGTD1);
        listMainPGTD.add(sentenceMainPGTD2);
@@ -313,7 +310,7 @@ public class Sentences
        listMainPGEnd.add(sentenceMainPGEnd9);
        
        //The conversation sentences for the player
-       sentenceMainPlayerToMrsGeniet1="[You] ";
+       sentenceMainPlayerToMrsGeniet1="[You] *whisper* Hello, I would like the Martin diploma please. He asked me to go get it.";
        sentenceMainPlayerToMrsGeniet2="[You] ";
        sentenceMainPlayerToMrsGeniet3="[You] ";
        sentenceMainPlayerToMrsGeniet4="[You] ";
@@ -344,11 +341,12 @@ public class Sentences
        sentenceMainPlayerToNolan9="[You] Oh, not cool for you..";
        sentenceMainPlayerToNolan10="[You] Okey, I'll try to smash that door !";
        
-       sentenceMainPlayerToGuardian1="[You] ";
-       sentenceMainPlayerToGuardian2="[You] ";
-       sentenceMainPlayerToGuardian3="[You] ";
-       sentenceMainPlayerToGuardian4="[You] ";
-       sentenceMainPlayerToGuardian5="[You] ";
+       sentenceMainPlayerToGuardian1="[You] Who are you?";
+       sentenceMainPlayerToGuardian2="[You] Yes... My friend is locked into the toilets and I need help to open it.";
+       sentenceMainPlayerToGuardian3="[You] Okey, so can you help me? Hum, my friend is locked and I want him out.";
+       sentenceMainPlayerToGuardian4="[You] Hum.. You're weird.";
+       sentenceMainPlayerToGuardian5="[You] How to use it?";
+       sentenceMainPlayerToGuardian6="[You] Thanks.";
        
        sentenceMainPlayerToPGTD1="[You] Hello, I would like to have the COOPOO subject, please.";
        sentenceMainPlayerToPGTD2="[You] Can I have the COOPOO subject? I have to do it quickly";
@@ -404,6 +402,7 @@ public class Sentences
        listMainGuardian.add(sentenceMainPlayerToGuardian3);
        listMainGuardian.add(sentenceMainPlayerToGuardian4);
        listMainGuardian.add(sentenceMainPlayerToGuardian5);
+       listMainGuardian.add(sentenceMainPlayerToGuardian6);
 
        listMainPlayerToPGTD.add(sentenceMainPlayerToPGTD1);
        listMainPlayerToPGTD.add(sentenceMainPlayerToPGTD2);
