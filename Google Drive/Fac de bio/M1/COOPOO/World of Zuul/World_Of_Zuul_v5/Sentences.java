@@ -61,8 +61,7 @@ public class Sentences
     private String sentenceClement1, sentenceClement2;
     
     //Initialisation of conversation sentences for NPC
-    private String sentenceMainMrsGeniet1, sentenceMainMrsGeniet2,sentenceMainMrsGeniet3, sentenceMainMrsGeniet4, sentenceMainMrsGeniet5, 
-    sentenceMainMrsGeniet6, sentenceMainMrsGeniet7; //
+    private String sentenceMainMrsGeniet1, sentenceMainMrsGeniet2,sentenceMainMrsGeniet3; //
     private String sentenceMainAxel1, sentenceMainAxel2, sentenceMainAxel3, sentenceMainAxel4, sentenceMainAxel5, sentenceMainAxel6; //6 Axel
     private String sentenceMainMartin1, sentenceMainMartin2, sentenceMainMartin3, sentenceMainMartin4, sentenceMainMartin5, sentenceMainMartin6,
     sentenceMainMartin7, sentenceMainMartin8; // 8
@@ -131,7 +130,7 @@ public class Sentences
              
        //The simple sentences
        sentenceAxel1="[Axel] *is tired*"; //joke
-       sentenceAxel2="[Axel] I'm still waiting for my band. What are they doing?"; 
+       sentenceAxel2="[Axel] I'm still waiting for my group. What are they doing?"; 
        sentenceAxel3="[Axel] If you get tired, you can buy food here."; //trick
        
        sentenceMartin1="[Martin] Hurry up ! We have to code, what are you waiting for?";
@@ -142,8 +141,8 @@ public class Sentences
        sentenceNolan2="[Nolan] I am hungry";
        sentenceNolan3="[Nolan] Let's go to work, I want to go home";
        
-       sentenceValentin1="[Valentin] I am loner, my life is over. The topic of COOPOO stares me, I want to become nobody";
-       sentenceValentin2="[Valentin] *leans out the window* I want to finish it, My COOPOO mates are not here";
+       sentenceValentin1="[Valentin] I am loner, my life is over. The topic of COOPOO stares at me, I want to become nobody";
+       sentenceValentin2="[Valentin] *leans out of the window* I want to finish it, My COOPOO mates are not here";
        
        sentenceGuardian1="[The Guardian] I am your father";
        sentenceGuardian2="[The Guardian] When you do not have the strength, you must have the ruse, the weapon of intelligence.";
@@ -199,13 +198,9 @@ public class Sentences
        
        
        //The conversation sentences for NPC
-       sentenceMainMrsGeniet1="[Mrs Geniet] ";
+       sentenceMainMrsGeniet1="[Mrs Geniet] Yes? What do you want from me?";
        sentenceMainMrsGeniet2="[Mrs Geniet] ";
        sentenceMainMrsGeniet3="[Mrs Geniet] ";
-       sentenceMainMrsGeniet4="[Mrs Geniet] ";
-       sentenceMainMrsGeniet5="[Mrs Geniet] ";
-       sentenceMainMrsGeniet6="[Mrs Geniet] ";
-       sentenceMainMrsGeniet7="[Mrs Geniet] ";
        
        sentenceMainAxel1="[Axel] Ah ! You are finally here ! Have you already done your COOPOO exercise?";
        sentenceMainAxel2="[Axel] Humm, you're going to have problems if you do not do it today";
@@ -263,10 +258,6 @@ public class Sentences
        listMainMrsGeniet.add(sentenceMainMrsGeniet1);
        listMainMrsGeniet.add(sentenceMainMrsGeniet2);
        listMainMrsGeniet.add(sentenceMainMrsGeniet3);
-       listMainMrsGeniet.add(sentenceMainMrsGeniet4);
-       listMainMrsGeniet.add(sentenceMainMrsGeniet5);
-       listMainMrsGeniet.add(sentenceMainMrsGeniet6);
-       listMainMrsGeniet.add(sentenceMainMrsGeniet7);
        
        listMainAxel.add(sentenceMainAxel1);
        listMainAxel.add(sentenceMainAxel2);
@@ -472,9 +463,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListAxel()
+    public String getListAxel(int index)
     {
-        return listAxel; 
+        int i = index;
+        return listAxel.get(i); 
     }
     
     /**
@@ -482,9 +474,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMartin()
+    public String getListMartin(int index)
     {
-        return listMartin; 
+        int i = index;
+        return listMartin.get(i); 
     }
     
     /**
@@ -492,9 +485,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListNolan()
+    public String getListNolan(int index)
     {
-        return listNolan; 
+        int i = index;
+        return listNolan.get(i); 
     }
     
     /**
@@ -502,9 +496,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListValentin()
+    public String getListValentin(int index)
     {
-        return listValentin; 
+        int i = index;
+        return listValentin.get(i); 
     }
     
     /**
@@ -512,9 +507,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListGuardian()
+    public String getListGuardian(int index)
     {
-        return listGuardian; 
+        int i = index;
+        return listGuardian.get(i); 
     }
     
     /**
@@ -522,9 +518,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListThomas()
+    public String getListThomas(int index)
     {
-        return listThomas; 
+        int i = index;
+        return listThomas.get(i); 
     }
     
     /**
@@ -532,9 +529,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMorgane()
+    public String getListMorgane(int index)
     {
-        return listMorgane; 
+        int i = index;
+        return listMorgane.get(i); 
     }
     
     /**
@@ -542,9 +540,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMarie()
+    public String getListMarie(int index)
     {
-        return listMarie; 
+        int i = index;
+        return listMarie.get(i); 
     }
     
     /**
@@ -552,9 +551,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListClement()
+    public String getListClement(int index)
     {
-        return listClement; 
+        int i = index;
+        return listClement.get(i); 
     }
     
     /**
@@ -562,9 +562,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMrsGeniet()
+    public String getListMrsGeniet(int index)
     {
-        return listMrsGeniet; 
+        int i = index;
+        return listMainMrsGeniet.get(i); 
     }
     
     
@@ -574,9 +575,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainAxel()
+    public String getListMainAxel(int index)
     {
-        return listMainAxel; 
+        int i = index;
+        return listMainAxel.get(i); 
     }
     
     /**
@@ -584,9 +586,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainMrsGeniet()
+    public String getListMainMrsGeniet(int index)
     {
-        return listMainMrsGeniet; 
+        int i = index;
+        return listMainMrsGeniet.get(i); 
     }
     
     /**
@@ -594,9 +597,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainNolan()
+    public String getListMainNolan(int index)
     {
-        return listMainNolan; 
+        int i = index;
+        return listMainNolan.get(i); 
     }
     
     /**
@@ -604,9 +608,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainMartin()
+    public String getListMainMartin(int index)
     {
-        return listMainMartin; 
+        int i = index;
+        return listMainMartin.get(i); 
     }
     
     /**
@@ -614,9 +619,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainGuardian()
+    public String getListMainGuardian(int index)
     {
-        return listMainGuardian; 
+        int i = index;
+        return listMainGuardian.get(i); 
     }
     
     /**
@@ -624,9 +630,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainPGTD()
+    public String getListMainPGTD(int index)
     {
-        return listMainPGTD; 
+        int i = index;
+        return listMainPGTD.get(i); 
     }
     
     /**
@@ -634,9 +641,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainPGEnd()
+    public String getListMainPGEnd(int index)
     {
-        return listMainPGEnd; 
+        int i = index;
+        return listMainPGEnd.get(i); 
     }
     
     //Get list of Player conversation sentence
@@ -645,9 +653,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainPlayerToAxel()
+    public String getListMainPlayerToAxel(int index)
     {
-        return listMainPlayerToAxel; 
+        int i = index;
+        return listMainPlayerToAxel.get(i); 
     }
     
     /**
@@ -657,9 +666,10 @@ public class Sentences
      */
     
     
-    public ArrayList getListMainPlayerToMrsGeniet()
+    public String getListMainPlayerToMrsGeniet(int index)
     {
-        return listMainPlayerToMrsGeniet; 
+        int i = index;
+        return listMainPlayerToMrsGeniet.get(i); 
     }
     
     /**
@@ -667,9 +677,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainPlayerToNolan()
+    public String getListMainPlayerToNolan(int index)
     {
-        return listMainPlayerToNolan; 
+        int i = index;
+        return listMainPlayerToNolan.get(i); 
     }
     
     /**
@@ -677,9 +688,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainPlayerToMartin()
+    public String getListMainPlayerToMartin(int index)
     {
-        return listMainPlayerToMartin; 
+        int i = index;
+        return listMainPlayerToMartin.get(i); 
     }
     
     /**
@@ -687,9 +699,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMainPlayerToGuardian()
+    public String getListMainPlayerToGuardian(int index)
     {
-        return listMainPlayerToGuardian; 
+        int i = index;
+        return listMainPlayerToGuardian.get(i); 
     }
     
     /**
@@ -697,9 +710,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListPlayerToMainPGTD()
+    public String getListPlayerToMainPGTD(int index)
     {
-        return listMainPlayerToPGTD; 
+        int i = index;
+        return listMainPlayerToPGTD.get(i); 
     }
     
     /**
@@ -707,8 +721,9 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListPlayerToMainPGEnd()
+    public String getListPlayerToMainPGEnd(int index)
     {
-        return listMainPlayerToPGEnd; 
+        int i = index;
+        return listMainPlayerToPGEnd.get(i);
     }
 }  
