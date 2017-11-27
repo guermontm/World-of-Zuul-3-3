@@ -10,10 +10,26 @@ public class Quest
     // boolean that is true when a quest is finished and false when it is not
     private boolean questEnded;
     //table of all the quests in the game
-    private String questTable[][];
+    private String questTable[][];  
     
-    private Game game;
-    //using the item classes
+    //all the needed NPCs
+    private NPC martin;
+    private NPC tdPG;
+    private NPC officePG;
+    private NPC nolan; 
+    private NPC nolan2;
+    private NPC valentin;
+    private NPC guardian;
+    private NPC marie;
+    private NPC axel;
+    private NPC mrsGeniet;
+    //All the needed objects
+    private SimpleObject officeDoor = new SimpleObject ("Office Door",true); //peut etre plus intelligent a faire --> faire dans le hashmap
+    private Container desk = new Container ("Desk",false); //a creer dans le main de game, dans le bureau d'annie
+    private SimpleObject toiletDoor = new SimpleObject ("Toilet Door",true); //nolan est bloqué derrière, quand on prend le pied de biche passe a false et débloque donc une autre discussion avec nolan
+    private SimpleObject computer = new SimpleObject("Computer", true); //PC pour coder le projet, débloqué quand intel >7
+    private Container closet = new Container ("Closet", true); 
+ 
 
     /**
      * Constructor for objects of class Quest
@@ -54,6 +70,19 @@ public class Quest
         questTable[7][0] = "Trying to finish the day";
         questTable[7][1] = "Give your answers to PG, you need to find him in his office.";
         questTable[7][2] = "not started";
+        
+// Instanciating the NPCs
+        martin = new NPC("Martin", false);
+        tdPG = new NPC("TDPG", true);
+        officePG = new NPC("OfficePG", true);
+        axel = new NPC("Axel", false);
+        nolan = new NPC("Nolan", true);
+        nolan2 = new NPC("Nolan", true);
+        valentin = new NPC("Valentin", true);
+        guardian = new NPC("Guardian", false);
+        marie = new NPC("Marie", true);
+        morgane = new NPC("Morgane", false);
+        mrsGeniet = new NPC("MrsGeniet", false);
     }
 
     /**
@@ -110,12 +139,12 @@ public class Quest
      */
     public void questFindingSubject ()
     {
-        //ce que dit pg à récupérer dans NPC
-        game.pg.interactItem();
-        //il dit qu'il faut trouver les autres membres du groupe
-
-        //on met le boolean pg a false il doit disparaitre --> a changer quand on aura fait game
-        game.pg.setLock();
+        //Axel is the person who gives you the first quest, he starts speaking when you start the game
+        axel.interactItem();
+        //the conversation with PG starts when you are in the TD4
+        tdPG.interactItem();
+        //PG in the td room must disappear
+        tdPG.setLock();
         //the other quests are starting and this one is finished
         questTable[1][2] = "currently running";
         questTable[2][2] = "currently running";
@@ -123,8 +152,8 @@ public class Quest
         questTable[0][2] = "finished";
 
         //unlock Nolan and Martin in the toilets and in TP1
-        game.nolan.setLock();
-        game.martin.setLock();
+        nolan.setLock();
+        martin.setLock();
     }
 
     /**
