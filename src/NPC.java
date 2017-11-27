@@ -15,6 +15,9 @@ public class NPC extends Item
      * Some item does not appears until some quest are not achieved or appears randomly. 
      * When isLock is true the object is Lock until an event 
      */
+    
+    boolean talkedToPg = false;
+
     public NPC(String name,boolean isLock)
     {
         // the name is given at the creation of the item  
@@ -22,8 +25,7 @@ public class NPC extends Item
         // the islock is given at the creation of the item 
         super.isLock=isLock;
 
-        sentences = new Sentences();
-        
+        sentences = new Sentences();        
     }
 
     /**
@@ -67,7 +69,11 @@ public class NPC extends Item
         else
         {
             System.out.println("Hello");
-            
+            switch(itemName)
+            {
+                case ("PG"):
+                    talkedToPg = true;
+            }
         }
     }
 }

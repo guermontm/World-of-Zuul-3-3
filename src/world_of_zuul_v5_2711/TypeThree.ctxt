@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=TypeThree
+comment0.text=\r\n\ This\ class\ inherits\ from\ player\ and\ represents\ a\ player\ of\ the\ third\ type\r\n\ It\ means\ that\ the\ attributes\ are\ initialised\ with\ specific\ values\r\n\r\n\ @author\ (Group\ 5)\r\n\ @version\ (09/11/17)\r\n
+comment1.params=
+comment1.target=TypeThree()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TypeThree\r\n\ This\ method\ gives\ the\ specific\ values\ of\ the\ different\ attributes\ \r\n
+comment2.params=
+comment2.target=boolean\ getLucky()
+numComments=3

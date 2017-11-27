@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Container
+comment0.text=\r\n\ This\ class\ inherits\ from\ item\ and\ represents\ the\ item\ type\ \:\ container.\ \r\n\ It\ means\ that\ the\ attributes\ are\ initialised\ with\ specific\ values\ and\ specific\ methods.\ \r\n\r\n\ @author\ (Group\ 5)\r\n\ @version\ (19/11/17)\r\n
+comment1.params=name\ isLock
+comment1.target=Container(java.lang.String,\ boolean)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TypeOne\r\n\ Some\ item\ does\ not\ appears\ until\ some\ quest\ are\ not\ achieved\ or\ appears\ randomly.\ \r\n\ When\ isLock\ is\ true\ the\ object\ is\ Lock\ until\ an\ event\ \r\n
+comment2.params=nameObj
+comment2.target=void\ addObject(SimpleObject)
+comment3.params=removeObj
+comment3.target=void\ removeObject(java.lang.String)
+comment4.params=
+comment4.target=void\ interactItem()
+comment4.text=\r\n\ If\ the\ item\ is\ a\ container\ it\ is\ possible\ to\ search\ inside.\ \r\n\ The\ interactItem\ method\ will\ return\ what\ it\ contains.\ \ \r\n
+comment5.params=
+comment5.target=java.util.ArrayList\ getListContentObject()
+comment5.text=\r\n\ Method\ getListContentObject\r\n\r\n\ @return\ an\ array\ list\ which\ contain\ all\ the\ objects\ in\ the\ container\ \r\n
+numComments=6
