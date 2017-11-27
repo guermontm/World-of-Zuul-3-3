@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -40,7 +39,7 @@ public class Game
     private Container desk = new Container ("Desk",false); //a creer dans le main de game, dans le bureau d'annie
     private SimpleObject toiletDoor = new SimpleObject ("Toilet Door",true); //nolan est bloqué derrière, quand on prend le pied de biche passe a false et débloque donc une autre discussion avec nolan
     private SimpleObject computer = new SimpleObject("Computer", true); //PC pour coder le projet, débloqué quand intel >7
-    private Container closet = new Container ("Closet", true); 
+    private Container closet = new Container ("Closet", true);
 
     // the current quest 
     private Quest getSubjectQuest,martinQuest,nolanQuest;
