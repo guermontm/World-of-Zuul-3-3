@@ -198,49 +198,49 @@ public class Sentences
        
        //The conversation sentences for NPC
        sentenceMainMrsGeniet1="[Mrs Geniet] Yes? What do you want from me?";
-       sentenceMainMrsGeniet2="[Mrs Geniet] Hum.. okey.. take the keys of my office. ";
-       sentenceMainMrsGeniet3="[Mrs Geniet] But do not forget to bring them back, and close the door.";
-       sentenceMainMrsGeniet4="[Mrs Geniet] Are you kinding me ?! You do it on purpose ?! you are fired from GPhy.";
+       sentenceMainMrsGeniet2="[Mrs Geniet] Yes, it is about time that he thinks about that! Take the keys to my office, but don't forget to bring them back. "; //if you chose to whisper
+       sentenceMainMrsGeniet3="[Mrs Geniet] You need to be more quiet, students are presenting here..."; //if you chose to speak loudly
+       sentenceMainMrsGeniet4="[Mrs Geniet] Are you kinding me ?! Get out of here right now!"; //leads to a game over 
        
        sentenceMainAxel1="[Axel] Ah ! You are finally here ! Have you already done your COOPOO exercise?";
        sentenceMainAxel2="[Axel] Humm, you're going to have problems if you do not do it today";
-       sentenceMainAxel3="[Axel] No, I'm waiting for my group to start working. They will arrive soon..";
-       sentenceMainAxel4="[Axel] I advise you to get the subject from PG !";
+       sentenceMainAxel3="[Axel] No, I'm waiting for my group to start working. They will arrive soon... I hope";
+       sentenceMainAxel4="[Axel] You should go get the subject from PG !";
        sentenceMainAxel5="[Axel] Yeah but I already have the subject ! If you want, go see PG in TD4.";
        sentenceMainAxel6="[Axel] He is in TD4, go ahead quickly !";
        
        sentenceMainMartin1="[Martin] Hey, how are you?";
-       sentenceMainMartin2="[Martin] Yes, but I can't. I need my diploma..";
+       sentenceMainMartin2="[Martin] Yes, but I can't. I need my diploma...";
        sentenceMainMartin3="[Martin] Nothing. I need my diploma, but I'm lazy...";
-       sentenceMainMartin4="[Martin] No, I am just lazy. I think Annie has my diploma, but she is doing the oral presentations.";
-       sentenceMainMartin5="[Martin] I guess the diploma is inside the Annie's office. But actually, she's doing the oral presentations.";
-       sentenceMainMartin6="[Martin] Nop, ahah ! Please, be friendly, help me. She is doing the oral presentations !";
+       sentenceMainMartin4="[Martin] No, I am just lazy. I think Mrs Geniet has my diploma, but she is listening to oral presentations.";
+       sentenceMainMartin5="[Martin] I guess the diploma is in Mrs Geniet's office. But she is currently listening to oral presentations.";
+       sentenceMainMartin6="[Martin] Nope, ahah ! Please, be friendly, help me. She is listening to the oral presentations !";
        sentenceMainMartin7="[Martin] Thanks my friend !";
        sentenceMainMartin8="[Martin] Oh, yes, you're really nice ! Thanks !";
        
        sentenceMainNolan1="[Nolan] Hello? Help ! Someone there?";
-       sentenceMainNolan2="[Nolan] I heard you, do not pretend not to hear me ! I'll tear your eyes off if you do not help me !";
-       sentenceMainNolan3="*The person breaks the door with a supremely powerful force, jumps on you, catchs you, then plunges your head into the toilet. You died drowned.*";
-       sentenceMainNolan4="[Nolan] Ahhh ! It's you? I recognized your voice. Please, help me ! It's been two hours since I am locked";
+       sentenceMainNolan2="[Nolan] I heard you, do not pretend not to hear me ! I'll tear your eyes off if you don't help me !";
+       sentenceMainNolan3="*The person breaks the door with a supremely powerful force, jumps on you, catches you, then plunges your head into the toilet. You died drowned.*"; //leads to game over
+       sentenceMainNolan4="[Nolan] Ahhh ! It's you? I recognized your voice. Please, help me ! I've been locked in here for two hours!";
        sentenceMainNolan5="[Nolan] The lock is blocked, I have tried everything..";
-       sentenceMainNolan6="[Nolan] No ! Don't do that. I'm going to look smart afterwards...";
-       sentenceMainNolan7="[Nolan] Yes, well, get me out of here, solve quickly that ! Faster !";
+       sentenceMainNolan6="[Nolan] No ! Don't do that. I don't want to be the silly guy of GPhy...";
+       sentenceMainNolan7="[Nolan] Yes, well, get me out of here, solve it quickly ! Faster !";
        sentenceMainNolan8="[Nolan] Bweeerk, no ! Ahah, hurry up to help me please !";
        
        sentenceMainGuardian1="[The Guardian] Hello. I can feel that you need help.";
        sentenceMainGuardian2="[The Guardian] I am The Guardian and I seek the path of wisdom. I maintain the elevator. I live in it too. I meditate in it. ";
-       sentenceMainGuardian3="[The Guardian] Only you can save him. I entrust you my legendary weapon. Take this crow-bar, take care of it.";
-       sentenceMainGuardian4="[The Guardian] Nothing is weird, if it exists. I entrust you my legendary weapon, my crow-bar. Complete your destiny.";
+       sentenceMainGuardian3="[The Guardian] Only you can save him. I entrust you with my legendary weapon. Take this crow-bar, take care of it.";
+       sentenceMainGuardian4="[The Guardian] Nothing is weird, if it exists. I entrust you with my legendary weapon, my crow-bar. Complete your destiny.";
        sentenceMainGuardian5="[The Guardian] A weapon is ineffective if you do not have the necessary strength. Go ahead.";
-       sentenceMainGuardian6="[The Guardian] Take care. You have to be strong to use it.";
+       sentenceMainGuardian6="[The Guardian] Take care. Be aware that you need to be strong to use it.";
        
        sentenceMainPGTD1="[PG] Yes, hello?";
-       sentenceMainPGTD2="[PG] It's time to start, right? It is to return for 18h, don't forget it...";
-       sentenceMainPGTD3="[PG] Rude ! Start by saying hello !! "; // +1 stess
+       sentenceMainPGTD2="[PG] It's time to start, right? The deadline is at 18h, don't forget it...";
+       sentenceMainPGTD3="[PG] Rude ! Maybe you can start by saying hello !! "; // +1 stress
        sentenceMainPGTD4="[PG] No, but what is this behavior? Imagine yourself in a professional environment... You are not worthy of being a Gphy. Go away";//Game over
        sentenceMainPGTD5="[PG] Hum.. Ok, be careful next time...";
        sentenceMainPGTD6="[PG] Ah, because you're going to watch them and do nothing? Pff, go to work..."; // +1 stress
-       sentenceMainPGTD7="[PG] Yes... Do not waste your time remaining. This is not very serious...";
+       sentenceMainPGTD7="[PG] Yes... Do not waste your remaining time. This is not very serious...";
        
        sentenceMainPGEnd1="[PG] ";
        sentenceMainPGEnd2="[PG] ";
@@ -310,24 +310,24 @@ public class Sentences
        listMainPGEnd.add(sentenceMainPGEnd9);
        
        //The conversation sentences for the player
-       sentenceMainPlayerToMrsGeniet1="[You] *whisper* Hello, I would like the Martin diploma please. He asked me to go get it.";
-       sentenceMainPlayerToMrsGeniet2="[You] ";
-       sentenceMainPlayerToMrsGeniet3="[You] ";
-       sentenceMainPlayerToMrsGeniet4="[You] ";
+       sentenceMainPlayerToMrsGeniet1="[You] *whispering* Hello, would it be possible to get Martin's diploma? he wants me to get it for him.";
+       sentenceMainPlayerToMrsGeniet2="[You] *out loud* Hello, can I have Martin's diploma please?";
+       sentenceMainPlayerToMrsGeniet3="[You] *whispering* I am sorry! Is it possible to have Martin's diploma please?";
+       sentenceMainPlayerToMrsGeniet4="[You] *yelling* I can't hear what you are saying, this L3 student is speaking too loudly!";
        
        sentenceMainPlayerToAxel1="[You] Ouh? What? A work? Are you joking?";
-       sentenceMainPlayerToAxel2="[You] No, I did not even look at the subject.";
+       sentenceMainPlayerToAxel2="[You] No, I didn't even look at the subject.";
        sentenceMainPlayerToAxel3="[You] Stop stressing me ! Have you already started, at least?";
        sentenceMainPlayerToAxel4="[You] Sh*t, I must quickly find my group !";
        sentenceMainPlayerToAxel5="[You] Well, you're as much in the sh*t as I am";
-       sentenceMainPlayerToAxel6="[You] And where is PG so?";
+       sentenceMainPlayerToAxel6="[You] And so where is PG?";
        
        sentenceMainPlayerToMartin1="[You] So-So, we have to begin the COOPOO subject. Are you available?";
        sentenceMainPlayerToMartin2="[You] Good, what are you doing?";
        sentenceMainPlayerToMartin3="[You] You lost it?";
-       sentenceMainPlayerToMartin4="[You] Okey so. I can go to find it. But where is you diploma?";
-       sentenceMainPlayerToMartin5="[You] I can go to find your diploma, but it is need free... Against a chocolate bread?";
-       sentenceMainPlayerToMartin6="[You] So, okey, I'm going ! Stay here !";
+       sentenceMainPlayerToMartin4="[You] Okay so. I can go to find it. But where is you diploma?";
+       sentenceMainPlayerToMartin5="[You] I can go find your diploma, but it is not free... Against a chocolate bread?";
+       sentenceMainPlayerToMartin6="[You] So, okay, I'm going ! Stay here !";
        sentenceMainPlayerToMartin7="[You] Luckily I'm kind, a kiss in return? :3";
        
        sentenceMainPlayerToNolan1="[You] Yes, who is it?";
@@ -335,17 +335,17 @@ public class Sentences
        sentenceMainPlayerToNolan3="[You] I'm so sorry, man ! Forgive me please !";
        sentenceMainPlayerToNolan4="[You] *Make fun of a guy like him stuck in the toilet, laugh, and insult him*";
        sentenceMainPlayerToNolan5="[You] Why are you locked?";
-       sentenceMainPlayerToNolan6="[You] A simple solution is to call someone. For example PG. Right?";
+       sentenceMainPlayerToNolan6="[You] A simple solution is to call someone. For example PG. Alright?";
        sentenceMainPlayerToNolan7="[You] Ahah, you're not smart !";
-       sentenceMainPlayerToNolan8="[You] Hum okey, I'll try to find a solution.";
+       sentenceMainPlayerToNolan8="[You] Hum okay, I'll try to find a solution.";
        sentenceMainPlayerToNolan9="[You] Oh, not cool for you..";
-       sentenceMainPlayerToNolan10="[You] Okey, I'll try to smash that door !";
+       sentenceMainPlayerToNolan10="[You] Okay, I'll try to smash that door !";
        
        sentenceMainPlayerToGuardian1="[You] Who are you?";
        sentenceMainPlayerToGuardian2="[You] Yes... My friend is locked into the toilets and I need help to open it.";
-       sentenceMainPlayerToGuardian3="[You] Okey, so can you help me? Hum, my friend is locked and I want him out.";
-       sentenceMainPlayerToGuardian4="[You] Hum.. You're weird.";
-       sentenceMainPlayerToGuardian5="[You] How to use it?";
+       sentenceMainPlayerToGuardian3="[You] Okay, so can you help me? Hum, my friend is locked and I want to get him out.";
+       sentenceMainPlayerToGuardian4="[You] Hum... You're weird.";
+       sentenceMainPlayerToGuardian5="[You] How can I use it?";
        sentenceMainPlayerToGuardian6="[You] Thanks.";
        
        sentenceMainPlayerToPGTD1="[You] Hello, I would like to have the COOPOO subject, please.";
