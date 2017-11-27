@@ -26,6 +26,17 @@ public class Game
 
     char character;
 
+    private NPC martin;
+    private NPC tdPG;
+    private NPC officePG;
+    private NPC axel;
+    private NPC nolan; 
+    private NPC valentin;
+    private NPC guardian;
+    private NPC marie;
+    private NPC morgane;
+    private NPC mrsGeniet;
+
 
     // the current quest 
     private Quest getSubjectQuest,martinQuest,nolanQuest;
@@ -64,6 +75,20 @@ public class Game
         commandLetter = new CommandLetter();        
         // // the game begins in the hall
         // currentRoom = hall;
+        onGoingQuest = new Quest();
+        
+        // Instanciating the NPCs
+        martin = new NPC("Martin", false);
+        tdPG = new NPC("TDPG", true);
+        officePG = new NPC("OfficePG", true);
+        axel = new NPC("Axel", false);
+        nolan = new NPC("Nolan", true);
+        valentin = new NPC("Valentin", true);
+        guardian = new NPC("Guardian", false);
+        marie = new NPC("Marie", true);
+        morgane = new NPC("Morgane", false);
+        mrsGeniet = new NPC("MrsGeniet", false);
+    
     }
 
     /**
@@ -353,12 +378,12 @@ public class Game
     }
 
     /**
-     * Method onGoingQuest allow knowing the quest started and not finished
+     * Method scenario allow knowing the quest started and not finished
      * Stub for now
      */
-    public void onGoingQuest()
+    public void scenario()
     {
-        
+        onGoingQuest.questFindingSubject();
     }
 
     /**
