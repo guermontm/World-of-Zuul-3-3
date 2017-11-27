@@ -10,8 +10,23 @@ public class Quest
     // boolean that is true when a quest is finished and false when it is not
     private boolean questEnded;
     //table of all the quests in the game
-    private String questTable[][];
+    private String questTable[][];  
     
+    private NPC martin;
+    private NPC tdPG;
+    private NPC officePG;
+    private NPC axel;
+    private NPC nolan; 
+    private NPC valentin;
+    private NPC guardian;
+    private NPC marie;
+    private NPC morgane;
+    private NPC mrsGeniet;
+    private SimpleObject officeDoor = new SimpleObject ("Office Door",true); //peut etre plus intelligent a faire --> faire dans le hashmap
+    private Container desk = new Container ("Desk",false); //a creer dans le main de game, dans le bureau d'annie
+    private SimpleObject toiletDoor = new SimpleObject ("Toilet Door",true); //nolan est bloqué derrière, quand on prend le pied de biche passe a false et débloque donc une autre discussion avec nolan
+    private SimpleObject computer = new SimpleObject("Computer", true); //PC pour coder le projet, débloqué quand intel >7
+    private Container closet = new Container ("Closet", true); 
     //private Game game;
     //using the item classes
 // le placard dans lequel se trouve la clé du bureau de PG
@@ -55,7 +70,18 @@ public class Quest
         questTable[7][0] = "Trying to finish the day";
         questTable[7][1] = "Give your answers to PG, you need to find him in his office.";
         questTable[7][2] = "not started";
-
+        
+// Instanciating the NPCs
+        martin = new NPC("Martin", false);
+        tdPG = new NPC("TDPG", true);
+        officePG = new NPC("OfficePG", true);
+        axel = new NPC("Axel", false);
+        nolan = new NPC("Nolan", true);
+        valentin = new NPC("Valentin", true);
+        guardian = new NPC("Guardian", false);
+        marie = new NPC("Marie", true);
+        morgane = new NPC("Morgane", false);
+        mrsGeniet = new NPC("MrsGeniet", false);
     }
 
     /**

@@ -28,22 +28,6 @@ public class Game
 
     char character;
 
-    private NPC martin;
-    private NPC tdPG;
-    private NPC officePG;
-    private NPC axel;
-    private NPC nolan; 
-    private NPC valentin;
-    private NPC guardian;
-    private NPC marie;
-    private NPC morgane;
-    private NPC mrsGeniet;
-    private SimpleObject officeDoor = new SimpleObject ("Office Door",true); //peut etre plus intelligent a faire --> faire dans le hashmap
-    private Container desk = new Container ("Desk",false); //a creer dans le main de game, dans le bureau d'annie
-    private SimpleObject toiletDoor = new SimpleObject ("Toilet Door",true); //nolan est bloqué derrière, quand on prend le pied de biche passe a false et débloque donc une autre discussion avec nolan
-    private SimpleObject computer = new SimpleObject("Computer", true); //PC pour coder le projet, débloqué quand intel >7
-    private Container closet = new Container ("Closet", true); 
-
     // the current quest 
     private Quest getSubjectQuest,martinQuest,nolanQuest;
     // an integer that can be changed randomly between 1
@@ -81,20 +65,7 @@ public class Game
         commandLetter = new CommandLetter();        
         // // the game begins in the hall
         // currentRoom = hall;
-        onGoingQuest = new Quest();
-        
-        // Instanciating the NPCs
-        martin = new NPC("Martin", false);
-        tdPG = new NPC("TDPG", true);
-        officePG = new NPC("OfficePG", true);
-        axel = new NPC("Axel", false);
-        nolan = new NPC("Nolan", true);
-        valentin = new NPC("Valentin", true);
-        guardian = new NPC("Guardian", false);
-        marie = new NPC("Marie", true);
-        morgane = new NPC("Morgane", false);
-        mrsGeniet = new NPC("MrsGeniet", false);
-    
+        onGoingQuest = new Quest();    
     }
 
     /**
