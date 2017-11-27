@@ -12,9 +12,8 @@ public class Quest
     //table of all the quests in the game
     private String questTable[][];
     
-    //private Game game;
+    private Game game;
     //using the item classes
-// le placard dans lequel se trouve la clé du bureau de PG
 
     /**
      * Constructor for objects of class Quest
@@ -55,7 +54,6 @@ public class Quest
         questTable[7][0] = "Trying to finish the day";
         questTable[7][1] = "Give your answers to PG, you need to find him in his office.";
         questTable[7][2] = "not started";
-
     }
 
     /**
@@ -113,10 +111,11 @@ public class Quest
     public void questFindingSubject ()
     {
         //ce que dit pg à récupérer dans NPC
+        game.pg.interactItem();
         //il dit qu'il faut trouver les autres membres du groupe
 
         //on met le boolean pg a false il doit disparaitre --> a changer quand on aura fait game
-        pg.setLock();
+        game.pg.setLock();
         //the other quests are starting and this one is finished
         questTable[1][2] = "currently running";
         questTable[2][2] = "currently running";
@@ -124,8 +123,8 @@ public class Quest
         questTable[0][2] = "finished";
 
         //unlock Nolan and Martin in the toilets and in TP1
-        nolan.setLock();
-        martin.setLock();
+        game.nolan.setLock();
+        game.martin.setLock();
     }
 
     /**
