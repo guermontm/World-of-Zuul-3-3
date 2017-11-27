@@ -1,4 +1,3 @@
-import java.lang.Object;
 /**
  * Contains all the necessary methods for the quests that the player can take 
  *
@@ -23,6 +22,7 @@ public class Quest
     private NPC marie;
     private NPC axel;
     private NPC mrsGeniet;
+    private NPC morgane;
     //All the needed objects
     private SimpleObject officeDoor = new SimpleObject ("Office Door",true); //peut etre plus intelligent a faire --> faire dans le hashmap
     private Container desk = new Container ("Desk",false); //a creer dans le main de game, dans le bureau d'annie
@@ -142,7 +142,9 @@ public class Quest
         //Axel is the person who gives you the first quest, he starts speaking when you start the game
         axel.interactItem();
         //the conversation with PG starts when you are in the TD4
+        if (game.currentRoom = td4){
         tdPG.interactItem();
+       
         //PG in the td room must disappear
         tdPG.setLock();
         //the other quests are starting and this one is finished
@@ -154,6 +156,7 @@ public class Quest
         //unlock Nolan and Martin in the toilets and in TP1
         nolan.setLock();
         martin.setLock();
+        }
     }
 
     /**
@@ -169,6 +172,7 @@ public class Quest
         //utiliser simple sentences avec martin et nolan et fait apparaitre nolan en tp1
         nolan.setLock(); //nolan goes from the toilets to the tp1
         nolan2.setLock();
+        nolan2.interactItem();
     }
 
     /**

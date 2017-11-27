@@ -179,7 +179,6 @@ public class Game
         td1.setExits(null, null, downstairsCorridor1, null);
         td4.setExits(null, null, null, downstairsCorridor1);
         annieOffice.setExits(downstairsCorridor1, null, null, null);
-        annieOffice.setExits(downstairsCorridor1, null, null, null);
         downstairsCorridor2.setExits(td4, downStairs, pgOffice, downstairsCorridor1);
         pgOffice.setExits(downstairsCorridor2,null,null,null);
         downStairs.setExits(null,null,null,downstairsCorridor2);
@@ -218,7 +217,7 @@ public class Game
      * allows the player to change room, depends on the exits 
      * that exists in the current room.
      * Depends on what character the player types : N, S, E, W
-     * when the player enter in the new room, depending of the room, some random event can appears 
+     * when the player enter in the new room, depending of the room, some random event can appear
      *
      * @param direction The direction in which the player is trying to go.
      */

@@ -66,7 +66,11 @@ public class NPC extends Item
         }
         else
         {
-            System.out.println("Hello");
+            switch (itemName)
+            {
+                case ("Axel"):
+                System.out.println(sentences.randomSentence(sentences.getListAxel()));
+                break;
         }
     }
 }
