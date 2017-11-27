@@ -315,7 +315,7 @@ public class Sentences
        sentenceMainPlayerToMrsGeniet3="[You] *whispering* I am sorry! Is it possible to have Martin's diploma please?";
        sentenceMainPlayerToMrsGeniet4="[You] *yelling* I can't hear what you are saying, this L3 student is speaking too loudly!";
        
-       sentenceMainPlayerToAxel1="[You] Ouh? What? A work? Are you joking?";
+       sentenceMainPlayerToAxel1="[You] Ouh? What? Some work? Are you joking?";
        sentenceMainPlayerToAxel2="[You] No, I didn't even look at the subject.";
        sentenceMainPlayerToAxel3="[You] Stop stressing me ! Have you already started, at least?";
        sentenceMainPlayerToAxel4="[You] Sh*t, I must quickly find my group !";

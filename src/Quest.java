@@ -86,10 +86,10 @@ public class Quest
     }
 
     /**
-     * return the case of the table that you want
-     * @parameter int i number of the column in the table and int j the number of the line
-     * i is between 0 and 7
-     * j is between  and 2
+     * Method getQuestTable
+     * @return a string corresponding to the wanted space in the table
+     * @param i number of the column in the table,  i is between 0 and 7
+     * @param j number of the line in the table, j is between  and 2 
      */
     public String getQuestTable(int i, int j)
     {
@@ -113,8 +113,8 @@ public class Quest
     /**
      * Method getQuestEnded return the value of the boolean questEnded
      * takes the number of the quest to return a boolean depending on the status of the quest
-     *
-     * @return The return value
+     * @return a boolean saying if a quest is ended (true)
+     * @param numberQuest the number of the quest that you want to check if it is ended
      */
     public boolean getQuestEnded(int numberQuest)
     {
@@ -131,11 +131,10 @@ public class Quest
     }
 
     /**
-     * Method for the first quest of the game, the goal is to find the COOPOO subject
+     * Method for the first quest of the game
+     * the goal is to find the COOPOO subject
      * steps : going to see PG in TD4, then going to find the other members of the group
      * the members of the group are scattered in the building and finding them starts other quests
-     *
-     * @param  y  a sample parameter for a method
      */
     public void questFindingSubject ()
     {
