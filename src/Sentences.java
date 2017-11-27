@@ -463,9 +463,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListAxel()
+    public String getListAxel(int index)
     {
-        return listAxel; 
+        int i = index;
+        return listAxel.get(i); 
     }
     
     /**
@@ -473,9 +474,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMartin()
+    public String getListMartin(int index)
     {
-        return listMartin; 
+        int i = index;
+        return listMartin.get(i); 
     }
     
     /**
@@ -483,9 +485,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListNolan()
+    public String getListNolan(int index)
     {
-        return listNolan; 
+        int i = index;
+        return listNolan.get(i); 
     }
     
     /**
@@ -493,9 +496,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListValentin()
+    public String getListValentin(int index)
     {
-        return listValentin; 
+        int i = index;
+        return listValentin.get(i); 
     }
     
     /**
@@ -503,9 +507,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListGuardian()
+    public String getListGuardian(int index)
     {
-        return listGuardian; 
+        int i = index;
+        return listGuardian.get(i); 
     }
     
     /**
@@ -513,9 +518,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListThomas()
+    public String getListThomas(int index)
     {
-        return listThomas; 
+        int i = index;
+        return listThomas.get(i); 
     }
     
     /**
@@ -523,9 +529,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMorgane()
+    public String getListMorgane(int index)
     {
-        return listMorgane; 
+        int i = index;
+        return listMorgane.get(i); 
     }
     
     /**
@@ -533,9 +540,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMarie()
+    public String getListMarie(int index)
     {
-        return listMarie; 
+        int i = index;
+        return listMarie.get(i); 
     }
     
     /**
@@ -543,9 +551,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListClement()
+    public String getListClement(int index)
     {
-        return listClement; 
+        int i = index;
+        return listClement.get(i); 
     }
     
     /**
@@ -553,9 +562,10 @@ public class Sentences
      *
      * @return The sentences of the list 
      */
-    public ArrayList getListMrsGeniet()
+    public String getListMrsGeniet(int index)
     {
-        return listMainMrsGeniet; 
+        int i = index;
+        return listMainMrsGeniet.get(i); 
     }
     
     

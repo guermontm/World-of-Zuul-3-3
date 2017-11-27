@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=TypeTwo
-comment0.text=\r\n\ This\ class\ inherits\ from\ player\ and\ represents\ a\ player\ of\ the\ second\ type\r\n\ It\ means\ that\ the\ attributes\ are\ initialised\ with\ specific\ values\r\n\r\n\ @author\ (Group\ 5)\r\n\ @version\ (09/11/17)\r\n
-comment1.params=
-comment1.target=TypeTwo()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TypeTwo\r\n\ This\ method\ gives\ the\ specific\ values\ of\ the\ different\ attributes\r\n
-comment2.params=
-comment2.target=boolean\ getFurtif()
-numComments=3

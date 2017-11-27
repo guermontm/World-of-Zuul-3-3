@@ -36,7 +36,11 @@ public class Game
     private NPC marie;
     private NPC morgane;
     private NPC mrsGeniet;
-
+    private SimpleObject officeDoor = new SimpleObject ("Office Door",true); //peut etre plus intelligent a faire --> faire dans le hashmap
+    private Container desk = new Container ("Desk",false); //a creer dans le main de game, dans le bureau d'annie
+    private SimpleObject toiletDoor = new SimpleObject ("Toilet Door",true); //nolan est bloqué derrière, quand on prend le pied de biche passe a false et débloque donc une autre discussion avec nolan
+    private SimpleObject computer = new SimpleObject("Computer", true); //PC pour coder le projet, débloqué quand intel >7
+    private Container closet = new Container ("Closet", true); 
 
     // the current quest 
     private Quest getSubjectQuest,martinQuest,nolanQuest;
