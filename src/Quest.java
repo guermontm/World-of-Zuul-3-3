@@ -29,7 +29,10 @@ public class Quest
     private Container closet = new Container ("Closet", true); 
     //private Game game;
     //using the item classes
-// le placard dans lequel se trouve la clé du bureau de PG
+    // le placard dans lequel se trouve la clé du bureau de PG
+
+    // Test : an int that will record the progression of the player. See Game.java
+    int progression = 0;
 
     /**
      * Constructor for objects of class Quest
@@ -49,9 +52,11 @@ public class Quest
         questTable[1][0] = "Gathering the Group";
         questTable[1][1] = "Find the members of your group within the B2";
         questTable[1][2] = "not started";
+
         questTable[2][0] = "Martin's Diploma";
         questTable[2][1] = "Find Martin";
         questTable[2][2] = "not started";
+
         questTable[3][0] = "Locked Up";
         questTable[3][1] = "Find Nolan";
         questTable[3][2] = "not started";
@@ -59,6 +64,7 @@ public class Quest
         questTable[4][0] = "Martin's Diploma, the sequel";
         questTable[4][1] = "Ask Annie for the keys to her office. She is currently listening to students for their internship presentation. ";
         questTable[4][2] = "not started";
+
         questTable[5][0] = "Still Locked Up";
         questTable[5][1] = "Help Nolan to get out of the toilets";
         questTable[5][2] = "not started";
@@ -71,7 +77,7 @@ public class Quest
         questTable[7][1] = "Give your answers to PG, you need to find him in his office.";
         questTable[7][2] = "not started";
         
-// Instanciating the NPCs
+        // Instanciating the NPCs
         martin = new NPC("Martin", false);
         tdPG = new NPC("TDPG", true);
         officePG = new NPC("OfficePG", true);
@@ -121,7 +127,7 @@ public class Quest
         if ((questTable[q][2]).equals("not started")|| (questTable[q][2]).equals("currently running")){
             questEnded = false;
             System.out.println("Your quest is not ended yet");
-        }
+        }numberQuest;
         else{
             questEnded = true;
             System.out.println("Your quest is ended,well done");
@@ -129,15 +135,32 @@ public class Quest
         return questEnded; 
     }
 
+
+    // public void nextQuest(int numberQuest)
+    // {
+    //     int i = 0;     
+        
+    //     switch(i)
+    //     {
+    //         case 0:
+    //         case 1:
+    //         case 2:
+    //             return numberQuest;
+    //     }
+        
+    // }
+
     /**
      * Method for the first quest of the game, the goal is to find the COOPOO subject
      * steps : going to see PG in TD4, then going to find the other members of the group
      * the members of the group are scattered in the building and finding them starts other quests
      *
      * @param  y  a sample parameter for a method
+     * @return true if the quest is finished
      */
-    public void questFindingSubject ()
+    public questFindingSubject ()
     {
+        progression = 0;
         //ce que dit pg à récupérer dans NPC
         //il dit qu'il faut trouver les autres membres du groupe
 
@@ -152,6 +175,8 @@ public class Quest
         //unlock Nolan and Martin in the toilets and in TP1
         nolan.setLock();
         martin.setLock();
+
+        progression = 1;
     }
 
     /**
@@ -167,6 +192,7 @@ public class Quest
         //utiliser simple sentences avec martin et nolan et fait apparaitre nolan en tp1
         nolan.setLock(); //nolan goes from the toilets to the tp1
         nolan2.setLock();
+        progression = 2;
     }
 
     /**
@@ -259,6 +285,8 @@ public class Quest
             questTable[7][2] = "currently running";
             //unlock the closet with the keys for the office
             closet.setLock();
+
+            progression = 3;
         //}
     }
     /**
