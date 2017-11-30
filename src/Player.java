@@ -15,6 +15,7 @@ abstract class Player
     private int stressStat; // stress stat for the player, range between 1 and 10
     private int money; // money of the player (>0)
     private boolean crowbar; // if the player has the crowbar or not. Starts as false
+    private boolean key; //a key for the office of Mrs Geniet, starts at false.
 
     /**
      * Constructor for objects of class Player
@@ -23,6 +24,7 @@ abstract class Player
     public Player()
     {
         crowbar = false;
+        key = false;
         money = 4;
     }
 
@@ -61,6 +63,11 @@ abstract class Player
         return crowbar;
     }
     
+    public boolean getKey()
+    {
+        return key;
+    }
+    
     public void setStr (int str)
     {
         strStat = str;
@@ -94,6 +101,11 @@ abstract class Player
     public void setCrowbar (boolean bool)
     {
        crowbar = bool;
+    }
+    
+    public void setKey(boolean bool)
+    {
+        key = bool;
     }
     
     public void addMoney (int cash)
