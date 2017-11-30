@@ -357,21 +357,7 @@ public class Game
     public void scenario()
     {
         onGoingQuest.questFindingSubject();
-        if (onGoingQuest.progression==1)
-        {
-            onGoingQuest.questGatheringGroup();
-        }
-        
-        // Not else if because it would cause scenario() to stop running (i think)
-        if (onGoingQuest.progression ==2)
-        {
-            onGoingQuest.questCode();
-        }
 
-        if (onGoingQuest.progression ==3)
-        {
-            onGoingQuest.questFinish();
-        }
     }
 
     /**

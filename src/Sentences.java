@@ -235,7 +235,7 @@ public class Sentences
        sentenceMainGuardian6="[The Guardian] Take care. Be aware that you need to be strong to use it.";
        
        sentenceMainPGTD1="[PG] Yes, hello?";
-       sentenceMainPGTD2="[PG] It's time to start, right? The deadline is at 18h, don't forget it...";
+       sentenceMainPGTD2="[PG] It's time to start, right? The deadline is at 6:00 PM, don't forget it...";
        sentenceMainPGTD3="[PG] Rude ! Maybe you can start by saying hello !! "; // +1 stress
        sentenceMainPGTD4="[PG] No, but what is this behavior? Imagine yourself in a professional environment... You are not worthy of being a Gphy. Go away";//Game over
        sentenceMainPGTD5="[PG] Hum.. Ok, be careful next time...";

@@ -127,11 +127,13 @@ public class Quest
     public boolean getQuestEnded(int numberQuest)
     {
         int q = numberQuest;
-        if ((questTable[q][2]).equals("not started")|| (questTable[q][2]).equals("currently running")){
+        if ((questTable[q][2]).equals("not started")|| (questTable[q][2]).equals("currently running"))
+        {
             questEnded = false;
             System.out.println("Your quest is not ended yet");
-        }numberQuest;
-        else{
+        }
+        else
+        {
             questEnded = true;
             System.out.println("Your quest is ended,well done");
         }
@@ -166,6 +168,8 @@ public class Quest
     {
         progression = 0;
         //ce que dit pg à récupérer dans NPC
+        tgPG.interactItem("PGTD");
+
         //il dit qu'il faut trouver les autres membres du groupe
 
         //on met le boolean pg a false il doit disparaitre --> a changer quand on aura fait game
