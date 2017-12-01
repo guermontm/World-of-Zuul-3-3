@@ -11,6 +11,8 @@ public class NPC extends Item {
 
     private Sentences sentences;
 
+    bool spokenToPgTd = false;
+
     /**
      * Constructor for objects of subclass NPC Some item does not appears until
      * some quest are not achieved or appears randomly. When isLock is true the
@@ -63,8 +65,11 @@ public class NPC extends Item {
                 default:
                     System.out.println("You can talk to no one");
             }
-        } else {
-            switch (itemName) {
+        } 
+        else 
+        {
+            switch (itemName) 
+            {
                 case ("Mrs Geniet"):
                     //conversation
                     break;
@@ -79,6 +84,8 @@ public class NPC extends Item {
                     break;
                 case ("PGTD"):
                     //conversation
+                    tdPgConversation();
+                    spokenToPgTd = true;
                     break;
 
                 case ("Axel"): //a retoucher avec le schéma de la conversation
@@ -100,5 +107,19 @@ public class NPC extends Item {
                     break;
             }
         }
+    }
+
+    public void tdPgConversation()
+    {
+        System.out.println(getListMainPGTD(0));
+        System.out.println(listMainPlayerToPGTD(0));
+        System.out.println(getListMainPGTD(1));
+        System.out.println(listMainPlayerToPGTD(1));
+        System.out.println(getListMainPGTD(2));
+        System.out.println(listMainPlayerToPGTD(2));
+        System.out.println(getListMainPGTD(3));
+        System.out.println(listMainPlayerToPGTD(3));
+        System.out.println(getListMainPGTD(4));
+        System.out.println(listMainPlayerToPGTD(4));
     }
 }

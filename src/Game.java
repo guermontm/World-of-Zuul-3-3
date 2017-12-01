@@ -357,6 +357,7 @@ public class Game
     public void scenario()
     {
         onGoingQuest.questFindingSubject();
+
     }
 
     /**
