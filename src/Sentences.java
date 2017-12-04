@@ -210,9 +210,9 @@ public class Sentences
        
        //The conversation sentences for NPC
        sentenceMainMrsGeniet1="[Mrs Geniet] Yes? What do you want from me?";
-       sentenceMainMrsGeniet2="[Mrs Geniet] Hum.. okey.. take the keys of my office. ";
-       sentenceMainMrsGeniet3="[Mrs Geniet] But do not forget to bring them back.";
-       sentenceMainMrsGeniet4="[Mrs Geniet] Are you kinding me ?! You do it on purpose ?! you are fired from GPhy."; 
+       sentenceMainMrsGeniet2="[Mrs Geniet] Yes, it's about time that he thinks about that! Take the keys to my office, but don't forget to bring them back.";
+       sentenceMainMrsGeniet3="[Mrs Geniet] You need to be more quiet, students are presenting here...";
+       sentenceMainMrsGeniet4="[Mrs Geniet] Are you kinding me ?! You do it on purpose ?! you are fired from GPhy."; //game over
        sentenceMainMrsGeniet5="[Mrs Geniet] Thanks to bringing my keys back.";
        sentenceMainMrsGeniet6="[Mrs Geniet] You, here !! You had to bring me the keys ! Give them to me."; //+1 stress
        
@@ -362,10 +362,10 @@ public class Sentences
        listMainPGEnd.add(sentenceMainPGEnd25);
        
        //The conversation sentences for the player
-       sentenceMainPlayerToMrsGeniet1="[You] *whisper* Hello, I would like the Martin diploma please. He asked me to go get it.";
-       sentenceMainPlayerToMrsGeniet2="[You] ";
-       sentenceMainPlayerToMrsGeniet3="[You] ";
-       sentenceMainPlayerToMrsGeniet4="[You] ";
+       sentenceMainPlayerToMrsGeniet1="[You] *whispering* Hello, I would like the Martin diploma please. He asked me to go get it.";
+       sentenceMainPlayerToMrsGeniet2="[You] *out loud* Hello, can I have Martin's diploma please?!";
+       sentenceMainPlayerToMrsGeniet3="[You] *whispering* I'm sorry. It's possible to have Martin's diploma please?";
+       sentenceMainPlayerToMrsGeniet4="[You] *yelling* I can't hear what you're saying, this L3 student is speaking too loudly!";
        
        sentenceMainPlayerToAxel1="[You] Ouh? What? A work? Are you joking?";
        sentenceMainPlayerToAxel2="[You] No, I did not even look at the subject.";
