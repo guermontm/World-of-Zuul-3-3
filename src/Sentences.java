@@ -373,7 +373,7 @@ public class Sentences
        sentenceMainPlayerToAxel4="[You] Sh*t, I must quickly find my group !";
        sentenceMainPlayerToAxel5="[You] Well, you're as much in the sh*t as I am";
        sentenceMainPlayerToAxel6="[You] And where is PG so?";
-       sentenceMainPlayerToAxel7="[You] ";
+       sentenceMainPlayerToAxel7="[You] Tt scares me to go see him :$";
        
        sentenceMainPlayerToMartin1="[You] So-So, we have to begin the COOPOO subject. Are you available?";
        sentenceMainPlayerToMartin2="[You] Good, what are you doing?";
