@@ -1,3 +1,4 @@
+import java.util.*;
 /*
  * Class Quest 
  */
@@ -9,6 +10,7 @@
  */
 public class QuestV2 {
 
+    private ArrayList<String> currentQuests;
     //table of all the quests in the game
     private String questTable[][];
 
@@ -107,18 +109,18 @@ public class QuestV2 {
     /**
      * Method getCurrentQuest
      *
-     * @return q an int that is the number of the quest currently running
+     * @return currentQuests an ArrayList that takes all the current quests
      */
-    public String getCurrentQuest() {
+    public ArrayList getCurrentQuest() {
         int i;
-        String q = " ";
-        String currentQuests = " ";
+        currentQuests = new ArrayList<String>();      
+        
         for (i = 0; i < questTable.length; i++) {
             if (questTable[i][2].equals("currently running")) {
-                return questTable[i][0];
+                currentQuests.add(questTable[i][0]);
+                System.out.println(currentQuests);
             }
         }
-        return "there is no current quest, sorry!";
+        return currentQuests;
     }
-
 }

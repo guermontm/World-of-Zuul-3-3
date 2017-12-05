@@ -11,7 +11,7 @@ public class NPC extends Item {
 
     private Sentences sentences;
 
-    bool spokenToPgTd = false;
+    boolean spokenToPgTd = false;
 
     /**
      * Constructor for objects of subclass NPC Some item does not appears until
@@ -31,7 +31,7 @@ public class NPC extends Item {
     }
 
     /**
-     * Method interactItem allow to listen what the non player character have to
+     * Method interactItem allow to listen to what the non player character have to
      * say
      *
      */
@@ -63,63 +63,13 @@ public class NPC extends Item {
                     System.out.println(sentences.randomSentence(sentences.getListMarie()));
                     break;
                 default:
-                    System.out.println("You can talk to no one");
+                    System.out.println("There is no one to talk to in this room");
             }
         } 
         else 
         {
-            switch (itemName) 
-            {
-                case ("Mrs Geniet"):
-                    //conversation
-                    break;
-                case ("Martin"):
-                    //conversation
-                    break;
-                case ("Nolan"):
-                    //conversation (une seule, juste pour le nolan des toilettes)
-                    break;
-                case ("Guardian"):
-                    //conversation
-                    break;
-                case ("PGTD"):
-                    //conversation
-                    tdPgConversation();
-                    spokenToPgTd = true;
-                    break;
-
-                case ("Axel"): //a retoucher avec le schéma de la conversation
-                    System.out.println(sentences.getListMainAxel(0));
-                    System.out.println(sentences.getListMainPlayerToAxel(0));
-                    System.out.println(sentences.getListMainAxel(1));
-                    System.out.println(sentences.getListMainPlayerToAxel(1));
-                    System.out.println(sentences.getListMainAxel(2));
-                    System.out.println(sentences.getListMainPlayerToAxel(2));
-                    System.out.println(sentences.getListMainAxel(3));
-                    System.out.println(sentences.getListMainPlayerToAxel(3));
-                    System.out.println(sentences.getListMainAxel(4));
-                    System.out.println(sentences.getListMainPlayerToAxel(4));
-                    System.out.println(sentences.getListMainAxel(5));
-                    System.out.println(sentences.getListMainPlayerToAxel(6));
-                    break;
-                case ("PGEnd"):
-                    //conversation
-                    break;
-            }
+            System.out.println("There is no one to talk to in this room");
         }
-    }
-
-    public void tdPgConversation()
-    {
-        System.out.println(getListMainPGTD(0));
-        System.out.println(listMainPlayerToPGTD(0));
-        System.out.println(getListMainPGTD(1));
-        System.out.println(listMainPlayerToPGTD(1));
-        System.out.println(getListMainPGTD(2));
-        System.out.println(listMainPlayerToPGTD(2));
-        System.out.println(getListMainPGTD(3));
-        System.out.println(listMainPlayerToPGTD(3));
-        System.out.println(getListMainPGTD(4));
-        System.out.println(listMainPlayerToPGTD(4));
+            
     }
 }
