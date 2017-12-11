@@ -16,16 +16,14 @@ public class Dialogue
     private int choice;
     private int stress;
     private boolean key = false;
-    private boolean spokenToPGTD;
+    private boolean gameOver;
 
     /**
      * Constructor for the class Dialogue
      */
     public Dialogue()
     {
-        sentences = new Sentences();
-        spokenToPGTD = false;
-        
+        sentences = new Sentences();        
     }
 
     /**
@@ -75,9 +73,9 @@ public class Dialogue
         return key;
     }
     
-    public boolean getSpokenToPGTD()
+    public boolean getGameOver()
     {
-        return spokenToPGTD;
+        return gameOver;
     }
 
     /**
@@ -306,7 +304,7 @@ public class Dialogue
     public void dialoguePGTD()
     {
         stress = 0;
-        spokenToPGTD = true;
+        gameOver =false;
         System.out.println(sentences.getListMainPGTD(0));
         System.out.println("1 : " + sentences.getListPlayerToMainPGTD(0));
         System.out.println("2 : " + sentences.getListPlayerToMainPGTD(1));
@@ -344,6 +342,7 @@ public class Dialogue
             {
                 System.out.println(sentences.getListMainPGTD(3));
                 //leads to game over
+                gameOver = true;
             } else if (choice == 2)
             {
                 System.out.println(sentences.getListMainPGTD(4));
@@ -374,6 +373,7 @@ public class Dialogue
     public void dialogueGeniet()
     {
         stress = 0;
+        gameOver = false;
         System.out.println(sentences.getListMainMrsGeniet(0));
         System.out.println("1 : " + sentences.getListMainPlayerToMrsGeniet(0));
         System.out.println("2 : " + sentences.getListMainPlayerToMrsGeniet(1));
@@ -405,6 +405,7 @@ public class Dialogue
             {
                 System.out.println(sentences.getListMainMrsGeniet(3));
                 //leads to game over
+                gameOver = true;
             }
 
         }
@@ -485,6 +486,7 @@ public class Dialogue
     public void dialoguePGEnd()
     {
         stress = 0;
+        gameOver = false;
         System.out.println(sentences.getListMainPGEnd(0));
 
         System.out.println("1 : " + sentences.getListPlayerToMainPGEnd(0));
@@ -504,6 +506,7 @@ public class Dialogue
                 System.out.println(sentences.getListMainPGEnd(3));
                 //leads to game over
                 System.out.println("OOOPS wrong answer! GAME OVER");
+                gameOver = true;
             } else if (choice == 2)
             {
                 System.out.println(sentences.getListMainPGEnd(4));
@@ -719,6 +722,7 @@ public class Dialogue
                     {
                         System.out.println(sentences.getListMainPGEnd(12));
                         //leads to game over
+                        gameOver = true;
                     }
                 }
             }
@@ -857,10 +861,12 @@ public class Dialogue
                     {
                         System.out.println(sentences.getListMainPGEnd(6));
                         //leads to game over
+                        gameOver = true;
                     } else if (choice == 2)
                     {
                         System.out.println(sentences.getListMainPGEnd(7));
                         //leads to game over
+                        gameOver = true;
                     }
                 }
             }

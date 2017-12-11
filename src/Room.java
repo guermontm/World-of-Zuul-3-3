@@ -106,10 +106,14 @@ public class Room
     */
     public void printItems()
     {
+       
         int i;
         for (i=0; i<listRoomItem.size(); i++)
         {
-            System.out.println(""+i + "\t:\t"+listRoomItem.get(i).itemName);
+            if (!listRoomItem.get(i).getLock())
+            {
+               System.out.println(""+i + "\t:\t"+listRoomItem.get(i).itemName);
+            }
         }
     }
 

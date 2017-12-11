@@ -21,12 +21,13 @@ public class NPC extends Item
      * @param isLock is a boolean saying if you can interact with the NPC (false
      * when you can)
      */
-    public NPC(String name, boolean isLock)
+    public NPC(String name, boolean isLock, boolean hasDisappeared)
     {
         // the name is given at the creation of the item  
         super.itemName = name;
         // the islock is given at the creation of the item 
         super.isLock = isLock;
+        super.hasDisappeared = hasDisappeared;
         
         super.dialogue = new Dialogue();
 

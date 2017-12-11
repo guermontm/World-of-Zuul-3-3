@@ -98,18 +98,18 @@ public class Game
         commandLetter = new CommandLetter();
 
         //NPCs
-        axel = new NPC("Axel", false);
-        nolan = new NPC("Nolan", true);
-        martin = new NPC("Martin", true);
-        annie = new NPC("Mrs Geniet", true);
-        guardian = new NPC("Guardian", true);
-        M2 = new NPC("M2", true);
-        valentin = new NPC("Valentin", true);
-        thomas = new NPC("Thomas", true);
-        morgane = new NPC("Morgane", true);
-        marie = new NPC("Marie", true);
-        clement = new NPC("Clément", true);
-        PGTD = new NPC("PGTD", true);
+        axel = new NPC("Axel", false, false);
+        nolan = new NPC("Nolan", true, false);
+        martin = new NPC("Martin", true, false);
+        annie = new NPC("Mrs Geniet", true, false);
+        guardian = new NPC("Guardian", true, false);
+        M2 = new NPC("M2", true, false);
+        valentin = new NPC("Valentin", true, false);
+        thomas = new NPC("Thomas", true, false);
+        morgane = new NPC("Morgane", true, false);
+        marie = new NPC("Marie", true, false);
+        clement = new NPC("Clément", true, false);
+        PGTD = new NPC("PGTD", true, false);
 
         //items for the rooms
         cafet = new Container("cafet", false);
@@ -147,12 +147,7 @@ public class Game
     {
         boolean wantToQuit = false;
 
-        // char character;
-        // character = commandLetter.readCommand();
-        if (character == '!')
-        {
-            System.out.println("This letter is not valid.");
-        } else if ((character == 'n') || (character == 'N'))
+        if ((character == 'n') || (character == 'N'))
         {
             // go north
             changeRoom("north");
@@ -180,8 +175,10 @@ public class Game
             // If the user types 'q', the quit() method asks if he really wants to quit.
             // If so, wantToQuit is set to 'true'.
             wantToQuit = quit();
+        } else
+        {
+            System.out.println("This letter is not valid");
         }
-
         return wantToQuit;
     }
 
@@ -193,12 +190,12 @@ public class Game
     public void getInformationPlayer()
     {
         System.out.println("Your stats:");
-        System.out.println("You have "+thePlayer.getStrStat()+" strength");
-        System.out.println("You have "+thePlayer.getStaStat()+" stamina");
-        System.out.println("You have "+thePlayer.getIntStat()+" intelligence");
-        System.out.println("You have "+thePlayer.getStressStat()+" stress");
-        System.out.println("You have "+thePlayer.getSpeStat()+" speech");
-        System.out.println("You have "+thePlayer.getMoney()+" money");
+        System.out.println("You have " + thePlayer.getStrStat() + " strength");
+        System.out.println("You have " + thePlayer.getStaStat() + " stamina");
+        System.out.println("You have " + thePlayer.getIntStat() + " intelligence");
+        System.out.println("You have " + thePlayer.getStressStat() + " stress");
+        System.out.println("You have " + thePlayer.getSpeStat() + " speech");
+        System.out.println("You have " + thePlayer.getMoney() + " money");
         if (!thePlayer.getCrowbar())
         {
             System.out.println("You aren't carrying anything special, except for your papers and stuff.");
@@ -375,15 +372,11 @@ public class Game
         boolean finished = false;
         while (!finished)
         {
-            // Command command = parser.getCommand();
             character = commandLetter.readCommand();
-            // finished = processCommand(command)(;    
-            System.out.println(" " + thePlayer.getStressStat());
-            scenario();
-
+            beginning();
             finished = processCommand();
 
-            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0))
+            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true)
             {
                 finished = true;
                 System.out.println("You are not ready for this, we are sorry...");
@@ -472,41 +465,57 @@ public class Game
                         thePlayer.setKey(true);
                     }
 
-                    switch (currentRoom.listRoomItem.get(i).getName())
+                    //if the NPC is not locked, you can have an important conversation
+                    if (currentRoom.listRoomItem.get(i).getLock() == false)
                     {
-                        case ("PGTD"):
-                            PGTD.setLock(); //goes away
-                            System.out.println("pg lock");
-                            nolan.setLock(); //Conversation with Nolan in the toilet is available
-                            martin.setLock(); //Conversation with Martin about the diploma is available
-                            quest.endQuest(0); //this quest is ended and the next one is started
-                            quest.startQuest(1);
-                            System.out.println(" "+quest.getStatus(1));
-                            quest.startQuest(2);
-                            quest.startQuest(3);
-                            break;
-                        case ("Martin"):
-                            annie.setLock(); //unlocks conversation with annie in the theatre
-                            quest.endQuest(2);
-                            quest.startQuest(4);
-                        default:
-                            break;
+                        switch (currentRoom.listRoomItem.get(i).getName())
+                        {
+                            case ("PGTD"):
+                                PGTD.setLock(); //goes away
+                                nolan.setLock(); //Conversation with Nolan in the toilet is available
+                                martin.setLock(); //Conversation with Martin about the diploma is available
+                                quest.endQuest(0); //this quest is ended and the next one is started
+                                quest.startQuest(1);
+                                System.out.println(" " + quest.getStatus(1));
+                                quest.startQuest(2);
+                                quest.startQuest(3);
+                                break;
+                            case ("Martin"):
+                                annie.setLock(); //unlocks conversation with annie in the theatre
+                                quest.endQuest(2);
+                                quest.startQuest(4);
+                            case ("Nolan"):
+                                guardian.setLock();
+                                quest.endQuest(3);
+                                quest.startQuest(5);
+                            case ("Mrs Geniet"):
+                                annie.setLock(); //locks annie again
+                                quest.endQuest(4);
+                                thePlayer.setKey(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
+                            case ("Guardian"):
+                                guardian.setLock();
+                                thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
+                                
+                            case ("PGEnd"):
+                                
+                                
+                            default:
+                                break;
+                        }
                     }
-
                 }
             }
         } else
         {
             System.out.println("There is nothing to interact with in this room...");
         }
-
     }
 
     /**
      * Method scenario allow knowing the quest started and not finished Stub for
      * now
      */
-    public void scenario()
+    public void beginning()
     {
 
         if ((currentRoom == hall) && (axel.getLock() == false))
@@ -524,32 +533,6 @@ public class Game
             PGTD.setLock();
             System.out.println("PG unlock");
         }
-
-        //next thing happens when you go into TD4 and talk to PG
-        //while (quest.getStatus(0).equals("currently running"))
-        //{
-        //}
-        //next quests are with Martin and Nolan
-//        while (quest.getStatus(2).equals("currently running"))
-//        { 
-//            if (currentRoom == td1) //et qu'on interagit avec martin
-//            {
-//                martin.interactItem();
-//                annie.setLock(); //unlocks conversation with annie in the theatre
-//                quest.endQuest(2);
-//                quest.startQuest(4);
-//            }                       
-//        }
-//        
-//        while (quest.getStatus(4).equals("currently running"))
-//        {
-//            if (currentRoom == theatre) //again, interaction
-//            {
-//                annie.interactItem(); //if you do it well you have the key to the office and then you need to go take the diploma
-//                
-//                
-//            }
-//        }
     }
 
     /**
@@ -568,13 +551,12 @@ public class Game
         System.out.println("w: \t\tgo west");
         System.out.println("h: \t\thelp, duh");
         System.out.println("q: \t\tquit");
-        System.out.println("spacebar: \tInteract");
+        System.out.println("i: \tInteract");
         System.out.println("_________________________________________");
         getInformationPlayer();
         System.out.println("_________________________________________");
         System.out.println("You are in : " + currentRoom.getName());
-        
-        
+
     }
 
     /**

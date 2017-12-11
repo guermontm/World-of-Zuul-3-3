@@ -12,6 +12,7 @@ abstract public class Item
     protected String itemName;
     // Some item does not appears until some quest are not achieved or appears randomly 
     protected boolean isLock;
+    protected boolean hasDisappeared;
     
     protected Dialogue dialogue;
     
@@ -45,6 +46,18 @@ abstract public class Item
     public boolean getLock()
     {
         return (isLock); 
+    }
+    
+        /**
+     * Method which allow knowing the state of the item. 
+     *
+     * @return  a boolean
+     * True = the item is lock and the player cannot interact, 
+     * False = the item is unlock and the player can interact. 
+     */
+    public boolean getDisappeared()
+    {
+        return (hasDisappeared); 
     }
 
 
