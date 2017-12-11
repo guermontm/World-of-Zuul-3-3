@@ -13,6 +13,8 @@ abstract public class Item
     // Some item does not appears until some quest are not achieved or appears randomly 
     protected boolean isLock;
     
+    protected Dialogue dialogue;
+    
 
     /**
      * Constructor for objects of class Item
@@ -62,6 +64,14 @@ abstract public class Item
         {
             isLock = true;
         }
+        
+    }
+    
+    /**
+     * method interact item which is rewritten in each subclass
+     */
+    abstract public void interactItem();
+    {
         
     }
 }

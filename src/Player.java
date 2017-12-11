@@ -14,7 +14,7 @@ abstract class Player
     private int staStat; // stamina stat for the player, range between 1 and 10
     private int stressStat; // stress stat for the player, range between 1 and 10
     private int money; // money of the player (>0)
-    private boolean crowbar; // if the player has the crowbar or not. Starts as false
+    private boolean crowbar; // if the player has the crowbar or not. Starts at false
     private boolean key; //a key for the office of Mrs Geniet, starts at false.
 
     /**
@@ -134,6 +134,7 @@ abstract class Player
             break;
 
             case"stressStat":
+                System.out.println("case appelé");
                 setStress(getStressStat() + value);
             break;
 

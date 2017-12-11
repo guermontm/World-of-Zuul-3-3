@@ -15,7 +15,7 @@ public class Room
     // Description of the room that is displayed when the player enters
     protected String roomDescription;
     // List of items in the room
-    protected ArrayList <Item> listRoomItem;
+    protected ArrayList<Item> listRoomItem;
     
     // Hasmap containing all the rooms and their direction. Used to position the player.
     protected HashMap<String,Room> mapRoom;
@@ -30,6 +30,7 @@ public class Room
         roomDescription = "You are not supposed to see this. If you see this, something went wrong at some point. Please report.";
         listRoomItem = new ArrayList<Item>();
         mapRoom = new HashMap<String,Room>();
+        
     }
 
     /**
@@ -39,7 +40,7 @@ public class Room
     {
         roomName = name;
         roomDescription = description;
-        //roomItem = new Item("Testitem", 1, false);
+        listRoomItem = new ArrayList<Item>();
         mapRoom = new HashMap<String,Room>();
     }
 
@@ -86,7 +87,8 @@ public class Room
     }
     
     public void addItem (Item newItem){
-        listRoomItem.add(newItem); 
+        
+        listRoomItem.add(newItem);
     }
 
     /**
@@ -97,17 +99,17 @@ public class Room
     {
         return listRoomItem;
     }
-
+    
     /**
     *   Printer for all the items in the room.
     *   Displays the items in the list.
     */
     public void printItems()
     {
-        int i=0;
-        for (i=0;i<=listRoomItem.size();i++)
+        int i;
+        for (i=0; i<listRoomItem.size(); i++)
         {
-            System.out.println(i + "\t:\t"+listRoomItem.get(i).itemName);
+            System.out.println(""+i + "\t:\t"+listRoomItem.get(i).itemName);
         }
     }
 

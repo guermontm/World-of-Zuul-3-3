@@ -7,69 +7,102 @@
  * @author (Group 5)
  * @version (19/11/17)
  */
-public class NPC extends Item {
+public class NPC extends Item
+{
 
     private Sentences sentences;
-
-    boolean spokenToPgTd = false;
 
     /**
      * Constructor for objects of subclass NPC Some item does not appears until
      * some quest are not achieved or appears randomly. When isLock is true the
      * object is Lock until an event
+     *
      * @param name is the name of the NPC
-     * @param isLock is a boolean saying if you can interact with the NPC (false when you can)
+     * @param isLock is a boolean saying if you can interact with the NPC (false
+     * when you can)
      */
-    public NPC(String name, boolean isLock) {
+    public NPC(String name, boolean isLock)
+    {
         // the name is given at the creation of the item  
         super.itemName = name;
         // the islock is given at the creation of the item 
         super.isLock = isLock;
+        
+        super.dialogue = new Dialogue();
 
         sentences = new Sentences();
-
     }
+    
 
     /**
-     * Method interactItem allow to listen to what the non player character have to
-     * say
+     * Method interactItem allow to listen to what the non player character have
+     * to say
      *
      */
-    public void interactItem() {
-        if (isLock == true) {
-            switch (itemName) {
+    public void interactItem()
+    {
+        if (isLock == true)
+        {
+            switch (itemName)
+            {
                 case ("Axel"):
-                    System.out.println(sentences.randomSentence(sentences.getListAxel()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListAxel()));
                     break;
                 case ("Martin"):
-                    System.out.println(sentences.randomSentence(sentences.getListMartin()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListMartin()));
                     break;
                 case ("Nolan"):
-                    System.out.println(sentences.randomSentence(sentences.getListNolan()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListNolan()));
                     break;
                 case ("Valentin"):
-                    System.out.println(sentences.randomSentence(sentences.getListValentin()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListValentin()));
                     break;
                 case ("Guardian"):
-                    System.out.println(sentences.randomSentence(sentences.getListGuardian()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListGuardian()));
                     break;
                 case ("Thomas"):
-                    System.out.println(sentences.randomSentence(sentences.getListThomas()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListThomas()));
                     break;
                 case ("Morgane"):
-                    System.out.println(sentences.randomSentence(sentences.getListMorgane()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListMorgane()));
                     break;
                 case ("Marie"):
-                    System.out.println(sentences.randomSentence(sentences.getListMarie()));
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListMarie()));
                     break;
+                case ("Mrs Geniet"):
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListMrsGeniet()));
                 default:
                     System.out.println("There is no one to talk to in this room");
             }
-        } 
-        else 
-        {
-            System.out.println("There is no one to talk to in this room");
-        }
+        } else if (!isLock) //for the NPCs that have conversations linked to quests
             
+        { 
+
+            switch (itemName)
+            {
+                case ("PGTD"):
+                    dialogue.dialoguePGTD();
+                    break;
+                case ("Axel"):
+                    dialogue.dialogueAxel();
+                    break;
+                case ("MrsGeniet"):
+                    dialogue.dialogueGeniet();
+                    break;
+                case ("Guardian"):
+                    dialogue.dialogueGuardian();
+                    break;
+                case ("Martin"):
+                    dialogue.dialogueMartin();
+                    break;
+                case ("Nolan"):
+                    dialogue.dialogueNolan();
+                    break;
+                case ("PGEnd"):
+                    dialogue.dialoguePGEnd();
+                    break;
+            }
+
+        }
     }
 }

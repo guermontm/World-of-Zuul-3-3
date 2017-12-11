@@ -23,21 +23,47 @@ public class Game
     private CommandLetter commandLetter;
     TestTimer timerPlayer;
     RandomEvent event;
-    private Quest onGoingQuest;
 
     char character;
 
-    // the current quest 
-    private Quest getSubjectQuest, martinQuest, nolanQuest;
     // an integer that can be changed randomly between 1
     private int randomInt;
+    private Dialogue dialogue;
 
     private HashMap<Room, String> minimap;
 
     //NPCs
     private NPC axel;
+    private NPC PGTD;
+    private NPC nolan;
+    private NPC martin;
+    private NPC annie;
+    private NPC guardian;
+    private NPC M2;
+    private NPC valentin;
+    private NPC thomas;
+    private NPC morgane;
+    private NPC marie;
+    private NPC clement;
 
-    private Sentences sentences;
+    //items
+    private Container cafet;
+    private SimpleObject coca;
+    private SimpleObject icetea;
+    private SimpleObject kinderbueno;
+    private SimpleObject croissant;
+    private Container annieDesk;
+    private SimpleObject pgDesk;
+    private SimpleObject board;
+    private Container couch;
+    private Container deskTp1;
+    private SimpleObject computer;
+    private Container wardrobe;
+    private SimpleObject tissue;
+    private SimpleObject diploma;
+
+    //class quest
+    private Quest quest;
 
     // Attic & basement have been added to check the up & down directions.
     Room annieOffice, classRoom, downstairsCorridor1, downstairsCorridor2, upstairsCorridor1, upstairsCorridor2, upStairs, downStairs, pgOffice, tp1, td1, td4, wc, hall, theatre, downstairsLift, upstairsLift, restRoom;
@@ -50,32 +76,66 @@ public class Game
      */
     public Game(int player)
     {
-        // the constructor will define which player the user has chosen 
-        if (player == 1)
+        // the constructor will define which player the user has chosen
+        switch (player)
         {
-            thePlayer = new TypeOne();
-        } else if (player == 2)
-        {
-            thePlayer = new TypeTwo();
-        } else if (player == 3)
-        {
-            thePlayer = new TypeThree();
+            case 1:
+                thePlayer = new TypeOne();
+                break;
+            case 2:
+                thePlayer = new TypeTwo();
+                break;
+            case 3:
+                thePlayer = new TypeThree();
+                break;
+            default:
+                System.err.println("Error : player type must be 1, 2 or 3. Please report");
+                break;
         }
-
-        timerPlayer = new TestTimer();
-        timerPlayer.main();
 
         event = new RandomEvent(thePlayer);
 
         commandLetter = new CommandLetter();
-        // // the game begins in the hall
-        // currentRoom = hall;
-        onGoingQuest = new Quest();
 
         //NPCs
         axel = new NPC("Axel", false);
+        nolan = new NPC("Nolan", true);
+        martin = new NPC("Martin", true);
+        annie = new NPC("Mrs Geniet", true);
+        guardian = new NPC("Guardian", true);
+        M2 = new NPC("M2", true);
+        valentin = new NPC("Valentin", true);
+        thomas = new NPC("Thomas", true);
+        morgane = new NPC("Morgane", true);
+        marie = new NPC("Marie", true);
+        clement = new NPC("Clément", true);
+        PGTD = new NPC("PGTD", true);
 
-        sentences = new Sentences();
+        //items for the rooms
+        cafet = new Container("cafet", false);
+        coca = new SimpleObject("coca", false);
+        icetea = new SimpleObject("icetea", false);
+        kinderbueno = new SimpleObject("kinderbueno", false);
+        croissant = new SimpleObject("croissant", false);
+        cafet.addObject(coca);
+        cafet.addObject(icetea);
+        cafet.addObject(kinderbueno);
+        cafet.addObject(croissant);
+        annieDesk = new Container("desk in Mrs Geniet's office", false);
+        diploma = new SimpleObject("Martin's diploma", true);
+        annieDesk.addObject(diploma);
+        pgDesk = new SimpleObject("desk in PG's office", false);
+        board = new SimpleObject("board", false);
+        couch = new Container("couch", false);
+        deskTp1 = new Container("desk", false);
+        computer = new SimpleObject("computer", true);
+        deskTp1.addObject(computer);
+        wardrobe = new Container("wardrobe", false);
+        tissue = new SimpleObject("tissue", true);
+        wardrobe.addObject(tissue);
+
+        quest = new Quest();
+        dialogue = new Dialogue();
     }
 
     /**
@@ -116,7 +176,7 @@ public class Game
             printHelp();
         } else if ((character == 'q') || (character == 'Q'))
         {
-            System.out.println("Vous avez tapé Q/");
+            System.out.println("You entered Q/");
             // If the user types 'q', the quit() method asks if he really wants to quit.
             // If so, wantToQuit is set to 'true'.
             wantToQuit = quit();
@@ -133,18 +193,18 @@ public class Game
     public void getInformationPlayer()
     {
         System.out.println("Your stats:");
-        System.out.println(thePlayer.getStrStat());
-        System.out.println(thePlayer.getStaStat());
-        System.out.println(thePlayer.getIntStat());
-        System.out.println(thePlayer.getStressStat());
-        System.out.println(thePlayer.getSpeStat());
-        System.out.println(thePlayer.getMoney());
+        System.out.println("You have "+thePlayer.getStrStat()+" strength");
+        System.out.println("You have "+thePlayer.getStaStat()+" stamina");
+        System.out.println("You have "+thePlayer.getIntStat()+" intelligence");
+        System.out.println("You have "+thePlayer.getStressStat()+" stress");
+        System.out.println("You have "+thePlayer.getSpeStat()+" speech");
+        System.out.println("You have "+thePlayer.getMoney()+" money");
         if (!thePlayer.getCrowbar())
         {
             System.out.println("You aren't carrying anything special, except for your papers and stuff.");
         } else
         {
-            System.out.println("You have your crownbar in your inventory. You love that thing.");
+            System.out.println("You have your crowbar in your inventory. You love that thing.");
         }
 
     }
@@ -182,7 +242,7 @@ public class Game
         downstairsLift.setExits(null, null, hall, null);
         downstairsCorridor1.setExits(td1, downstairsCorridor2, annieOffice, hall);
         td1.setExits(null, null, downstairsCorridor1, null);
-        td4.setExits(null, null, null, downstairsCorridor1);
+        td4.setExits(null, null, downstairsCorridor1, null);
         annieOffice.setExits(downstairsCorridor1, null, null, null);
         downstairsCorridor2.setExits(td4, downStairs, pgOffice, downstairsCorridor1);
         pgOffice.setExits(downstairsCorridor2, null, null, null);
@@ -216,6 +276,46 @@ public class Game
         minimap.put(restRoom, "Resting Room");
 
         currentRoom = hall;  // The game starts witht he plater located in the hall.
+
+    }
+
+    /**
+     *
+     */
+    public void addItems()
+    {
+        //items for the hall
+        hall.addItem(axel);
+        hall.addItem(cafet);
+        //items for the theatre
+        theatre.addItem(annie);
+        theatre.addItem(marie);
+        //items for the lift
+        downstairsLift.addItem(guardian);
+        upstairsLift.addItem(guardian);
+        //items for annie's Office
+        annieOffice.addItem(annieDesk);
+        //items for PG's office
+        pgOffice.addItem(pgDesk);
+        //items for TD4
+        td4.addItem(board);
+        td4.addItem(PGTD);
+        //items for TD1
+        td1.addItem(M2);
+        //items for wc
+        wc.addItem(nolan);
+        //items for restroom
+        restRoom.addItem(couch);
+        restRoom.addItem(thomas);
+        //items for TP1
+        tp1.addItem(martin);
+        tp1.addItem(wardrobe);
+        tp1.addItem(deskTp1);
+        tp1.addItem(valentin);
+        //items for the stairs
+        downStairs.addItem(morgane);
+        //items for the classroom
+        classRoom.addItem(clement);
     }
 
     /**
@@ -255,10 +355,9 @@ public class Game
 
             if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2))
             {
-                int randomNum = ThreadLocalRandom.current().nextInt(0, 9);
-                rEvent(randomInt);
+                int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
+                rEvent(randomNum);
             }
-
         }
     }
 
@@ -269,6 +368,7 @@ public class Game
     {
         printWelcome();
         createRooms();
+        addItems();
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
@@ -277,7 +377,9 @@ public class Game
         {
             // Command command = parser.getCommand();
             character = commandLetter.readCommand();
-            // finished = processCommand(command)(;
+            // finished = processCommand(command)(;    
+            System.out.println(" " + thePlayer.getStressStat());
+            scenario();
 
             finished = processCommand();
 
@@ -299,27 +401,29 @@ public class Game
      */
     public void rEvent(int randomInt)
     {
-        if (randomInt < 2)
+        switch (randomInt)
         {
-            event.hiddenCandy();
-        } else if (randomInt < 3)
-        {
-            event.allanJoke();
-        } else if (randomInt < 4)
-        {
-            event.pillowAttack();
-        } else if (randomInt < 5)
-        {
-            event.adaHelp();
-        } else if (randomInt < 6)
-        {
-            event.penguinHug();
-        } else if (randomInt < 7)
-        {
-            event.teacherMeeting();
-        } else
-        {
-            event.conversation();
+            case 2:
+                event.hiddenCandy();
+                break;
+            case 3:
+                event.allanJoke();
+                break;
+            case 4:
+                event.pillowAttack();
+                break;
+            case 5:
+                event.adaHelp();
+                break;
+            case 6:
+                event.penguinHug();
+                break;
+            case 7:
+                event.teacherMeeting();
+                break;
+            case 8:
+                event.conversation();
+                break;
         }
     }
 
@@ -339,18 +443,61 @@ public class Game
      */
     public void interact()
     {
-        System.out.println("What item do you want to interact with ?");
-        currentRoom.printItems();
 
-        int n = Integer.parseInt(System.console().readLine());
-        // < or == ?
-        for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
+        if (currentRoom.listRoomItem.size() != 0)
         {
-            // Player wishes to interact with object of index i
-            if (n == i)
+            System.out.println("What item do you want to interact with ?");
+            currentRoom.printItems();
+
+            Scanner sc = new Scanner(System.in);
+
+            int n = Integer.parseInt(sc.next());
+
+            for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
             {
-                System.out.print("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+                // Player wishes to interact with object of index i
+                if (n == i)
+                {
+                    System.out.print("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+                    currentRoom.listRoomItem.get(i).interactItem();
+
+                    if (currentRoom.listRoomItem.get(i).dialogue.getStressDialogue() != 0)
+                    {
+
+                        thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
+                    }
+
+                    if (currentRoom.listRoomItem.get(i).dialogue.getKeyBool())
+                    {
+                        thePlayer.setKey(true);
+                    }
+
+                    switch (currentRoom.listRoomItem.get(i).getName())
+                    {
+                        case ("PGTD"):
+                            PGTD.setLock(); //goes away
+                            System.out.println("pg lock");
+                            nolan.setLock(); //Conversation with Nolan in the toilet is available
+                            martin.setLock(); //Conversation with Martin about the diploma is available
+                            quest.endQuest(0); //this quest is ended and the next one is started
+                            quest.startQuest(1);
+                            System.out.println(" "+quest.getStatus(1));
+                            quest.startQuest(2);
+                            quest.startQuest(3);
+                            break;
+                        case ("Martin"):
+                            annie.setLock(); //unlocks conversation with annie in the theatre
+                            quest.endQuest(2);
+                            quest.startQuest(4);
+                        default:
+                            break;
+                    }
+
+                }
             }
+        } else
+        {
+            System.out.println("There is nothing to interact with in this room...");
         }
 
     }
@@ -359,9 +506,50 @@ public class Game
      * Method scenario allow knowing the quest started and not finished Stub for
      * now
      */
-    public void scenarioAxel()
+    public void scenario()
     {
-        
+
+        if ((currentRoom == hall) && (axel.getLock() == false))
+        {
+            printHelp(); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
+
+            //at the start of the game, a conversation with Axel begins automatically
+            axel.interactItem();
+            //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
+            axel.setLock();
+            System.out.println("axel est lock");
+            //the first quest is launched
+            quest.startQuest(0);
+            System.out.println("quest started");
+            PGTD.setLock();
+            System.out.println("PG unlock");
+        }
+
+        //next thing happens when you go into TD4 and talk to PG
+        //while (quest.getStatus(0).equals("currently running"))
+        //{
+        //}
+        //next quests are with Martin and Nolan
+//        while (quest.getStatus(2).equals("currently running"))
+//        { 
+//            if (currentRoom == td1) //et qu'on interagit avec martin
+//            {
+//                martin.interactItem();
+//                annie.setLock(); //unlocks conversation with annie in the theatre
+//                quest.endQuest(2);
+//                quest.startQuest(4);
+//            }                       
+//        }
+//        
+//        while (quest.getStatus(4).equals("currently running"))
+//        {
+//            if (currentRoom == theatre) //again, interaction
+//            {
+//                annie.interactItem(); //if you do it well you have the key to the office and then you need to go take the diploma
+//                
+//                
+//            }
+//        }
     }
 
     /**
@@ -382,10 +570,11 @@ public class Game
         System.out.println("q: \t\tquit");
         System.out.println("spacebar: \tInteract");
         System.out.println("_________________________________________");
-        System.out.println("\n\nA supprimer : ");
-        System.out.println(currentRoom.getExits().keySet());
-        System.out.println(currentRoom.getExits().values());
+        getInformationPlayer();
+        System.out.println("_________________________________________");
         System.out.println("You are in : " + currentRoom.getName());
+        
+        
     }
 
     /**
@@ -430,5 +619,24 @@ public class Game
 
     }
 
+    public Item getItem(String name)
+    {
+        int i;
+        String n;
+        for (i = 0; i < currentRoom.listRoomItem.size(); i++)
+        {
+            n = currentRoom.listRoomItem.get(i).getName();
+            if (name.equals(n))
+            {
+                return currentRoom.listRoomItem.get(i);
+            }
+        }
+        return martin;
+    }
+
+    public Player getPlayer()
+    {
+        return thePlayer;
+    }
 
 }

@@ -13,8 +13,10 @@ public class Dialogue
 {
 
     Sentences sentences;
-    int choice;
-    private Game game;
+    private int choice;
+    private int stress;
+    private boolean key = false;
+    private boolean spokenToPGTD;
 
     /**
      * Constructor for the class Dialogue
@@ -22,6 +24,8 @@ public class Dialogue
     public Dialogue()
     {
         sentences = new Sentences();
+        spokenToPGTD = false;
+        
     }
 
     /**
@@ -60,6 +64,21 @@ public class Dialogue
         }
         return choice;
     }
+    
+    public int getStressDialogue()
+    {
+        return stress;
+    }
+    
+    public boolean getKeyBool()
+    {
+        return key;
+    }
+    
+    public boolean getSpokenToPGTD()
+    {
+        return spokenToPGTD;
+    }
 
     /**
      * Method dialogueAxel is used to call the conversation between Axel and the
@@ -96,9 +115,12 @@ public class Dialogue
                     if (choice == 1)
                     {
                         System.out.println(sentences.getListMainAxel(4));
+                      
+                        
                     } else if (choice == 2)
                     {
                         System.out.println(sentences.getListMainAxel(5));
+                        
                     }
 
                 } else if (choice == 2)
@@ -112,9 +134,11 @@ public class Dialogue
                     if (choice == 1)
                     {
                         System.out.println(sentences.getListMainAxel(5));
+                       
                     } else if (choice == 2)
                     {
                         System.out.println(sentences.getListMainAxel(6));
+                       
                     }
                 }
             }
@@ -128,6 +152,7 @@ public class Dialogue
      */
     public void dialogueMartin()
     {
+        stress = 0;
         System.out.println(sentences.getListMainMartin(0));
         System.out.println("1 : " + sentences.getListMainPlayerToMartin(0));
         System.out.println("2 : " + sentences.getListMainPlayerToMartin(1));
@@ -185,6 +210,7 @@ public class Dialogue
      */
     public void dialogueNolan()
     {
+        stress = 0;
         System.out.println(sentences.getListMainNolan(0));
         System.out.println("1 : " + sentences.getListMainPlayerToNolan(0));
         System.out.println("2 : " + sentences.getListMainPlayerToNolan(1));
@@ -228,7 +254,7 @@ public class Dialogue
 
             //add a point to the stress stat
             System.out.println("Nolan knows you are here, you need to speak to him... your stress increases, be careful! ");
-            game.thePlayer.addStat("stressStat", 1);
+            stress++;
 
             System.out.println("1 : " + sentences.getListMainPlayerToNolan(2));
             System.out.println("2 : " + sentences.getListMainPlayerToNolan(3));
@@ -279,6 +305,8 @@ public class Dialogue
      */
     public void dialoguePGTD()
     {
+        stress = 0;
+        spokenToPGTD = true;
         System.out.println(sentences.getListMainPGTD(0));
         System.out.println("1 : " + sentences.getListPlayerToMainPGTD(0));
         System.out.println("2 : " + sentences.getListPlayerToMainPGTD(1));
@@ -299,14 +327,14 @@ public class Dialogue
                 System.out.println(sentences.getListMainPGTD(5));
                 //add a point to the stress stat
                 System.out.println("Maybe you should be more respectful with your teachers... Your stress is increasing be careful!");
-                game.thePlayer.addStat("stressStat", 1);
+                stress++;
             }
         } else if (choice == 2)
         {
             System.out.println(sentences.getListMainPGTD(2));
             //add a point to the stress stat
             System.out.println("Maybe you should be more respectful with your teachers... Your stress is increasing be careful!");
-            game.thePlayer.addStat("stressStat", 1);
+            stress++;
 
             System.out.println("1 : " + sentences.getListPlayerToMainPGTD(2));
             System.out.println("2 : " + sentences.getListPlayerToMainPGTD(3));
@@ -319,6 +347,21 @@ public class Dialogue
             } else if (choice == 2)
             {
                 System.out.println(sentences.getListMainPGTD(4));
+                System.out.println(sentences.getListMainPGTD(1));
+                System.out.println("1 : " + sentences.getListPlayerToMainPGTD(4));
+                System.out.println("2 : " + sentences.getListPlayerToMainPGTD(5));
+                choice = playerChoice();
+                
+                if (choice == 1)
+            {
+                System.out.println(sentences.getListMainPGTD(6));
+            } else if (choice == 2)
+            {
+                System.out.println(sentences.getListMainPGTD(5));
+                //add a point to the stress stat
+                System.out.println("Maybe you should be more respectful with your teachers... Your stress is increasing be careful!");
+                stress++;
+            }      
             }
         }
     }
@@ -330,6 +373,7 @@ public class Dialogue
      */
     public void dialogueGeniet()
     {
+        stress = 0;
         System.out.println(sentences.getListMainMrsGeniet(0));
         System.out.println("1 : " + sentences.getListMainPlayerToMrsGeniet(0));
         System.out.println("2 : " + sentences.getListMainPlayerToMrsGeniet(1));
@@ -338,12 +382,14 @@ public class Dialogue
         if (choice == 1)
         {
             System.out.println(sentences.getListMainMrsGeniet(1));
+            key = true; //adds the key to the inventory
+            System.out.println("You got the key to Mrs Geniet's office! Be careful with it");
         } else if (choice == 2)
         {
             System.out.println(sentences.getListMainMrsGeniet(2));
             //add a point to the stress stat
             System.out.println("Mrs Geniet is not very  happy! Your stress is increasing be careful!");
-            game.thePlayer.addStat("stressStat", 1);
+            stress++;
 
             System.out.println("1 : " + sentences.getListMainPlayerToMrsGeniet(2));
             System.out.println("2 : " + sentences.getListMainPlayerToMrsGeniet(3));
@@ -352,6 +398,9 @@ public class Dialogue
             if (choice == 1)
             {
                 System.out.println(sentences.getListMainMrsGeniet(1)); //same as before because you end up in the same point
+                key = true; //adds the key to the inventory
+                System.out.println("You got the key to Mrs Geniet's office! Be careful with it");
+                
             } else if (choice == 2)
             {
                 System.out.println(sentences.getListMainMrsGeniet(3));
@@ -368,6 +417,7 @@ public class Dialogue
      */
     public void dialogueGuardian()
     {
+        stress = 0;
         System.out.println(sentences.getListMainGuardian(0));
         System.out.println("1 : " + sentences.getListMainPlayerToGuardian(0));
         System.out.println("2 : " + sentences.getListMainPlayerToGuardian(1));
@@ -434,6 +484,7 @@ public class Dialogue
      */
     public void dialoguePGEnd()
     {
+        stress = 0;
         System.out.println(sentences.getListMainPGEnd(0));
 
         System.out.println("1 : " + sentences.getListPlayerToMainPGEnd(0));
@@ -469,7 +520,7 @@ public class Dialogue
                     System.out.println(sentences.getListMainPGEnd(9));
                     //add a point to the stress stat
                     System.out.println("You were a little bold there, bad choice! Your stress is increasing, be careful!");
-                    game.thePlayer.addStat("stressStat", 1);
+                    stress++;
                 }
 
                 System.out.println("1 : " + sentences.getListPlayerToMainPGEnd(10));
@@ -500,7 +551,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(16));
                             //add a stress point
                             System.out.println("Well, trying to be mean to your coworkers is not a safe move... Your stress is increasing, be careful!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         }
 
                     } else if (choice == 2)
@@ -516,7 +567,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(16));
                             //add a stress point
                             System.out.println("Well, trying to be mean to your coworkers is not a safe move... Your stress is increasing, be careful!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         } else if (choice == 2)
                         {
                             System.out.println(sentences.getListMainPGEnd(17));
@@ -533,7 +584,7 @@ public class Dialogue
                         System.out.println(sentences.getListMainPGEnd(18));
                         //add a stress point
                         System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                        game.thePlayer.addStat("stressStat", 1);
+                        stress++;
                     }
                     //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                     System.out.println(sentences.getListMainPGEnd(19));
@@ -546,7 +597,7 @@ public class Dialogue
                         System.out.println(sentences.getListMainPGEnd(20));
                         //add a stress point
                         System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                        game.thePlayer.addStat("stressStat", 1);
+                        stress++;
                     }
                     //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                     System.out.println(sentences.getListMainPGEnd(21));
@@ -559,7 +610,7 @@ public class Dialogue
                         System.out.println(sentences.getListMainPGEnd(22));
                         //add a stress point
                         System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                        game.thePlayer.addStat("stressStat", 1);
+                        stress++;
                     }
                     //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                     System.out.println(sentences.getListMainPGEnd(23));
@@ -598,7 +649,7 @@ public class Dialogue
                                 System.out.println(sentences.getListMainPGEnd(16));
                                 //add a stress point
                                 System.out.println("Well, trying to be mean to your coworkers is not a safe move... Your stress is increasing, be careful!");
-                                game.thePlayer.addStat("stressStat", 1);
+                                stress++;
                             }
 
                         } else if (choice == 2)
@@ -614,7 +665,7 @@ public class Dialogue
                                 System.out.println(sentences.getListMainPGEnd(16));
                                 //add a stress point
                                 System.out.println("Well, trying to be mean to your coworkers is not a safe move... Your stress is increasing, be careful!");
-                                game.thePlayer.addStat("stressStat", 1);
+                                stress++;
                             } else if (choice == 2)
                             {
                                 System.out.println(sentences.getListMainPGEnd(17));
@@ -631,7 +682,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(18));
                             //add a stress point
                             System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         }
                         //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                         System.out.println(sentences.getListMainPGEnd(19));
@@ -644,7 +695,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(20));
                             //add a stress point
                             System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         }
                         //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                         System.out.println(sentences.getListMainPGEnd(21));
@@ -657,7 +708,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(22));
                             //add a stress point
                             System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         }
                         //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                         System.out.println(sentences.getListMainPGEnd(23));
@@ -676,7 +727,7 @@ public class Dialogue
             System.out.println(sentences.getListMainPGEnd(2));
             //adding a point to the stress stat
             System.out.println("Your heart is suddendly beating really fast... Your stress increase, be careful!"); //à mettre en italique maybe pour différencier du dialogue
-            game.thePlayer.addStat("stressStat", 1);
+            stress++;
 
             System.out.println("1 : " + sentences.getListPlayerToMainPGEnd(4));
             System.out.println("2 : " + sentences.getListPlayerToMainPGEnd(5));
@@ -697,7 +748,7 @@ public class Dialogue
                     System.out.println(sentences.getListMainPGEnd(9));
                     //add a point to the stress stat
                     System.out.println("You were a little bold there, bad choice! Your stress is increasing, be careful!");
-                    game.thePlayer.addStat("stressStat", 1);
+                    stress++;
                 }
 
                 System.out.println("1 : " + sentences.getListPlayerToMainPGEnd(10));
@@ -728,7 +779,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(16));
                             //add a stress point
                             System.out.println("Well, trying to be mean to your coworkers is not a safe move... Your stress is increasing, be careful!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         }
 
                     } else if (choice == 2)
@@ -744,7 +795,7 @@ public class Dialogue
                             System.out.println(sentences.getListMainPGEnd(16));
                             //add a stress point
                             System.out.println("Well, trying to be mean to your coworkers is not a safe move... Your stress is increasing, be careful!");
-                            game.thePlayer.addStat("stressStat", 1);
+                            stress++;
                         } else if (choice == 2)
                         {
                             System.out.println(sentences.getListMainPGEnd(17));
@@ -761,7 +812,7 @@ public class Dialogue
                         System.out.println(sentences.getListMainPGEnd(18));
                         //add a stress point
                         System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                        game.thePlayer.addStat("stressStat", 1);
+                        stress++;
                     }
                     //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                     System.out.println(sentences.getListMainPGEnd(19));
@@ -774,7 +825,7 @@ public class Dialogue
                         System.out.println(sentences.getListMainPGEnd(20));
                         //add a stress point
                         System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                        game.thePlayer.addStat("stressStat", 1);
+                        stress++;
                     }
                     //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                     System.out.println(sentences.getListMainPGEnd(21));
@@ -787,7 +838,7 @@ public class Dialogue
                         System.out.println(sentences.getListMainPGEnd(22));
                         //add a stress point
                         System.out.println("That is not the good answer, you do not want to disappoint PG! You are getting stressed!");
-                        game.thePlayer.addStat("stressStat", 1);
+                        stress++;
                     }
                     //same, you end up here anyway, the first choice just gives you another sentence and stress issues
                     System.out.println(sentences.getListMainPGEnd(23));

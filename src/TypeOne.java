@@ -36,41 +36,5 @@ public class TypeOne extends Player
         System.out.println("Il est: "+ myHour + "H et" + myMinute + "min");
     }
 
-    // public void run() 
-                // {   
-
-                    // String statToModify = "intStat";
-                    // substractStat(statToModify, 1);
-                    // System.out.println ("You lost 1 point of intelligence so you have" +getIntStat()+ "points of intelligence");
-
-                // };
     
-    //public void losePoints() // la tache est d'enlever 1 point au player toutes les 5 min
-    //{
-    
-    
-    // {
-        // TimerTask theTask = new TimerTask();
-        // Timer timer = new Timer ();
-        
-        // myDate = new Date ();
-
-        
-            // //{
-                // // public void run() 
-                // // {   
-
-                    // // String statToModify = "intStat";
-                    // // substractStat(statToModify, 1);
-                    // // System.out.println ("You lost 1 point of intelligence so you have" +getIntStat()+ "points of intelligence");
-
-                // // };
-            // //};
-
-            // timer.scheduleAtFixedRate(theTask, new Date(),5000); // 5 min = 300 000 millisecondes
-            // System.out.println ("lancement");
-
-        // timer.cancel();
-        // System.out.println ("********** FINI **********");
-    // }
 }

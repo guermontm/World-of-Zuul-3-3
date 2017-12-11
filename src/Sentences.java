@@ -168,7 +168,7 @@ public class Sentences
        sentenceMarie1="[Marie] Come with us to the escape game tonight !";
        sentenceMarie2="[Marie] Don't forget there are 9 other projects to finish after the COOPOO subject !";
        
-       sentenceMrsGeniet1="[Mrs Geniet] chut";
+       sentenceMrsGeniet1="[Mrs Geniet] ssshht";
        sentenceMrsGeniet2="[Mrs Geniet] I am listening to the students";
        
        sentenceClement1="[Clement] Rollin' rollin' rollin'";
@@ -434,43 +434,44 @@ public class Sentences
        sentenceMainPlayerToPGEnd24="[You] Of course, always.";
        
        //add the player conversation sentences for to the list 
-       listMainMrsGeniet.add(sentenceMainPlayerToMrsGeniet1);
-       listMainMrsGeniet.add(sentenceMainPlayerToMrsGeniet2);
-       listMainMrsGeniet.add(sentenceMainPlayerToMrsGeniet3);
-       listMainMrsGeniet.add(sentenceMainPlayerToMrsGeniet4);
+       listMainPlayerToMrsGeniet.add(sentenceMainPlayerToMrsGeniet1);
+       listMainPlayerToMrsGeniet.add(sentenceMainPlayerToMrsGeniet2);
+       listMainPlayerToMrsGeniet.add(sentenceMainPlayerToMrsGeniet3);
+       listMainPlayerToMrsGeniet.add(sentenceMainPlayerToMrsGeniet4);
        
-       listMainAxel.add(sentenceMainPlayerToAxel1);
-       listMainAxel.add(sentenceMainPlayerToAxel2);
-       listMainAxel.add(sentenceMainPlayerToAxel3);
-       listMainAxel.add(sentenceMainPlayerToAxel4);
-       listMainAxel.add(sentenceMainPlayerToAxel5);
-       listMainAxel.add(sentenceMainPlayerToAxel6);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel1);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel2);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel3);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel4);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel5);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel6);
+       listMainPlayerToAxel.add(sentenceMainPlayerToAxel7);
        
-       listMainMartin.add(sentenceMainPlayerToMartin1);
-       listMainMartin.add(sentenceMainPlayerToMartin2);
-       listMainMartin.add(sentenceMainPlayerToMartin3);
-       listMainMartin.add(sentenceMainPlayerToMartin4);
-       listMainMartin.add(sentenceMainPlayerToMartin5);
-       listMainMartin.add(sentenceMainPlayerToMartin6);
-       listMainMartin.add(sentenceMainPlayerToMartin7);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin1);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin2);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin3);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin4);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin5);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin6);
+       listMainPlayerToMartin.add(sentenceMainPlayerToMartin7);
 
-       listMainNolan.add(sentenceMainPlayerToNolan1);
-       listMainNolan.add(sentenceMainPlayerToNolan2);
-       listMainNolan.add(sentenceMainPlayerToNolan3);
-       listMainNolan.add(sentenceMainPlayerToNolan4);
-       listMainNolan.add(sentenceMainPlayerToNolan5);
-       listMainNolan.add(sentenceMainPlayerToNolan6);
-       listMainNolan.add(sentenceMainPlayerToNolan7);
-       listMainNolan.add(sentenceMainPlayerToNolan8);
-       listMainNolan.add(sentenceMainPlayerToNolan9);
-       listMainNolan.add(sentenceMainPlayerToNolan10);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan1);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan2);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan3);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan4);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan5);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan6);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan7);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan8);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan9);
+       listMainPlayerToNolan.add(sentenceMainPlayerToNolan10);
        
-       listMainGuardian.add(sentenceMainPlayerToGuardian1);
-       listMainGuardian.add(sentenceMainPlayerToGuardian2);
-       listMainGuardian.add(sentenceMainPlayerToGuardian3);
-       listMainGuardian.add(sentenceMainPlayerToGuardian4);
-       listMainGuardian.add(sentenceMainPlayerToGuardian5);
-       listMainGuardian.add(sentenceMainPlayerToGuardian6);
+       listMainPlayerToGuardian.add(sentenceMainPlayerToGuardian1);
+       listMainPlayerToGuardian.add(sentenceMainPlayerToGuardian2);
+       listMainPlayerToGuardian.add(sentenceMainPlayerToGuardian3);
+       listMainPlayerToGuardian.add(sentenceMainPlayerToGuardian4);
+       listMainPlayerToGuardian.add(sentenceMainPlayerToGuardian5);
+       listMainPlayerToGuardian.add(sentenceMainPlayerToGuardian6);
 
        listMainPlayerToPGTD.add(sentenceMainPlayerToPGTD1);
        listMainPlayerToPGTD.add(sentenceMainPlayerToPGTD2);
@@ -636,7 +637,7 @@ public class Sentences
      */
     public ArrayList getListMrsGeniet()
     {
-        return listMainMrsGeniet; 
+        return listMrsGeniet; 
     }
     
     
