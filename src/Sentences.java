@@ -30,6 +30,7 @@ public class Sentences
     private ArrayList<String> listMarie;
     private ArrayList<String> listMrsGeniet;
     private ArrayList<String> listClement;
+    private ArrayList<String> listM2;
     
     //conversation sentence lists for NPC
     private ArrayList<String> listMainMrsGeniet;
@@ -61,6 +62,7 @@ public class Sentences
     private String sentenceMarie1, sentenceMarie2;
     private String sentenceMrsGeniet1, sentenceMrsGeniet2;
     private String sentenceClement1, sentenceClement2;
+    private String sentenceM21, sentenceM22, sentenceM23;
     
     //Initialisation of conversation sentences for NPC
     private String sentenceMainMrsGeniet1, sentenceMainMrsGeniet2,sentenceMainMrsGeniet3,sentenceMainMrsGeniet4,
@@ -174,6 +176,11 @@ public class Sentences
        sentenceClement1="[Clement] Rollin' rollin' rollin'";
        sentenceClement2="[Clement] I do not speak to those who come from elsewhere than Aurillac.";
        
+       
+       sentenceM21="Hey ! We are launching a new virtual company. Do you want to come with us?";
+       sentenceM22="You're performing the COOPOO project ?! Good luck, it was hard last year !";
+       sentenceM23="*Singing*";
+       
        //add the simple sentences to the list
        listAxel.add(sentenceAxel1);
        listAxel.add(sentenceAxel2);
@@ -206,7 +213,9 @@ public class Sentences
        listClement.add(sentenceClement1);
        listClement.add(sentenceClement2);
        
-       
+       listM2.add(sentenceM21);
+       listM2.add(sentenceM22);
+       listM2.add(sentenceM23);
        
        //The conversation sentences for NPC
        sentenceMainMrsGeniet1="[Mrs Geniet] Yes? What do you want from me?";
@@ -638,6 +647,17 @@ public class Sentences
     public ArrayList getListMrsGeniet()
     {
         return listMrsGeniet; 
+    }
+    
+    
+    /**
+     * Method getListM2 allow to have an access to the list
+     *
+     * @return The sentences of the list 
+     */
+    public ArrayList getListM2()
+    {
+        return listM2; 
     }
     
     
