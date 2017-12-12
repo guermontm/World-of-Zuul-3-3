@@ -1,3 +1,5 @@
+package code;
+
 import java.util.*;
 /**
  * This class inherits from item and represents the item type : container. 

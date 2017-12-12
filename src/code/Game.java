@@ -1,3 +1,5 @@
+package code;
+
 
 import Interface_Game.Interface;
 import Interface_Game.InterfaceImpl;
@@ -16,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game
 {
-    protected InterfaceImpl GUI;
+
 
 // this attribute represents the current room in which the player is located.
     protected Room currentRoom;

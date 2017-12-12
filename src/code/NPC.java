@@ -1,3 +1,5 @@
+package code;
+
 
 /**
  * This class inherits from item and represents the item type : non player

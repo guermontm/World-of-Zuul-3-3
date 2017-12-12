@@ -1,3 +1,5 @@
+package code;
+
 
 /**
  * This class inherits from player and represents a player of the third type

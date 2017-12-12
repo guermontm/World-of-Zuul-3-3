@@ -1,3 +1,5 @@
+package code;
+
 /**
  * The class item manage all the the items in a room. 
  * This items can be a non player character, a container or a object. 

@@ -1,3 +1,5 @@
+package code;
+
 
 /**
  * This is the mother class for players. 

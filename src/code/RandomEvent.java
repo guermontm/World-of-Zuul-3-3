@@ -1,3 +1,5 @@
+package code;
+
 import java.util.*;
 /**
  * a lot of randomEvent that appears randomly in the corridors. The methods of this class always return a list with the statistic that could be changed during the event.

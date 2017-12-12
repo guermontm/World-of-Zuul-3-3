@@ -5,6 +5,8 @@
  */
 package Interface_Game;  
 
+import code.Game;
+import code.Player;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;

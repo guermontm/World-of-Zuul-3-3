@@ -1,4 +1,7 @@
+package code;
 
+
+import Interface_Game.InterfaceImpl;
 import java.util.Scanner;
 
 /*
@@ -17,6 +20,7 @@ public class Main
     /**
      * @param args the command line arguments
      */
+
     public static void main(String[] args)
     {
 //        System.out.println("chose a character");
@@ -25,8 +29,10 @@ public class Main
 //        reader = new Scanner(System.in);
 //        character = reader.next().charAt(0);
         
+        
+        InterfaceImpl gui = new InterfaceImpl(); 
         Game game = new Game(1);
-        game.GUI.run(); 
+         
         game.play();
         
     }
