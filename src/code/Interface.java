@@ -1,12 +1,9 @@
-package code; 
+package code;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- 
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -18,29 +15,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Interface extends JFrame  {
-    //***************************Welcome interface******************************
-
-    private final JButton myButtonStart;
-    private final JButton myButtonQuit;
-    //private final JLabel myLabel1;
-    private JLabel myLabel2, myLabel3;
-    private JPanel myPanel1, myPanel2, myPanel3, myPanel4;
-    protected JFrame myFrameWelcome;
-
-    //*********************CHOOSE PLAYER*****************************************
-    private JLabel playerInterface;
-    private JButton player1Button, player2Button, player3Button;
-    private JLabel messageLabel;
-    private JPanel mainPanel, panelCenterText, panelChoicePlayer;
-    private JFrame myFrameChoosePlayer;
+//    //***************************Welcome interface******************************
+//
+//    private final JButton myButtonStart;
+//    private final JButton myButtonQuit;
+//    //private final JLabel myLabel1;
+//    private JLabel myLabel2, myLabel3;
+//    private JPanel myPanel1, myPanel2, myPanel3, myPanel4;
+//    protected JFrame myFrameWelcome;
+//
+//    //*********************CHOOSE PLAYER*****************************************
+//    private JLabel playerInterface;
+//    private JButton player1Button, player2Button, player3Button;
+//    private JLabel messageLabel;
+//    private JPanel mainPanel, panelCenterText, panelChoicePlayer;
+//    private JFrame myFrameChoosePlayer;
 
     //****************MAIN INTERFACE************************************
     //Declarations
     private JFrame myMainFrame = new JFrame("World of Zuul");
-
+    private JPanel mainPanel;
     private final Container myContainer = myMainFrame.getContentPane();
     //Label
     private final JLabel myCommand = new JLabel();
@@ -80,102 +80,18 @@ public class Interface extends JFrame  {
     private static final TextArea dialogBox = new TextArea("Welcome to the World of GPhy! \n \n The goal is simple : finish the COOPOO project before living the University\n You can interact with the people and the object in different rooms.\n\n If you need more information on your player or on the game, click on help. \n\n Good luck !");
 
     //Game 
-    private Game g;
+    private Game game;
+    
+    //actions of the buttons
+    private int option;
 
-    public Interface() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        // Game game peut etre en parametre du constructeur de l'interface sauf qu'on a besoin de game = new Game (1) dans GestionAction
-        //*************************************WELCOME INTERFACE***************************************************************
-        myFrameWelcome = new JFrame("Welcome");
-        myFrameWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        myPanel1 = new JPanel();
-        myLabel2 = new JLabel();
-        myLabel2.setIcon(new ImageIcon(this.getClass().getResource("images/welcome_test.png")));
-        myLabel2.setPreferredSize(new Dimension(809, 471));
-        myPanel1.add(myLabel2);
-
-        myButtonStart = new JButton();
-        myButtonStart.setIcon(new ImageIcon(this.getClass().getResource("images/play.jpg")));
-        myButtonStart.setPreferredSize(new Dimension(810, 100));
-        myButtonQuit = new JButton();
-        myButtonQuit.setIcon(new ImageIcon(this.getClass().getResource("images/quit.jpg")));
-        myButtonQuit.setPreferredSize(new Dimension(810, 100));
-
-        myPanel1.setLayout(new BorderLayout());
-        myPanel1.add(myLabel2, BorderLayout.NORTH);
-        myPanel1.add(myButtonStart, BorderLayout.CENTER);
-
-        myPanel1.add(myButtonQuit, BorderLayout.SOUTH);
-
-        myButtonStart.addActionListener(new GestionAction(g, this, "start"));
-        myButtonQuit.addActionListener(new GestionAction(g, this, "quit"));
-
-        myFrameWelcome.add(myPanel1);
-        myFrameWelcome.setVisible(true);
-        myFrameWelcome.pack();
-    }
-
-    public void Interface_ChoosePlayer() {
+    public Interface(int choicePlayer, InterfaceBegin wint) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Fermeture de l'interface chooseplayer
-        g = new Game();
-        myFrameChoosePlayer = myFrameWelcome;
-        myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        myPanel1.removeAll();
-        myFrameChoosePlayer.setVisible(true);
-        myFrameChoosePlayer.pack();
-        myFrameChoosePlayer.setSize(700, 700);
-
-        // Initialization of the panel
-        mainPanel = new JPanel();
-        mainPanel.setBackground(Color.BLACK);
-        panelCenterText = new JPanel();
-        panelChoicePlayer = new JPanel();
-
-        mainPanel.setLayout(new BorderLayout());
-        panelChoicePlayer.setLayout(new GridLayout(0, 3));
-
-        // Initialization of the labels
-        messageLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/intro_v5.gif")));
-        //Instanciation of the button 
-        player1Button = new JButton();
-        player1Button.setIcon(new ImageIcon(this.getClass().getResource("images/pierre.png")));
-        player1Button.setPreferredSize(new Dimension(225, 300));
-        player1Button.setBackground(Color.WHITE);
-
-        player2Button = new JButton();
-        player2Button.setIcon(new ImageIcon(this.getClass().getResource("images/elie.png")));
-        player2Button.setPreferredSize(new Dimension(225, 300));
-        player2Button.setBackground(Color.WHITE);
-
-        player3Button = new JButton();
-        player3Button.setIcon(new ImageIcon(this.getClass().getResource("images/luc.png")));
-        player3Button.setPreferredSize(new Dimension(225, 300));
-        player3Button.setBackground(Color.WHITE);
-
-        panelChoicePlayer.add(player1Button);
-        panelChoicePlayer.add(player1Button);
-        panelChoicePlayer.add(player2Button);
-        panelChoicePlayer.add(player3Button);
-
-        mainPanel.add(messageLabel, BorderLayout.CENTER);
-        mainPanel.add(panelChoicePlayer, BorderLayout.SOUTH);
-
-        player1Button.addActionListener(new GestionAction(g, this, "player1"));
-        player2Button.addActionListener(new GestionAction(g, this, "player2"));
-        player3Button.addActionListener(new GestionAction(g, this, "player3"));
-
-        myFrameChoosePlayer.add(mainPanel);
-    }
-
-    public void mainInterface()  {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        // Fermeture de l'interface chooseplayer
-        
-        myMainFrame = myFrameChoosePlayer;
-        mainPanel.removeAll();
+        game = new Game(choicePlayer);
+        myMainFrame = wint.myFrameChoosePlayer;
+        myMainFrame.setVisible(true);
+        wint.mainPanel.removeAll();
         myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         myMainFrame.pack();
@@ -375,14 +291,37 @@ public class Interface extends JFrame  {
         btnQuit.setPreferredSize(new Dimension(59, 59));
 
         // ADD ACTION LISTENER
-        btnDroite.addActionListener(new GestionAction(g, this, "droite"));
-        btnGauche.addActionListener(new GestionAction(g, this, "gauche"));
-        btnHaut.addActionListener(new GestionAction(g, this, "haut"));
-        btnBas.addActionListener(new GestionAction(g, this, "bas"));
-
-        btnQuit.addActionListener(new GestionAction(g, this, "quit"));
-        btnHelp.addActionListener(new GestionAction(g, this, "play"));
-        btnRamasser.addActionListener(new GestionAction(g, this, "ramasser"));
+//            btnDroite.addActionListener(new GestionAction(g, this, "droite"));
+//            btnGauche.addActionListener(new GestionAction(g, this, "gauche"));
+//            btnHaut.addActionListener(new GestionAction(g, this, "haut"));
+//            btnBas.addActionListener(new GestionAction(g, this, "bas"));
+//
+            btnQuit.addActionListener (new ActionListener()
+     {
+    	 public void actionPerformed (ActionEvent e){
+		
+		option = JOptionPane.showConfirmDialog(null, "Are you sure to quit ?",
+                        "Oh noooooooooooooooo !",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION
+                        && option != JOptionPane.CLOSED_OPTION) {
+                    System.exit(0); 
+    	 }
+         }
+     }
+     	);
+     
+//            btnHelp.addActionListener(new GestionAction(g, this, "play"));
+//            btnRamasser.addActionListener(new GestionAction(g, this, "ramasser"));
+        int force = game.getPlayer().getStrStat();
+        setLabelForce(force);
+        int intelligence = game.getPlayer().getIntStat();
+        setLabelIntelligence(intelligence);
+        int eloquence = game.getPlayer().getSpeStat();
+        setLabelEloquence(eloquence);
+        setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+        //game.play();
     }
 
     public void setLabelForce(int i) {
@@ -407,7 +346,7 @@ public class Interface extends JFrame  {
 
     public void run() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        myFrameWelcome.setVisible(true);
+        myMainFrame.setVisible(true);
     }
 
 }

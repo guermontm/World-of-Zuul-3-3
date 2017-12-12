@@ -23,8 +23,8 @@ public class Main {
 //        character = reader.next().charAt(0);
 
         //Game game = new Game();
-        Interface gui = new Interface(); 
-        gui.myFrameWelcome.setVisible(true);
+        InterfaceBegin guiB = new InterfaceBegin(); 
+        guiB.myFrameWelcome.setVisible(true);
     }
 
 }

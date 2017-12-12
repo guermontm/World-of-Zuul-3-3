@@ -14,13 +14,13 @@ import java.awt.event.ActionListener;
  */
 public class GestionAction implements ActionListener {
 
-    private final Interface wint;
+    private final InterfaceBegin wint;
     private final String background;
     private final JOptionPane optionPane = new JOptionPane();
     private int option;
     private int playerChoice;
     private JOptionPane jopQuit;
-    private final Game game;
+    private Interface gui; 
 
     /**
      * Constructor for objects of class GestionMouse
@@ -28,10 +28,9 @@ public class GestionAction implements ActionListener {
      * @param w
      * @param b
      */
-    public GestionAction(Game g, Interface w, String b) {
+    public GestionAction(InterfaceBegin w, String b) {
         wint = w;
         background = b;
-        game = g;
     }
 
     @Override
@@ -50,48 +49,50 @@ public class GestionAction implements ActionListener {
                     System.exit(0);
                 }   break;
             case "player1":{
-                wint.mainInterface(); // lance l'interface main
+                //Interface.mainInterface(); // lance l'interface main
                 playerChoice = 1;
                 System.out.println("Player Choice");
-                game.play(playerChoice);
-                int force = game.getPlayer().getStrStat();
-                wint.setLabelForce(force);
-                int intelligence = game.getPlayer().getIntStat();
-                wint.setLabelIntelligence(intelligence);
-                int eloquence = game.getPlayer().getSpeStat();
-                wint.setLabelEloquence(eloquence);
-                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                gui = new Interface(playerChoice, wint);
+                
+//                int force = game.getPlayer().getStrStat();
+//                wint.setLabelForce(force);
+//                int intelligence = game.getPlayer().getIntStat();
+//                wint.setLabelIntelligence(intelligence);
+//                int eloquence = game.getPlayer().getSpeStat();
+//                wint.setLabelEloquence(eloquence);
+//                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
                     break;
                 }
             case "player2":{
-                wint.mainInterface(); // lance l'interface main
+                //wint.mainInterface(); // lance l'interface main
                 playerChoice = 2;
                 System.out.println("Player Choice");
-                game.play(playerChoice);
-                int force = game.getPlayer().getStrStat();
-                wint.setLabelForce(force);
-                int intelligence = game.getPlayer().getIntStat();
-                wint.setLabelIntelligence(intelligence);
-                int eloquence = game.getPlayer().getSpeStat();
-                wint.setLabelEloquence(eloquence);
-                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                gui = new Interface(playerChoice, wint);
+//                int force = game.getPlayer().getStrStat();
+//                wint.setLabelForce(force);
+//                int intelligence = game.getPlayer().getIntStat();
+//                wint.setLabelIntelligence(intelligence);
+//                int eloquence = game.getPlayer().getSpeStat();
+//                wint.setLabelEloquence(eloquence);
+//                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
                 break;
                 }
             case "player3":{
-                wint.mainInterface(); // lance l'interface main
+                //wint.mainInterface(); // lance l'interface main
                 playerChoice = 3;
                 System.out.println("Player Choice");
-                game.play(playerChoice);
-                System.out.println("force" + game.getPlayer().getStrStat());
-                int force = game.getPlayer().getStrStat();
-                wint.setLabelForce(force);
-                int intelligence = game.getPlayer().getIntStat();
-                wint.setLabelIntelligence(intelligence);
-                int eloquence = game.getPlayer().getSpeStat();
-                wint.setLabelEloquence(eloquence);
-                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                gui = new Interface(playerChoice, wint);
                 
-                break;
+//                System.out.println("force" + game.getPlayer().getStrStat());
+//                int force = game.getPlayer().getStrStat();
+//                wint.setLabelForce(force);
+//                int intelligence = game.getPlayer().getIntStat();
+//                wint.setLabelIntelligence(intelligence);
+//                int eloquence = game.getPlayer().getSpeStat();
+//                wint.setLabelEloquence(eloquence);
+//                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+               
+              break;
                 }
             default:
                 break;

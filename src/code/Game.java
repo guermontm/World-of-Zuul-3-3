@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game {
 
-    protected Interface gui;
+    //protected Interface gui;
 // this attribute represents the current room in which the player is located.
     protected Room currentRoom;
     // this attribute represents the player 
@@ -80,10 +80,10 @@ public class Game {
      *
      *
      */
-    public Game() {
-        //gui = new Interface();
-        //gui.myFrameWelcome.setVisible(true);
-
+    public Game(int playerChoice) {
+        //gui = new Interface(frameBegin);
+        //gui.run();
+        choosePlayer(playerChoice);
         event = new RandomEvent(thePlayer);
 
         commandLetter = new CommandLetter();
@@ -356,11 +356,11 @@ public class Game {
     /**
      * Main play routine. Loops until end of play.
      */
-    public void play(int playerChoice) {
+    public void play() {
         //printWelcome();
         createRooms();
         addItems();
-        choosePlayer(playerChoice);
+   
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
         boolean finished = false;
