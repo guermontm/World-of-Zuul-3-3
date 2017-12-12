@@ -110,7 +110,7 @@ public class Room
         int i;
         for (i=0; i<listRoomItem.size(); i++)
         {
-            if (!listRoomItem.get(i).getLock())
+            if (!listRoomItem.get(i).getDisappeared())
             {
                System.out.println(""+i + "\t:\t"+listRoomItem.get(i).itemName);
             }

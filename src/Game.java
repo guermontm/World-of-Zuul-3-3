@@ -64,6 +64,8 @@ public class Game
     private Container wardrobe;
     private SimpleObject tissue;
     private SimpleObject diploma;
+    private SimpleObject liftButton;
+    private SimpleObject stairs;
 
     //class quest
     private Quest quest;
@@ -136,6 +138,8 @@ public class Game
         wardrobe = new Container("wardrobe", false);
         tissue = new SimpleObject("tissue", true);
         wardrobe.addObject(tissue);
+        liftButton = new SimpleObject("button", false);
+        stairs = new SimpleObject("stairs", false);
 
         quest = new Quest();
         dialogue = new Dialogue();
@@ -178,9 +182,6 @@ public class Game
             // If the user types 'q', the quit() method asks if he really wants to quit.
             // If so, wantToQuit is set to 'true'.
             wantToQuit = quit();
-        } else
-        {
-            System.out.println("This letter is not valid");
         }
         return wantToQuit;
     }
@@ -293,6 +294,8 @@ public class Game
         //items for the lift
         downstairsLift.addItem(guardian);
         upstairsLift.addItem(guardian);
+        downstairsLift.addItem(liftButton);
+        upstairsLift.addItem(liftButton);
         //items for annie's Office
         annieOffice.addItem(annieDesk);
         //items for PG's office
@@ -314,6 +317,8 @@ public class Game
         tp1.addItem(valentin);
         //items for the stairs
         downStairs.addItem(morgane);
+        downStairs.addItem(stairs);
+        upStairs.addItem(stairs);
         //items for the classroom
         classRoom.addItem(clement);
     }
@@ -353,10 +358,12 @@ public class Game
             }
             System.out.println();
 
+            //random events that can appear in the corridors
             if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2))
             {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
                 rEvent(randomNum);
+
             }
         }
     }
@@ -379,11 +386,13 @@ public class Game
             beginning();
             finished = processCommand();
 
+            //Game Over if you have too much stress, not enough stamina or if you answer wrong during a conversation
             if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true)
             {
                 finished = true;
                 System.out.println("You are not ready for this, we are sorry...");
             }
+
         }
         System.out.println("Thank you for playing. It was nice seeing you today. Goodbye. Hope you have a great day.");
     }
@@ -457,24 +466,24 @@ public class Game
                     System.out.print("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
                     currentRoom.listRoomItem.get(i).interactItem();
 
-                    if (currentRoom.listRoomItem.get(i).dialogue.getStressDialogue() != 0)
+                    if (dialogue.getStressDialogue() != 0)
                     {
 
                         thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
                     }
 
-                    if (currentRoom.listRoomItem.get(i).dialogue.getKeyBool())
+                    if (!dialogue.getKeyBool())
                     {
                         thePlayer.setKey(true);
                     }
 
                     //if the NPC is not locked, you can have an important conversation
-                    if (currentRoom.listRoomItem.get(i).getLock() == false)
+                    if (!currentRoom.listRoomItem.get(i).getLock())
                     {
                         switch (currentRoom.listRoomItem.get(i).getName())
                         {
                             case ("PGTD"):
-                                PGTD.setLock(); //goes away
+                                PGTD.setHasDisappeared(true); //goes away
                                 nolan.setLock(); //Conversation with Nolan in the toilet is available
                                 martin.setLock(); //Conversation with Martin about the diploma is available
                                 quest.endQuest(0); //this quest is ended and the next one is started
@@ -498,12 +507,46 @@ public class Game
                             case ("Guardian"):
                                 guardian.setLock();
                                 thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
-                                
+
                             case ("PGEnd"):
-                                
-                                
+
                             default:
                                 break;
+                        }
+                    }
+                    
+                    //if you interact with the buttons in the lift then you change floors
+                    if (currentRoom.listRoomItem.get(i) == liftButton)
+                    {
+                        //allows to go upstairs
+
+                        if (currentRoom == upstairsLift)
+                        {
+                            currentRoom = downstairsLift;
+                            System.out.println("The lift is going down!");
+                            System.out.println("\n" + currentRoom.getDescription());
+                        } else if (currentRoom == downstairsLift)
+                        {
+                            currentRoom = upstairsLift;
+                            System.out.println("The lift is going up!");
+                            System.out.println("\n" + currentRoom.getDescription());
+                        }
+                    }
+                    //if you interact with the stairs then you change floors
+                    if (currentRoom.listRoomItem.get(i) == stairs)
+                    {
+                        //allows to go upstairs
+
+                        if (currentRoom == upStairs)
+                        {
+                            currentRoom = downStairs;
+                            System.out.println("You are going down the stairs!");
+                            System.out.println("\n" + currentRoom.getDescription());
+                        } else if (currentRoom == downStairs)
+                        {
+                            currentRoom = upStairs;
+                            System.out.println("You are climbing the stairs!");
+                            System.out.println("\n" + currentRoom.getDescription());
                         }
                     }
                 }
@@ -515,8 +558,7 @@ public class Game
     }
 
     /**
-     * Method scenario allow knowing the quest started and not finished Stub for
-     * now
+     * Method beginning is the start of the game
      */
     public void beginning()
     {
@@ -529,12 +571,19 @@ public class Game
             axel.interactItem();
             //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
             axel.setLock();
-            System.out.println("axel est lock");
             //the first quest is launched
             quest.startQuest(0);
-            System.out.println("quest started");
             PGTD.setLock();
-            System.out.println("PG unlock");
+            //printing the room info again so the player is not lost
+            System.out.println("Cuurent Location : " + currentRoom.getName());
+            System.out.print("Exits: ");
+            for (String key : currentRoom.getExits().keySet())
+            {
+                if (currentRoom.getExits().get(key) != null)
+                {
+                    System.out.print(key + "\n");
+                }
+            }
         }
     }
 
