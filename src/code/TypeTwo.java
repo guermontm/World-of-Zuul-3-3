@@ -18,6 +18,7 @@ public class TypeTwo extends Player
      */
     public TypeTwo()
     {
+        setNamePlayer("Elie");
         furtif = true;
         setStr(5);
         setSpe(5);

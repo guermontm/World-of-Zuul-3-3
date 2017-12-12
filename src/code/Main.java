@@ -1,9 +1,6 @@
 package code;
 
 
-import Interface_Game.InterfaceImpl;
-import java.util.Scanner;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,7 +17,7 @@ public class Main
     /**
      * @param args the command line arguments
      */
-
+   
     public static void main(String[] args)
     {
 //        System.out.println("chose a character");
@@ -30,11 +27,9 @@ public class Main
 //        character = reader.next().charAt(0);
         
         
-        InterfaceImpl gui = new InterfaceImpl(); 
-        Game game = new Game(1);
-         
-        game.play();
-        
+        //Game game = new Game();
+        Interface gui = new Interface(); 
+        gui.myFrameWelcome.setVisible(true);
     }
     
 }

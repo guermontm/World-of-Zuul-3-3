@@ -18,6 +18,7 @@ public class TypeThree extends Player
      */
     public TypeThree()
     {
+        setNamePlayer("Luc");
         lucky = true;
         setStr(4);
         setSpe(4);

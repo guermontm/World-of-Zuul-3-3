@@ -10,6 +10,7 @@ package code;
  */
 abstract class Player
 {
+    private String name;
     private int strStat; // strength statistic for the player, range between 1 and 10
     private int speStat; // speech statistic for the player, range between 1 and 10
     private int intStat; // intelligence stat for the player, range between 1 and 10
@@ -30,6 +31,14 @@ abstract class Player
         money = 4;
     }
 
+    public String getNamePlayer ()
+    {
+      return name;   
+    }
+        public void setNamePlayer (String newName)
+    {
+        name = newName;
+    }
     public int getStrStat ()
     {
         return strStat;

@@ -1,8 +1,5 @@
 package code;
 
-
-import Interface_Game.Interface;
-import Interface_Game.InterfaceImpl;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,10 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author (Grp5)
  * @version (V4 - 23/11/17)
  */
-public class Game
-{
+public class Game {
 
-
+    protected Interface gui;
 // this attribute represents the current room in which the player is located.
     protected Room currentRoom;
     // this attribute represents the player 
@@ -69,8 +65,11 @@ public class Game
     private SimpleObject liftButton;
     private SimpleObject stairs;
 
+    private int player;
+
     //class quest
     private Quest quest;
+    private GestionAction gestionAction;
 
     // Attic & basement have been added to check the up & down directions.
     Room annieOffice, classRoom, downstairsCorridor1, downstairsCorridor2, upstairsCorridor1, upstairsCorridor2, upStairs, downStairs, pgOffice, tp1, td1, td4, wc, hall, theatre, downstairsLift, upstairsLift, restRoom;
@@ -81,24 +80,9 @@ public class Game
      *
      * @param player
      */
-    public Game(int player)
-    {
-        // the constructor will define which player the user has chosen
-        switch (player)
-        {
-            case 1:
-                thePlayer = new TypeOne();
-                break;
-            case 2:
-                thePlayer = new TypeTwo();
-                break;
-            case 3:
-                thePlayer = new TypeThree();
-                break;
-            default:
-                System.err.println("Error : player type must be 1, 2 or 3. Please report");
-                break;
-        }
+    public Game() {
+        gui = new Interface();
+        gui.myFrameWelcome.setVisible(true);
 
         event = new RandomEvent(thePlayer);
 
@@ -147,39 +131,50 @@ public class Game
         dialogue = new Dialogue();
     }
 
+    public void choosePlayer(int player) {
+        
+        // the constructor will define which player the user has chosen
+        switch (player) {
+            case 1:
+                thePlayer = new TypeOne();
+                break;
+            case 2:
+                thePlayer = new TypeTwo();
+                break;
+            case 3:
+                thePlayer = new TypeThree();
+                break;
+            default:
+                System.err.println("Error : player type must be 1, 2 or 3. Please report");
+                break;
+        }
+    }
+
     /**
      * Given a command, process (that is: execute) the command.
      *
      * @return true If the command ends the game, false otherwise.
      */
-    private boolean processCommand()
-    {
+    private boolean processCommand() {
         boolean wantToQuit = false;
 
-        if ((character == 'n') || (character == 'N'))
-        {
+        if ((character == 'n') || (character == 'N')) {
             // go north
             changeRoom("north");
-        } else if ((character == 'e') || (character == 'E'))
-        {
+        } else if ((character == 'e') || (character == 'E')) {
             // go east
             changeRoom("east");
-        } else if ((character == 's') || (character == 'S'))
-        {
+        } else if ((character == 's') || (character == 'S')) {
             // go south
             changeRoom("south");
-        } else if ((character == 'w') || (character == 'W'))
-        {
+        } else if ((character == 'w') || (character == 'W')) {
             // go west
             changeRoom("west");
-        } else if ((character == 'i') || (character == 'I'))
-        {
+        } else if ((character == 'i') || (character == 'I')) {
             interact();
-        } else if ((character == 'h') || (character == 'H'))
-        {
+        } else if ((character == 'h') || (character == 'H')) {
             printHelp();
-        } else if ((character == 'q') || (character == 'Q'))
-        {
+        } else if ((character == 'q') || (character == 'Q')) {
             System.out.println("You entered Q/");
             // If the user types 'q', the quit() method asks if he really wants to quit.
             // If so, wantToQuit is set to 'true'.
@@ -193,8 +188,7 @@ public class Game
      * about the player
      *
      */
-    public void getInformationPlayer()
-    {
+    public void getInformationPlayer() {
         System.out.println("Your stats:");
         System.out.println("You have " + thePlayer.getStrStat() + " strength");
         System.out.println("You have " + thePlayer.getStaStat() + " stamina");
@@ -202,18 +196,15 @@ public class Game
         System.out.println("You have " + thePlayer.getStressStat() + " stress");
         System.out.println("You have " + thePlayer.getSpeStat() + " speech");
         System.out.println("You have " + thePlayer.getMoney() + " money");
-        if (!thePlayer.getCrowbar())
-        {
+        if (!thePlayer.getCrowbar()) {
             System.out.println("You aren't carrying anything special, except for your papers and stuff.");
-        } else
-        {
+        } else {
             System.out.println("You have your crowbar in your inventory. You love that thing.");
         }
 
     }
 
-    private void createRooms()
-    {
+    private void createRooms() {
 
         // For the map display
         minimap = new HashMap<Room, String>();
@@ -285,8 +276,7 @@ public class Game
     /**
      *
      */
-    public void addItems()
-    {
+    public void addItems() {
         //items for the hall
         hall.addItem(axel);
         hall.addItem(cafet);
@@ -333,17 +323,14 @@ public class Game
      *
      * @param direction The direction in which the player is trying to go.
      */
-    public void changeRoom(String direction)
-    {
+    public void changeRoom(String direction) {
         Room nextRoom = null;
         // Planning to go to the next room. (hashmap browsing) 
         nextRoom = currentRoom.getExits().get(direction);
 
-        if (nextRoom == null)
-        {
+        if (nextRoom == null) {
             System.out.println("You can't go this way.");
-        } else
-        {
+        } else {
             // Moving to the next room
             currentRoom = nextRoom;
             System.out.println("Current location : \t " + currentRoom.getName());
@@ -351,18 +338,15 @@ public class Game
 
             // Displaying the available exits
             System.out.print("Exits: ");
-            for (String key : currentRoom.getExits().keySet())
-            {
-                if (currentRoom.getExits().get(key) != null)
-                {
+            for (String key : currentRoom.getExits().keySet()) {
+                if (currentRoom.getExits().get(key) != null) {
                     System.out.print(key + "\n");
                 }
             }
             System.out.println();
 
             //random events that can appear in the corridors
-            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2))
-            {
+            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2)) {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
                 rEvent(randomNum);
 
@@ -373,8 +357,7 @@ public class Game
     /**
      * Main play routine. Loops until end of play.
      */
-    public void play()
-    {
+    public void play() {
         printWelcome();
         createRooms();
         addItems();
@@ -382,15 +365,13 @@ public class Game
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
         boolean finished = false;
-        while (!finished)
-        {
+        while (!finished) {
             character = commandLetter.readCommand();
             beginning();
             finished = processCommand();
 
             //Game Over if you have too much stress, not enough stamina or if you answer wrong during a conversation
-            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true)
-            {
+            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true) {
                 finished = true;
                 System.out.println("You are not ready for this, we are sorry...");
             }
@@ -406,10 +387,8 @@ public class Game
      * @param give a random integer that allow to know if a randomEvent will
      * appears
      */
-    public void rEvent(int randomInt)
-    {
-        switch (randomInt)
-        {
+    public void rEvent(int randomInt) {
+        switch (randomInt) {
             case 2:
                 event.hiddenCandy();
                 break;
@@ -438,8 +417,7 @@ public class Game
      * Method explore allow knowing the item on a room
      *
      */
-    public void explore()
-    {
+    public void explore() {
         currentRoom.printItems();
     }
 
@@ -448,11 +426,9 @@ public class Game
      * possible
      *
      */
-    public void interact()
-    {
+    public void interact() {
 
-        if (currentRoom.listRoomItem.size() != 0)
-        {
+        if (currentRoom.listRoomItem.size() != 0) {
             System.out.println("What item do you want to interact with ?");
             currentRoom.printItems();
 
@@ -460,30 +436,24 @@ public class Game
 
             int n = Integer.parseInt(sc.next());
 
-            for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
-            {
+            for (int i = 0; i < currentRoom.listRoomItem.size(); i++) {
                 // Player wishes to interact with object of index i
-                if (n == i)
-                {
+                if (n == i) {
                     System.out.print("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
                     currentRoom.listRoomItem.get(i).interactItem();
 
-                    if (dialogue.getStressDialogue() != 0)
-                    {
+                    if (dialogue.getStressDialogue() != 0) {
 
                         thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
                     }
 
-                    if (!dialogue.getKeyBool())
-                    {
+                    if (!dialogue.getKeyBool()) {
                         thePlayer.setKey(true);
                     }
 
                     //if the NPC is not locked, you can have an important conversation
-                    if (!currentRoom.listRoomItem.get(i).getLock())
-                    {
-                        switch (currentRoom.listRoomItem.get(i).getName())
-                        {
+                    if (!currentRoom.listRoomItem.get(i).getLock()) {
+                        switch (currentRoom.listRoomItem.get(i).getName()) {
                             case ("PGTD"):
                                 PGTD.setHasDisappeared(true); //goes away
                                 nolan.setLock(); //Conversation with Nolan in the toilet is available
@@ -516,36 +486,30 @@ public class Game
                                 break;
                         }
                     }
-                    
+
                     //if you interact with the buttons in the lift then you change floors
-                    if (currentRoom.listRoomItem.get(i) == liftButton)
-                    {
+                    if (currentRoom.listRoomItem.get(i) == liftButton) {
                         //allows to go upstairs
 
-                        if (currentRoom == upstairsLift)
-                        {
+                        if (currentRoom == upstairsLift) {
                             currentRoom = downstairsLift;
                             System.out.println("The lift is going down!");
                             System.out.println("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downstairsLift)
-                        {
+                        } else if (currentRoom == downstairsLift) {
                             currentRoom = upstairsLift;
                             System.out.println("The lift is going up!");
                             System.out.println("\n" + currentRoom.getDescription());
                         }
                     }
                     //if you interact with the stairs then you change floors
-                    if (currentRoom.listRoomItem.get(i) == stairs)
-                    {
+                    if (currentRoom.listRoomItem.get(i) == stairs) {
                         //allows to go upstairs
 
-                        if (currentRoom == upStairs)
-                        {
+                        if (currentRoom == upStairs) {
                             currentRoom = downStairs;
                             System.out.println("You are going down the stairs!");
                             System.out.println("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downStairs)
-                        {
+                        } else if (currentRoom == downStairs) {
                             currentRoom = upStairs;
                             System.out.println("You are climbing the stairs!");
                             System.out.println("\n" + currentRoom.getDescription());
@@ -553,8 +517,7 @@ public class Game
                     }
                 }
             }
-        } else
-        {
+        } else {
             System.out.println("There is nothing to interact with in this room...");
         }
     }
@@ -562,11 +525,9 @@ public class Game
     /**
      * Method beginning is the start of the game
      */
-    public void beginning()
-    {
+    public void beginning() {
 
-        if ((currentRoom == hall) && (axel.getLock() == false))
-        {
+        if ((currentRoom == hall) && (axel.getLock() == false)) {
             printHelp(); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
 
             //at the start of the game, a conversation with Axel begins automatically
@@ -579,10 +540,8 @@ public class Game
             //printing the room info again so the player is not lost
             System.out.println("Cuurent Location : " + currentRoom.getName());
             System.out.print("Exits: ");
-            for (String key : currentRoom.getExits().keySet())
-            {
-                if (currentRoom.getExits().get(key) != null)
-                {
+            for (String key : currentRoom.getExits().keySet()) {
+                if (currentRoom.getExits().get(key) != null) {
                     System.out.print(key + "\n");
                 }
             }
@@ -593,8 +552,7 @@ public class Game
      * Print out some help information. Contains all the information the user
      * needs to know about the game.
      */
-    private void printHelp()
-    {
+    private void printHelp() {
         System.out.println("__________________HELP___________________");
         System.out.println("You are wandering in the B2 building.");
         System.out.println("Your goal is to deliver a project.");
@@ -617,8 +575,7 @@ public class Game
      * Print out some welcome text. Contains all the information the user needs
      * to know about the game.
      */
-    private void printWelcome()
-    {
+    private void printWelcome() {
         System.out.println("\n\n\n");
         System.out.println("<////////////////////////////////[]========0");
         System.out.println("\n");
@@ -636,42 +593,35 @@ public class Game
     /**
      * allows the player to quit the game
      */
-    public boolean quit()
-    {
+    public boolean quit() {
         System.out.println("Are you sure? [Y/N]");
         char character;
         Scanner reader;
         reader = new Scanner(System.in);
         character = reader.next().charAt(0);
-        if ((character != 'y') && (character != 'Y'))
-        {
+        if ((character != 'y') && (character != 'Y')) {
             System.out.println("Thought so.");
             return (false);
-        } else
-        {
+        } else {
             System.out.println("Hope you had a good time.");
             return (true);
         }
 
     }
 
-    public Item getItem(String name)
-    {
+    public Item getItem(String name) {
         int i;
         String n;
-        for (i = 0; i < currentRoom.listRoomItem.size(); i++)
-        {
+        for (i = 0; i < currentRoom.listRoomItem.size(); i++) {
             n = currentRoom.listRoomItem.get(i).getName();
-            if (name.equals(n))
-            {
+            if (name.equals(n)) {
                 return currentRoom.listRoomItem.get(i);
             }
         }
         return martin;
     }
 
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         return thePlayer;
     }
 

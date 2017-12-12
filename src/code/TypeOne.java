@@ -23,6 +23,7 @@ public class TypeOne extends Player
      */
     public TypeOne()
     {
+        setNamePlayer("Pierrot");
         setStr(6);
         setSpe(6);
         setInt(6);
