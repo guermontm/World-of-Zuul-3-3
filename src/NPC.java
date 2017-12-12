@@ -72,6 +72,8 @@ public class NPC extends Item
                     break;
                 case ("Mrs Geniet"):
                     System.out.println("\n"+sentences.randomSentence(sentences.getListMrsGeniet()));
+                case ("M2"):
+                    System.out.println("\n"+sentences.randomSentence(sentences.getListM2()));
                 default:
                     System.out.println("There is no one to talk to in this room");
             }

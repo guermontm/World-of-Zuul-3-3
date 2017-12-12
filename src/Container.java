@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.*;
 /**
  * This class inherits from item and represents the item type : container. 
@@ -9,11 +8,13 @@ import java.util.*;
  */
 public class Container extends Item 
 {
-    static protected ArrayList <SimpleObject> listContent; 
+    static protected ArrayList<SimpleObject> listContent; 
     /**
      * Constructor for objects of class TypeOne
      * Some item does not appears until some quest are not achieved or appears randomly. 
      * When isLock is true the object is Lock until an event 
+     * @param name
+     * @param isLock
      */
     public Container(String name,boolean isLock)
     {
@@ -25,11 +26,19 @@ public class Container extends Item
         listContent = new ArrayList();
     }
 
+    /**
+     * 
+     * @param nameObj 
+     */
     public void addObject(SimpleObject nameObj)
     {
         listContent.add(nameObj);   
     }
 
+    /**
+     * 
+     * @param removeObj 
+     */
     public void removeObject(String removeObj)
     {
         for(int i = 0; i < listContent.size(); i++)
@@ -49,7 +58,7 @@ public class Container extends Item
     {
         if (! listContent.isEmpty())
         {
-            System.out.println("The "+itemName+" contain these objects : " );
+            System.out.println("\n"+"The "+itemName+" contain these objects : " );
             for(int i = 0; i < listContent.size(); i++)
             {
                 if (listContent.get(i).isLock == false)

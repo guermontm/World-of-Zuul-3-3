@@ -23,7 +23,8 @@ public class Dialogue
      */
     public Dialogue()
     {
-        sentences = new Sentences();        
+        sentences = new Sentences();
+        stress = 0;
     }
 
     /**

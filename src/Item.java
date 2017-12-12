@@ -60,11 +60,21 @@ abstract public class Item
         return (hasDisappeared); 
     }
 
+      /**
+     * Method which allow changing the state of the item. 
+     *
+     * @param newState a boolean that is the state you want your attribute to be
+     */
+    public void setHasDisappeared( boolean newState)
+    {
+        hasDisappeared = newState;
+    }
+    
 
     /**
      * Method which allow changing the state of the item. 
-     * If the item is lock it became unlock, 
-     * and if it is unlock the item became lock. 
+     * If the item is lock it becomes unlock, 
+     * and if it is unlock the item becomes lock. 
      *
      */
     public void setLock()

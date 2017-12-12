@@ -121,6 +121,7 @@ public class Sentences
        listMarie = new ArrayList<String>(); // [useless NPC] Situated in the amphitheatre
        listClement = new ArrayList<String>(); // [useless NPC] Situated in the classroom
        listMrsGeniet = new ArrayList<String>(); //This list is called when the quest Martin's diploma is not "currently running".
+       listM2 =new ArrayList<String>();
        
        //initialization of NPC conversation lists
        listMainMrsGeniet = new ArrayList<String>(); // This list can be called when the quest "Martin's Diploma, the sequel" is "currently running"
