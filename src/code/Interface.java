@@ -1,9 +1,10 @@
+package code; 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package code;
+ 
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,9 +23,10 @@ import javax.swing.JPanel;
 public class Interface extends JFrame  {
     //***************************Welcome interface******************************
 
-    private JButton myButtonStart;
-    private JButton myButtonQuit;
-    private JLabel myLabel1, myLabel2, myLabel3;
+    private final JButton myButtonStart;
+    private final JButton myButtonQuit;
+    //private final JLabel myLabel1;
+    private JLabel myLabel2, myLabel3;
     private JPanel myPanel1, myPanel2, myPanel3, myPanel4;
     protected JFrame myFrameWelcome;
 
@@ -39,14 +41,14 @@ public class Interface extends JFrame  {
     //Declarations
     private JFrame myMainFrame = new JFrame("World of Zuul");
 
-    private Container myContainer = myMainFrame.getContentPane();
+    private final Container myContainer = myMainFrame.getContentPane();
     //Label
-    private JLabel myCommand = new JLabel();
-    private JLabel myGame = new JLabel();
-    private JLabel myDialogBox = new JLabel();
-    private JLabel myJauge = new JLabel(new ImageIcon("images/fond_crepi_jauge.png"));
-    private JLabel myAction = new JLabel();
-    private JLabel myHelpQuit = new JLabel();
+    private final JLabel myCommand = new JLabel();
+    private final JLabel myGame = new JLabel();
+    private final JLabel myDialogBox = new JLabel();
+    private final JLabel myJauge = new JLabel(new ImageIcon(this.getClass().getResource("images/fond_crepi_jauge.png")));
+    private final JLabel myAction = new JLabel();
+    private final JLabel myHelpQuit = new JLabel();
 
     //****************** ECRAN DE GAUCHE voir ligne 240*********************
     private JLabel forceLabel;
@@ -55,27 +57,27 @@ public class Interface extends JFrame  {
     private JLabel forceStatLabel; //= new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player 
     private JLabel intelligenceStatLabel; // = new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player
     private JLabel eloquenceStatLabel; // = new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player    
-    private JPanel myStatsPanel = new JPanel();
+    private final JPanel myStatsPanel = new JPanel();
 
     // ************** ECRAN DE DROITE voir ligne 290-300**********************
-    private JLabel displayBarreVie = new JLabel(new ImageIcon("../images/Pv_100v.png"), JLabel.CENTER); //health displaying in image format
-    private JLabel displayBarreStress = new JLabel(new ImageIcon("../images/Pv_0_stress.png"), JLabel.CENTER);
+    private final JLabel displayBarreVie = new JLabel(new ImageIcon(this.getClass().getResource("images/Pv_100v.png")), JLabel.CENTER); //health displaying in image format
+    private final JLabel displayBarreStress = new JLabel(new ImageIcon(this.getClass().getResource("images/Pv_0_stress.png")), JLabel.CENTER);
 
     //Button game
-    private JButton btnHaut = new JButton(new ImageIcon("../images/hand_up.png"));
-    private JButton btnBas = new JButton(new ImageIcon("../images/hand_down.png"));
-    private JButton btnDroite = new JButton(new ImageIcon("../images/hand_right.png"));
-    private JButton btnGauche = new JButton(new ImageIcon("../images/hand_left.png"));
-    private JButton btnRamasser = new JButton(new ImageIcon("../images/interaction.png"));
-    private JButton btnHelp = new JButton(new ImageIcon("../images/help2.png"));
-    private JButton btnQuit = new JButton(new ImageIcon("../images/quit2.png"));
-    private JButton btnPower = new JButton(new ImageIcon("../images/pouvoirs.png"));
+    private final JButton btnHaut = new JButton(new ImageIcon(this.getClass().getResource("images/hand_up.png")));
+    private final JButton btnBas = new JButton(new ImageIcon(this.getClass().getResource("images/hand_down.png")));
+    private final JButton btnDroite = new JButton(new ImageIcon(this.getClass().getResource("images/hand_right.png")));
+    private final JButton btnGauche = new JButton(new ImageIcon(this.getClass().getResource("images/hand_left.png")));
+    private final JButton btnRamasser = new JButton(new ImageIcon(this.getClass().getResource("images/interaction.png")));
+    private final JButton btnHelp = new JButton(new ImageIcon(this.getClass().getResource("images/help2.png")));
+    private final JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("images/quit2.png")));
+    private final JButton btnPower = new JButton(new ImageIcon(this.getClass().getResource("images/pouvoirs.png")));
 
     //private JOptionPane jopQuit;
     private Player player1;
 
     //Textfield for the dialog box which display information to the player and allow him to interact with the game
-    private static TextArea dialogBox = new TextArea("Welcome to the World of GPhy! \n \n The goal is simple : finish the COOPOO project before living the University\n You can interact with the people and the object in different rooms.\n\n If you need more information on your player or on the game, click on help. \n\n Good luck !");
+    private static final TextArea dialogBox = new TextArea("Welcome to the World of GPhy! \n \n The goal is simple : finish the COOPOO project before living the University\n You can interact with the people and the object in different rooms.\n\n If you need more information on your player or on the game, click on help. \n\n Good luck !");
 
     //Game 
     private Game g;
@@ -89,15 +91,15 @@ public class Interface extends JFrame  {
 
         myPanel1 = new JPanel();
         myLabel2 = new JLabel();
-        myLabel2.setIcon(new ImageIcon("../images/welcome_test.png"));
+        myLabel2.setIcon(new ImageIcon(this.getClass().getResource("images/welcome_test.png")));
         myLabel2.setPreferredSize(new Dimension(809, 471));
         myPanel1.add(myLabel2);
 
         myButtonStart = new JButton();
-        myButtonStart.setIcon(new ImageIcon("../images/play.jpg"));
+        myButtonStart.setIcon(new ImageIcon(this.getClass().getResource("images/play.jpg")));
         myButtonStart.setPreferredSize(new Dimension(810, 100));
         myButtonQuit = new JButton();
-        myButtonQuit.setIcon(new ImageIcon("../images/quit.jpg"));
+        myButtonQuit.setIcon(new ImageIcon(this.getClass().getResource("images/quit.jpg")));
         myButtonQuit.setPreferredSize(new Dimension(810, 100));
 
         myPanel1.setLayout(new BorderLayout());
@@ -134,23 +136,24 @@ public class Interface extends JFrame  {
         panelChoicePlayer.setLayout(new GridLayout(0, 3));
 
         // Initialization of the labels
-        messageLabel = new JLabel(new ImageIcon("../images/intro_v5.gif"));
+        messageLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/intro_v5.gif")));
         //Instanciation of the button 
         player1Button = new JButton();
-        player1Button.setIcon(new ImageIcon("../images/pierre.png"));
+        player1Button.setIcon(new ImageIcon(this.getClass().getResource("images/pierre.png")));
         player1Button.setPreferredSize(new Dimension(225, 300));
         player1Button.setBackground(Color.WHITE);
 
         player2Button = new JButton();
-        player2Button.setIcon(new ImageIcon("../images/elie.png"));
+        player2Button.setIcon(new ImageIcon(this.getClass().getResource("images/elie.png")));
         player2Button.setPreferredSize(new Dimension(225, 300));
         player2Button.setBackground(Color.WHITE);
 
         player3Button = new JButton();
-        player3Button.setIcon(new ImageIcon("../images/luc.png"));
+        player3Button.setIcon(new ImageIcon(this.getClass().getResource("images/luc.png")));
         player3Button.setPreferredSize(new Dimension(225, 300));
         player3Button.setBackground(Color.WHITE);
 
+        panelChoicePlayer.add(player1Button);
         panelChoicePlayer.add(player1Button);
         panelChoicePlayer.add(player2Button);
         panelChoicePlayer.add(player3Button);
@@ -182,11 +185,11 @@ public class Interface extends JFrame  {
         myContainer.setBackground(Color.GRAY);
 
         //Image du jeu
-        myCommand.setIcon(new ImageIcon("../images/fond_crepi_commande.png"));
-        myHelpQuit.setIcon(new ImageIcon("../images/fond_crepi_help.png"));
+        myCommand.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_commande.png")));
+        myHelpQuit.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_help.png")));
 
-        myDialogBox.setIcon(new ImageIcon("../images/fond_crepi_dialogue.png"));
-        myGame.setIcon(new ImageIcon("../images/salle_cours.jpg"));
+        myDialogBox.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_dialogue.png")));
+        myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salle_cours.jpg")));
 
         //***************************************************************************************************************
         //On definit le layout pour le panel principal
@@ -220,9 +223,9 @@ public class Interface extends JFrame  {
         myGbc.fill = GridBagConstraints.VERTICAL;
 
         // ECRAN DE GAUCHE
-        forceLabel = new JLabel(new ImageIcon("../images/force_test.png"), JLabel.CENTER);
-        intelligenceLabel = new JLabel(new ImageIcon("../images/cerveau_test.png"), JLabel.CENTER);
-        eloquenceLabel = new JLabel(new ImageIcon("../images/discours_test.png"), JLabel.CENTER);
+        forceLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/force_test.png")), JLabel.CENTER);
+        intelligenceLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/cerveau_test.png")), JLabel.CENTER);
+        eloquenceLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/discours_test.png")), JLabel.CENTER);
         forceLabel.setPreferredSize(new Dimension(100, 300));
         intelligenceLabel.setPreferredSize(new Dimension(100, 300));
         eloquenceLabel.setPreferredSize(new Dimension(100, 300));

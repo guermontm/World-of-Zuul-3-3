@@ -1,10 +1,10 @@
-package code;
+package code;  
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import code.Game;
+//import code.Game;
 
 /**
  * Write a description of class GestionMouse here.
@@ -14,17 +14,20 @@ import code.Game;
  */
 public class GestionAction implements ActionListener {
 
-    private Interface wint;
-    private String background;
-    private JOptionPane optionPane = new JOptionPane();
+    private final Interface wint;
+    private final String background;
+    private final JOptionPane optionPane = new JOptionPane();
     private int option;
-    private int force;
+    private int forceP;
 
     private JOptionPane jopQuit;
-    private Game game;
+    private final Game game;
 
     /**
      * Constructor for objects of class GestionMouse
+     * @param g
+     * @param w
+     * @param b
      */
     public GestionAction(Game g, Interface w, String b) {
         wint = w;
@@ -32,48 +35,59 @@ public class GestionAction implements ActionListener {
         game = g;
     }
 
+    @Override
     public void actionPerformed(ActionEvent ae) {
-        if (background == "start") {
-            wint.Interface_ChoosePlayer();
-        } else if (background == "quit") {
-            option = optionPane.showConfirmDialog(null, "Are you sure to quit ?",
-                    "Oh noooooooooooooooo !",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE);
-            if (option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION
-                    && option != JOptionPane.CLOSED_OPTION) {
-                System.exit(0);
-            } else {
+        if (null != background) switch (background) {
+            case "start":
                 wint.Interface_ChoosePlayer();
-            }
-        } else if (background == "player1") {
-            game.choosePlayer(1);
-            wint.mainInterface(); // lance l'interface main
-            int force = game.getPlayer().getStrStat();
-            wint.setLabelForce(force);
-            int intelligence = game.getPlayer().getIntStat();
-            wint.setLabelIntelligence(intelligence);
-            int eloquence = game.getPlayer().getSpeStat();
-            wint.setLabelEloquence(eloquence);
-            wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
-        } else if (background == "player2") {
-            wint.mainInterface(); // lance l'interface main
-            int force = game.getPlayer().getStrStat();
-            wint.setLabelForce(force);
-            int intelligence = game.getPlayer().getIntStat();
-            wint.setLabelIntelligence(intelligence);
-            int eloquence = game.getPlayer().getSpeStat();
-            wint.setLabelEloquence(eloquence);
-            wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
-        } else if (background == "player3") {
-            wint.mainInterface(); // lance l'interface main
-            int force = game.getPlayer().getStrStat();
-            wint.setLabelForce(force);
-            int intelligence = game.getPlayer().getIntStat();
-            wint.setLabelIntelligence(intelligence);
-            int eloquence = game.getPlayer().getSpeStat();
-            wint.setLabelEloquence(eloquence);
-            wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                break;
+            case "quit":
+                option = JOptionPane.showConfirmDialog(null, "Are you sure to quit ?",
+                        "Oh noooooooooooooooo !",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION
+                        && option != JOptionPane.CLOSED_OPTION) {
+                    System.exit(0);
+                } else {
+                    wint.Interface_ChoosePlayer();
+                }   break;
+            case "player1":{
+                game.choosePlayer(1);
+                wint.mainInterface(); // lance l'interface main
+                int forceP = game.getPlayer().getStrStat();
+                wint.setLabelForce(forceP);
+                int intelligence = game.getPlayer().getIntStat();
+                wint.setLabelIntelligence(intelligence);
+                int eloquence = game.getPlayer().getSpeStat();
+                wint.setLabelEloquence(eloquence);
+                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                    break;
+                }
+            case "player2":{
+                wint.mainInterface(); // lance l'interface main
+                int forceP = game.getPlayer().getStrStat();
+                wint.setLabelForce(forceP);
+                int intelligence = game.getPlayer().getIntStat();
+                wint.setLabelIntelligence(intelligence);
+                int eloquence = game.getPlayer().getSpeStat();
+                wint.setLabelEloquence(eloquence);
+                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                    break;
+                }
+            case "player3":{
+                wint.mainInterface(); // lance l'interface main
+                int forceP = game.getPlayer().getStrStat();
+                wint.setLabelForce(forceP);
+                int intelligence = game.getPlayer().getIntStat();
+                wint.setLabelIntelligence(intelligence);
+                int eloquence = game.getPlayer().getSpeStat();
+                wint.setLabelEloquence(eloquence);
+                wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
+                    break;
+                }
+            default:
+                break;
         }
         game.play();
     }
