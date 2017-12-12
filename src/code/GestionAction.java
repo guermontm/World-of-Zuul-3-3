@@ -18,8 +18,7 @@ public class GestionAction implements ActionListener {
     private final String background;
     private final JOptionPane optionPane = new JOptionPane();
     private int option;
-    private int forceP;
-
+    private int playerChoice;
     private JOptionPane jopQuit;
     private final Game game;
 
@@ -49,14 +48,14 @@ public class GestionAction implements ActionListener {
                 if (option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION
                         && option != JOptionPane.CLOSED_OPTION) {
                     System.exit(0);
-                } else {
-                    wint.Interface_ChoosePlayer();
                 }   break;
             case "player1":{
-                game.choosePlayer(1);
                 wint.mainInterface(); // lance l'interface main
-                int forceP = game.getPlayer().getStrStat();
-                wint.setLabelForce(forceP);
+                playerChoice = 1;
+                System.out.println("Player Choice");
+                game.play(playerChoice);
+                int force = game.getPlayer().getStrStat();
+                wint.setLabelForce(force);
                 int intelligence = game.getPlayer().getIntStat();
                 wint.setLabelIntelligence(intelligence);
                 int eloquence = game.getPlayer().getSpeStat();
@@ -66,32 +65,39 @@ public class GestionAction implements ActionListener {
                 }
             case "player2":{
                 wint.mainInterface(); // lance l'interface main
-                int forceP = game.getPlayer().getStrStat();
-                wint.setLabelForce(forceP);
+                playerChoice = 2;
+                System.out.println("Player Choice");
+                game.play(playerChoice);
+                int force = game.getPlayer().getStrStat();
+                wint.setLabelForce(force);
                 int intelligence = game.getPlayer().getIntStat();
                 wint.setLabelIntelligence(intelligence);
                 int eloquence = game.getPlayer().getSpeStat();
                 wint.setLabelEloquence(eloquence);
                 wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
-                    break;
+                break;
                 }
             case "player3":{
                 wint.mainInterface(); // lance l'interface main
-                int forceP = game.getPlayer().getStrStat();
-                wint.setLabelForce(forceP);
+                playerChoice = 3;
+                System.out.println("Player Choice");
+                game.play(playerChoice);
+                System.out.println("force" + game.getPlayer().getStrStat());
+                int force = game.getPlayer().getStrStat();
+                wint.setLabelForce(force);
                 int intelligence = game.getPlayer().getIntStat();
                 wint.setLabelIntelligence(intelligence);
                 int eloquence = game.getPlayer().getSpeStat();
                 wint.setLabelEloquence(eloquence);
                 wint.setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
-                    break;
+                
+                break;
                 }
             default:
                 break;
         }
-        game.play();
+        
     }
-
 
     // public void actionPerformed2 (ActionEvent e)
     // {

@@ -119,7 +119,9 @@ public class Interface extends JFrame  {
     public void Interface_ChoosePlayer() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Fermeture de l'interface chooseplayer
+        g = new Game();
         myFrameChoosePlayer = myFrameWelcome;
+        myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         myPanel1.removeAll();
         myFrameChoosePlayer.setVisible(true);
@@ -171,6 +173,7 @@ public class Interface extends JFrame  {
     public void mainInterface()  {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Fermeture de l'interface chooseplayer
+        
         myMainFrame = myFrameChoosePlayer;
         mainPanel.removeAll();
         myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

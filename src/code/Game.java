@@ -78,11 +78,11 @@ public class Game {
      * Constructor for objects of class Game it initialises the different
      * parameters for the game
      *
-     * @param player
+     *
      */
     public Game() {
-        gui = new Interface();
-        gui.myFrameWelcome.setVisible(true);
+        //gui = new Interface();
+        //gui.myFrameWelcome.setVisible(true);
 
         event = new RandomEvent(thePlayer);
 
@@ -132,7 +132,6 @@ public class Game {
     }
 
     public void choosePlayer(int player) {
-        
         // the constructor will define which player the user has chosen
         switch (player) {
             case 1:
@@ -357,11 +356,11 @@ public class Game {
     /**
      * Main play routine. Loops until end of play.
      */
-    public void play() {
-        printWelcome();
+    public void play(int playerChoice) {
+        //printWelcome();
         createRooms();
         addItems();
-
+        choosePlayer(playerChoice);
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
         boolean finished = false;
