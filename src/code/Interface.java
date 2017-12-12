@@ -58,18 +58,18 @@ public class Interface extends JFrame  {
     private JPanel myStatsPanel = new JPanel();
 
     // ************** ECRAN DE DROITE voir ligne 290-300**********************
-    private JLabel displayBarreVie = new JLabel(new ImageIcon("images/Pv_100v.png"), JLabel.CENTER); //health displaying in image format
-    private JLabel displayBarreStress = new JLabel(new ImageIcon("images/Pv_0_stress.png"), JLabel.CENTER);
+    private JLabel displayBarreVie = new JLabel(new ImageIcon("../images/Pv_100v.png"), JLabel.CENTER); //health displaying in image format
+    private JLabel displayBarreStress = new JLabel(new ImageIcon("../images/Pv_0_stress.png"), JLabel.CENTER);
 
     //Button game
-    private JButton btnHaut = new JButton(new ImageIcon("images/hand_up.png"));
-    private JButton btnBas = new JButton(new ImageIcon("images/hand_down.png"));
-    private JButton btnDroite = new JButton(new ImageIcon("images/hand_right.png"));
-    private JButton btnGauche = new JButton(new ImageIcon("images/hand_left.png"));
-    private JButton btnRamasser = new JButton(new ImageIcon("images/interaction.png"));
-    private JButton btnHelp = new JButton(new ImageIcon("images/help2.png"));
-    private JButton btnQuit = new JButton(new ImageIcon("images/quit2.png"));
-    private JButton btnPower = new JButton(new ImageIcon("images/pouvoirs.png"));
+    private JButton btnHaut = new JButton(new ImageIcon("../images/hand_up.png"));
+    private JButton btnBas = new JButton(new ImageIcon("../images/hand_down.png"));
+    private JButton btnDroite = new JButton(new ImageIcon("../images/hand_right.png"));
+    private JButton btnGauche = new JButton(new ImageIcon("../images/hand_left.png"));
+    private JButton btnRamasser = new JButton(new ImageIcon("../images/interaction.png"));
+    private JButton btnHelp = new JButton(new ImageIcon("../images/help2.png"));
+    private JButton btnQuit = new JButton(new ImageIcon("../images/quit2.png"));
+    private JButton btnPower = new JButton(new ImageIcon("../images/pouvoirs.png"));
 
     //private JOptionPane jopQuit;
     private Player player1;
@@ -89,15 +89,15 @@ public class Interface extends JFrame  {
 
         myPanel1 = new JPanel();
         myLabel2 = new JLabel();
-        myLabel2.setIcon(new ImageIcon("images/welcome_test.png"));
+        myLabel2.setIcon(new ImageIcon("../images/welcome_test.png"));
         myLabel2.setPreferredSize(new Dimension(809, 471));
         myPanel1.add(myLabel2);
 
         myButtonStart = new JButton();
-        myButtonStart.setIcon(new ImageIcon("images/play.jpg"));
+        myButtonStart.setIcon(new ImageIcon("../images/play.jpg"));
         myButtonStart.setPreferredSize(new Dimension(810, 100));
         myButtonQuit = new JButton();
-        myButtonQuit.setIcon(new ImageIcon("images/quit.jpg"));
+        myButtonQuit.setIcon(new ImageIcon("../images/quit.jpg"));
         myButtonQuit.setPreferredSize(new Dimension(810, 100));
 
         myPanel1.setLayout(new BorderLayout());
@@ -134,20 +134,20 @@ public class Interface extends JFrame  {
         panelChoicePlayer.setLayout(new GridLayout(0, 3));
 
         // Initialization of the labels
-        messageLabel = new JLabel(new ImageIcon("images/intro_v5.gif"));
+        messageLabel = new JLabel(new ImageIcon("../images/intro_v5.gif"));
         //Instanciation of the button 
         player1Button = new JButton();
-        player1Button.setIcon(new ImageIcon("images/pierre.png"));
+        player1Button.setIcon(new ImageIcon("../images/pierre.png"));
         player1Button.setPreferredSize(new Dimension(225, 300));
         player1Button.setBackground(Color.WHITE);
 
         player2Button = new JButton();
-        player2Button.setIcon(new ImageIcon("images/elie.png"));
+        player2Button.setIcon(new ImageIcon("../images/elie.png"));
         player2Button.setPreferredSize(new Dimension(225, 300));
         player2Button.setBackground(Color.WHITE);
 
         player3Button = new JButton();
-        player3Button.setIcon(new ImageIcon("images/luc.png"));
+        player3Button.setIcon(new ImageIcon("../images/luc.png"));
         player3Button.setPreferredSize(new Dimension(225, 300));
         player3Button.setBackground(Color.WHITE);
 
@@ -182,11 +182,11 @@ public class Interface extends JFrame  {
         myContainer.setBackground(Color.GRAY);
 
         //Image du jeu
-        myCommand.setIcon(new ImageIcon("images/fond_crepi_commande.png"));
-        myHelpQuit.setIcon(new ImageIcon("images/fond_crepi_help.png"));
+        myCommand.setIcon(new ImageIcon("../images/fond_crepi_commande.png"));
+        myHelpQuit.setIcon(new ImageIcon("../images/fond_crepi_help.png"));
 
-        myDialogBox.setIcon(new ImageIcon("images/fond_crepi_dialogue.png"));
-        myGame.setIcon(new ImageIcon("images/salle_cours.jpg"));
+        myDialogBox.setIcon(new ImageIcon("../images/fond_crepi_dialogue.png"));
+        myGame.setIcon(new ImageIcon("../images/salle_cours.jpg"));
 
         //***************************************************************************************************************
         //On definit le layout pour le panel principal
@@ -220,9 +220,9 @@ public class Interface extends JFrame  {
         myGbc.fill = GridBagConstraints.VERTICAL;
 
         // ECRAN DE GAUCHE
-        forceLabel = new JLabel(new ImageIcon("images/force_test.png"), JLabel.CENTER);
-        intelligenceLabel = new JLabel(new ImageIcon("images/cerveau_test.png"), JLabel.CENTER);
-        eloquenceLabel = new JLabel(new ImageIcon("images/discours_test.png"), JLabel.CENTER);
+        forceLabel = new JLabel(new ImageIcon("../images/force_test.png"), JLabel.CENTER);
+        intelligenceLabel = new JLabel(new ImageIcon("../images/cerveau_test.png"), JLabel.CENTER);
+        eloquenceLabel = new JLabel(new ImageIcon("../images/discours_test.png"), JLabel.CENTER);
         forceLabel.setPreferredSize(new Dimension(100, 300));
         intelligenceLabel.setPreferredSize(new Dimension(100, 300));
         eloquenceLabel.setPreferredSize(new Dimension(100, 300));

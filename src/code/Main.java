@@ -27,9 +27,9 @@ public class Main
 //        character = reader.next().charAt(0);
         
         
-        //Game game = new Game();
-        Interface gui = new Interface(); 
-        gui.myFrameWelcome.setVisible(true);
+        Game game = new Game();
+        //Interface gui = new Interface(); 
+        //gui.myFrameWelcome.setVisible(true);
     }
     
 }
