@@ -1,4 +1,6 @@
 
+import Interface_Game.Interface;
+import Interface_Game.InterfaceImpl;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -14,8 +16,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game
 {
+    protected InterfaceImpl GUI;
 
-    // this attribute represents the current room in which the player is located.
+// this attribute represents the current room in which the player is located.
     protected Room currentRoom;
     // this attribute represents the player 
     protected Player thePlayer;

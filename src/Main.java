@@ -26,6 +26,7 @@ public class Main
 //        character = reader.next().charAt(0);
         
         Game game = new Game(1);
+        game.GUI.run(); 
         game.play();
         
     }
