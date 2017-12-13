@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
+import javax.swing.SwingUtilities;
 
 public class Interface extends JFrame {
 //    //***************************Welcome interface******************************
@@ -38,6 +39,7 @@ public class Interface extends JFrame {
 //    private JLabel messageLabel;
 //    private JPanel mainPanel, panelCenterText, panelChoicePlayer;
 //    private JFrame myFrameChoosePlayer;
+
 
     //****************MAIN INTERFACE************************************
     //Declarations
@@ -195,7 +197,7 @@ public class Interface extends JFrame {
         //On definit le layout pour le panel Dialogue Box
         myDialogBox.add(dialogBox);
         dialogBox.setSize(540, 123);
-
+        dialogBox.setEditable(false);
         //**********************************************************************************************************        
         //On definit le layout pour le panel Jauge
         myJauge.setLayout(new GridLayout(1, 2));
@@ -373,15 +375,22 @@ public class Interface extends JFrame {
         int eloquence = game.getPlayer().getSpeStat();
         setLabelEloquence(eloquence);//<--- à appeler dès qu'il y a un changement d'eloquence
         setDialog("You play with " + game.getPlayer().getNamePlayer() + " ! \n You can see the points at the left or right of the screen");
+        
+        //al the methods needed to launch the game
+        game.printWelcome();
         game.createRooms();
-        game.getPlayer().setStress(5);//<-- test pour vérifier les affichages
-        game.getPlayer().setSta(5);//<-- test pour vérifier les affichages
-        game.getPlayer().setStr(9);//<-- test pour vérifier les affichages
+        game.addItems();
+           
+        //game.beginning();
+//        game.getPlayer().setStress(5);//<-- test pour vérifier les affichages
+//        game.getPlayer().setSta(5);//<-- test pour vérifier les affichages
+//        game.getPlayer().setStr(9);//<-- test pour vérifier les affichages
     
         affichageEnergie(); //<--- à appeler dès qu'il y a un changement d'énergie
         affichageStress(); //<--- à appeler dès qu'il y a un changement de stress 
     
 //game.play();
+        reload();
     }
 
     public void setLabelForce(int i) {
@@ -408,10 +417,13 @@ public class Interface extends JFrame {
 
     public void run() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        myMainFrame.setVisible(true);
+        myMainFrame.setVisible(true);        
+        //enable to use a key listener
+        myMainFrame.setFocusable(true);
+        myMainFrame.addKeyListener(game.dialogue);
     }
 
-    public void affichageEnergie() {
+    public  void affichageEnergie() {
         int i = game.getPlayer().getStaStat();
 
         switch (i) {
@@ -520,4 +532,29 @@ public class Interface extends JFrame {
                 break;
         }
     }
+        public void affichageSalles()
+        {
+            switch(game.currentRoom.getName())
+                    {
+                case ("corridor"):
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
+                    break;
+                    case("Amphitheatre"):
+                         myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                        break;
+            }
+        }
+        
+        public void reload()
+        {
+            if ((game.thePlayer.getStressStat() == 10) || (game.thePlayer.getStaStat() == 0) || game.dialogue.getGameOver() == true)
+            {
+                System.exit(0); //create GO interface
+            }
+            else
+            {
+                //mainPanel.updateUI();
+                SwingUtilities.updateComponentTreeUI(myMainFrame);
+            }
+        }
 }
