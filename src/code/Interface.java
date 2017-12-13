@@ -1,4 +1,5 @@
 package code;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,8 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
-public class Interface extends JFrame  {
+public class Interface extends JFrame {
 //    //***************************Welcome interface******************************
 //
 //    private final JButton myButtonStart;
@@ -81,7 +83,7 @@ public class Interface extends JFrame  {
 
     //Game 
     private Game game;
-    
+
     //actions of the buttons
     private int option;
 
@@ -108,7 +110,7 @@ public class Interface extends JFrame  {
         myHelpQuit.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_help.png")));
 
         myDialogBox.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_dialogue.png")));
-        myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salle_cours.jpg")));
+        myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/salle_cours.jpg")));
 
         //***************************************************************************************************************
         //On definit le layout pour le panel principal
@@ -291,37 +293,95 @@ public class Interface extends JFrame  {
         btnQuit.setPreferredSize(new Dimension(59, 59));
 
         // ADD ACTION LISTENER
-//            btnDroite.addActionListener(new GestionAction(g, this, "droite"));
-//            btnGauche.addActionListener(new GestionAction(g, this, "gauche"));
-//            btnHaut.addActionListener(new GestionAction(g, this, "haut"));
-//            btnBas.addActionListener(new GestionAction(g, this, "bas"));
-//
-            btnQuit.addActionListener (new ActionListener()
-     {
-    	 public void actionPerformed (ActionEvent e){
-		
-		option = JOptionPane.showConfirmDialog(null, "Are you sure to quit ?",
+        //################  COMMANDE #######################
+        btnDroite.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                game.changeRoom("east");
+            }
+
+        }
+        );
+        btnGauche.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                game.changeRoom("west");
+            }
+
+        }
+        );
+        btnHaut.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                game.changeRoom("north");
+            }
+
+        }
+        );
+        btnBas.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                game.changeRoom("south");
+            }
+
+        }
+        );
+
+        btnRamasser.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                game.interact();
+            }
+
+        }
+        );
+        //################  Help and quit #######################
+        btnQuit.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                option = JOptionPane.showConfirmDialog(null, "Are you sure to quit ?",
                         "Oh noooooooooooooooo !",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
-                if (option != JOptionPane.NO_OPTION && option != JOptionPane.CANCEL_OPTION
+                if (option != JOptionPane.NO_OPTION
                         && option != JOptionPane.CLOSED_OPTION) {
-                    System.exit(0); 
-    	 }
-         }
-     }
-     	);
-     
-//            btnHelp.addActionListener(new GestionAction(g, this, "play"));
-//            btnRamasser.addActionListener(new GestionAction(g, this, "ramasser"));
+                    System.exit(0);
+                }
+            }
+        }
+        );
+
+        btnHelp.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+                game.printHelp();
+            }
+
+        }
+        );
         int force = game.getPlayer().getStrStat();
-        setLabelForce(force);
+        setLabelForce(force);//<--- à appeler dès qu'il y a un changement de force
         int intelligence = game.getPlayer().getIntStat();
-        setLabelIntelligence(intelligence);
+        setLabelIntelligence(intelligence);//<--- à appeler dès qu'il y a un changement d'intelligence
         int eloquence = game.getPlayer().getSpeStat();
-        setLabelEloquence(eloquence);
-        setDialog("Good choice ! You play with " + game.getPlayer().getNamePlayer() + "! You can see the points at the left or right of the screen");
-        //game.play();
+        setLabelEloquence(eloquence);//<--- à appeler dès qu'il y a un changement d'eloquence
+        setDialog("You play with " + game.getPlayer().getNamePlayer() + " ! \n You can see the points at the left or right of the screen");
+        game.createRooms();
+        game.getPlayer().setStress(5);//<-- test pour vérifier les affichages
+        game.getPlayer().setSta(5);//<-- test pour vérifier les affichages
+        game.getPlayer().setStr(9);//<-- test pour vérifier les affichages
+    
+        affichageEnergie(); //<--- à appeler dès qu'il y a un changement d'énergie
+        affichageStress(); //<--- à appeler dès qu'il y a un changement de stress 
+    
+//game.play();
     }
 
     public void setLabelForce(int i) {
@@ -339,9 +399,11 @@ public class Interface extends JFrame  {
         eloquenceStatLabel.setText(Integer.toString(i));
     }
 
-    public void setDialog(String s) {
+    public static void setDialog(String s) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        dialogBox.setText(s);
+        //dialogBox.setLineWrap(true); 
+        dialogBox.append(s + "\n");
+        //dialogBox.setText(s);
     }
 
     public void run() {
@@ -349,4 +411,113 @@ public class Interface extends JFrame  {
         myMainFrame.setVisible(true);
     }
 
+    public void affichageEnergie() {
+        int i = game.getPlayer().getStaStat();
+
+        switch (i) {
+            case 10:
+                ImageIcon icon10 = new ImageIcon(this.getClass().getResource("images/Pv_100v.png"));
+                displayBarreVie.setIcon(icon10);
+                break;
+            case 9:
+                ImageIcon icon9 = new ImageIcon(this.getClass().getResource("images/Pv_90v.png"));
+                displayBarreVie.setIcon(icon9);
+                break;
+            case 8:
+                ImageIcon icon8 = new ImageIcon(this.getClass().getResource("images/Pv_80v.png"));
+                displayBarreVie.setIcon(icon8);
+                break;
+            case 7:
+                ImageIcon icon7 = new ImageIcon(this.getClass().getResource("images/Pv_70v.png"));
+                displayBarreVie.setIcon(icon7);
+                break;
+            case 6:
+                ImageIcon icon6 = new ImageIcon(this.getClass().getResource("images/Pv_60v.png"));
+                displayBarreVie.setIcon(icon6);
+                break;
+            case 5:
+                ImageIcon icon5 = new ImageIcon(this.getClass().getResource("images/Pv_50v.png"));
+                displayBarreVie.setIcon(icon5);
+                break;
+            case 4:
+                ImageIcon icon4 = new ImageIcon(this.getClass().getResource("images/Pv_40v.png"));
+                displayBarreVie.setIcon(icon4);
+                break;
+            case 3:
+                ImageIcon icon3 = new ImageIcon(this.getClass().getResource("images/Pv_30v.png"));
+                displayBarreVie.setIcon(icon3);
+                break;
+            case 2:
+                ImageIcon icon2 = new ImageIcon(this.getClass().getResource("images/Pv_20v.png"));
+                displayBarreVie.setIcon(icon2);
+                break;
+            case 1:
+                ImageIcon icon1 = new ImageIcon(this.getClass().getResource("images/Pv_10v.png"));
+                displayBarreVie.setIcon(icon1);
+                break;
+            case 0:
+
+                ImageIcon icon0 = new ImageIcon(this.getClass().getResource("images/Pv_0v.png"));
+                displayBarreVie.setIcon(icon0);
+                break;
+
+            default:
+                break;
+        }
+    }
+    
+        public void affichageStress() {
+        int i = game.getPlayer().getStressStat();
+
+        switch (i) {
+            case 10:
+                ImageIcon icon10 = new ImageIcon(this.getClass().getResource("images/Pv_100_stress.png"));
+                displayBarreStress.setIcon(icon10);
+                break;
+            case 9:
+                ImageIcon icon9 = new ImageIcon(this.getClass().getResource("images/Pv_90_stress.png"));
+                displayBarreStress.setIcon(icon9);
+                break;
+            case 8:
+                ImageIcon icon8 = new ImageIcon(this.getClass().getResource("images/Pv_80_stress.png"));
+                displayBarreStress.setIcon(icon8);
+                break;
+            case 7:
+                ImageIcon icon7 = new ImageIcon(this.getClass().getResource("images/Pv_70_stress.png"));
+                displayBarreStress.setIcon(icon7);
+                break;
+            case 6:
+                ImageIcon icon6 = new ImageIcon(this.getClass().getResource("images/Pv_60_stress.png"));
+                displayBarreStress.setIcon(icon6);
+                break;
+            case 5:
+                ImageIcon icon5 = new ImageIcon(this.getClass().getResource("images/Pv_50_stress.png"));
+                displayBarreStress.setIcon(icon5);
+                break;
+            case 4:
+                ImageIcon icon4 = new ImageIcon(this.getClass().getResource("images/Pv_40_stress.png"));
+                displayBarreStress.setIcon(icon4);
+                break;
+            case 3:
+                ImageIcon icon3 = new ImageIcon(this.getClass().getResource("images/Pv_30_stress.png"));
+                displayBarreStress.setIcon(icon3);
+                break;
+            case 2:
+                ImageIcon icon2 = new ImageIcon(this.getClass().getResource("images/Pv_20_stress.png"));
+                displayBarreStress.setIcon(icon2);
+                break;
+            case 1:
+                ImageIcon icon1 = new ImageIcon(this.getClass().getResource("images/Pv_10_stress.png"));
+                displayBarreStress.setIcon(icon1);
+                break;
+            case 0:
+
+                ImageIcon icon0 = new ImageIcon(this.getClass().getResource("images/Pv_0_stress.png"));
+                displayBarreStress.setIcon(icon0);
+                break;
+
+            default:
+                break;
+        }
+    }
 }
