@@ -33,6 +33,7 @@ public class Interface extends JFrame {
     private final JLabel myCommand = new JLabel();
     private final JLabel myGame = new JLabel();
     private final JLabel myDialogBox = new JLabel();
+    private final JLabel myNumberChoice = new JLabel();
     private final JLabel myJauge = new JLabel(new ImageIcon(this.getClass().getResource("images/fond_crepi_jauge.png")));
     private final JLabel myAction = new JLabel();
     private final JLabel myHelpQuit = new JLabel();
@@ -59,7 +60,11 @@ public class Interface extends JFrame {
     private final JButton btnHelp = new JButton(new ImageIcon(this.getClass().getResource("images/help2.png")));
     private final JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("images/quit2.png")));
     private final JButton btnPower = new JButton(new ImageIcon(this.getClass().getResource("images/pouvoirs.png")));
-
+    private final JButton btnChoice1 = new JButton("1");
+    private final JButton btnChoice2 = new JButton("2");
+    private final JButton btnChoice3 = new JButton("3");
+    private final JButton btnChoice4 = new JButton("4");
+    
     //private JOptionPane jopQuit;
     private Player player1;
 
@@ -85,17 +90,18 @@ public class Interface extends JFrame {
         myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         myMainFrame.pack();
-        myMainFrame.setSize(885, 570);
+        myMainFrame.setSize(885, 600);
         myMainFrame.setVisible(true);
 
         //Container
         myMainFrame.setContentPane(myContainer);
-        myContainer.setPreferredSize(new Dimension(750, 500));
+        myContainer.setPreferredSize(new Dimension(750, 560));
         myContainer.setBackground(Color.GRAY);
 
         //Image du jeu
         myCommand.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_commande.png")));
         myHelpQuit.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_help.png")));
+        myNumberChoice.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_number.png")));
 
         myDialogBox.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_dialogue.png")));
         myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
@@ -178,7 +184,16 @@ public class Interface extends JFrame {
         myGbc.fill = GridBagConstraints.VERTICAL;
         myContainer.add(myCommand, myGbc);
         myCommand.setPreferredSize(new Dimension(150, 128));
-
+        
+        //Panel NumberChoice
+        myGbc.gridx = 0;
+        myGbc.gridy = 4;
+        myGbc.gridheight = 1;
+        myGbc.gridwidth = 4;
+        myGbc.fill = GridBagConstraints.HORIZONTAL;
+        myContainer.add(myNumberChoice, myGbc);
+        myNumberChoice.setPreferredSize(new Dimension(810, 50));
+        
         //**********************************************************************************************************        
         //On definit le layout pour le panel Dialogue Box
         myDialogBox.add(dialogBox);
@@ -279,6 +294,55 @@ public class Interface extends JFrame {
         myGbcPlay.fill = GridBagConstraints.VERTICAL;
         myHelpQuit.add(btnQuit, myGbcPlay);
         btnQuit.setPreferredSize(new Dimension(59, 59));
+        
+        //On definit le layout pour le panel NumberChoice
+        myNumberChoice.setLayout(new GridLayout(1,4));
+        myNumberChoice.add(btnChoice1);
+        myNumberChoice.add(btnChoice2);
+        myNumberChoice.add(btnChoice3);
+        myNumberChoice.add(btnChoice4);
+        
+//        myNumberChoice.setLayout(new GridBagLayout());
+//        //Definition de l'objet servant Ã  positionner les composants
+//        GridBagConstraints myGbcNumber = new GridBagConstraints();
+//        
+//        //Bouton 1
+//        myGbcNumber.gridx = 0;
+//        myGbcNumber.gridy = 1;
+//        myGbcNumber.gridheight = 1;
+//        myGbcNumber.gridwidth = 1;
+//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
+//        myNumberChoice.add(btnChoice1, myGbcPlay);
+//        btnChoice1.setPreferredSize(new Dimension(59, 59));
+//
+//        //Bouton 2
+//        myGbcNumber.gridx = 1;
+//        myGbcNumber.gridy = 1;
+//        myGbcNumber.gridheight = 1;
+//        myGbcNumber.gridwidth = 1;
+//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
+//        myNumberChoice.add(btnChoice2, myGbcPlay);
+//        btnChoice2.setPreferredSize(new Dimension(59, 59));
+//
+//        //Bouton 3
+//        myGbcNumber.gridx = 2;
+//        myGbcNumber.gridy = 1;
+//        myGbcNumber.gridheight = 1;
+//        myGbcNumber.gridwidth = 1;
+//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
+//        myNumberChoice.add(btnChoice3, myGbcPlay);
+//        btnChoice3.setPreferredSize(new Dimension(59, 59));
+// 
+//        
+//        //Bouton 4
+//        myGbcNumber.gridx = 3;
+//        myGbcNumber.gridy = 1;
+//        myGbcNumber.gridheight = 1;
+//        myGbcNumber.gridwidth = 1;
+//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
+//        myNumberChoice.add(btnChoice4, myGbcPlay);
+//        btnChoice4.setPreferredSize(new Dimension(59, 59));
+        
 
         // ADD ACTION LISTENER
         //################  COMMANDE #######################
