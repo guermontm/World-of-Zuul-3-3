@@ -301,48 +301,7 @@ public class Interface extends JFrame {
         myNumberChoice.add(btnChoice2);
         myNumberChoice.add(btnChoice3);
         myNumberChoice.add(btnChoice4);
-        
-//        myNumberChoice.setLayout(new GridBagLayout());
-//        //Definition de l'objet servant Ã  positionner les composants
-//        GridBagConstraints myGbcNumber = new GridBagConstraints();
-//        
-//        //Bouton 1
-//        myGbcNumber.gridx = 0;
-//        myGbcNumber.gridy = 1;
-//        myGbcNumber.gridheight = 1;
-//        myGbcNumber.gridwidth = 1;
-//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
-//        myNumberChoice.add(btnChoice1, myGbcPlay);
-//        btnChoice1.setPreferredSize(new Dimension(59, 59));
-//
-//        //Bouton 2
-//        myGbcNumber.gridx = 1;
-//        myGbcNumber.gridy = 1;
-//        myGbcNumber.gridheight = 1;
-//        myGbcNumber.gridwidth = 1;
-//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
-//        myNumberChoice.add(btnChoice2, myGbcPlay);
-//        btnChoice2.setPreferredSize(new Dimension(59, 59));
-//
-//        //Bouton 3
-//        myGbcNumber.gridx = 2;
-//        myGbcNumber.gridy = 1;
-//        myGbcNumber.gridheight = 1;
-//        myGbcNumber.gridwidth = 1;
-//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
-//        myNumberChoice.add(btnChoice3, myGbcPlay);
-//        btnChoice3.setPreferredSize(new Dimension(59, 59));
-// 
-//        
-//        //Bouton 4
-//        myGbcNumber.gridx = 3;
-//        myGbcNumber.gridy = 1;
-//        myGbcNumber.gridheight = 1;
-//        myGbcNumber.gridwidth = 1;
-//        myGbcNumber.fill = GridBagConstraints.VERTICAL;
-//        myNumberChoice.add(btnChoice4, myGbcPlay);
-//        btnChoice4.setPreferredSize(new Dimension(59, 59));
-        
+
 
         // ADD ACTION LISTENER
         //################  COMMANDE #######################
