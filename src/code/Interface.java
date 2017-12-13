@@ -82,7 +82,7 @@ public class Interface extends JFrame {
     public Interface(int choicePlayer, InterfaceBegin wint) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Fermeture de l'interface chooseplayer
-        game = new Game(choicePlayer);
+        game = new Game(choicePlayer, this);
         myMainFrame = wint.myFrameChoosePlayer;
         myMainFrame.setVisible(true);
         wint.mainPanel.removeAll();
@@ -144,9 +144,9 @@ public class Interface extends JFrame {
         intelligenceLabel.setPreferredSize(new Dimension(100, 300));
         eloquenceLabel.setPreferredSize(new Dimension(100, 300));
 
-        forceStatLabel = new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player      
-        intelligenceStatLabel = new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player       
-        eloquenceStatLabel = new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player   
+        forceStatLabel = new JLabel(Integer.toString(game.getPlayer().getStrStat()), JLabel.CENTER); //relier cette variable Ã  player      
+        intelligenceStatLabel = new JLabel(Integer.toString(game.getPlayer().getIntStat()), JLabel.CENTER); //relier cette variable Ã  player       
+        eloquenceStatLabel = new JLabel(Integer.toString(game.getPlayer().getSpeStat()), JLabel.CENTER); //relier cette variable Ã  player   
 
         myStatsPanel.setLayout(new GridLayout(3, 2));
         myStatsPanel.add(forceLabel);
@@ -375,12 +375,7 @@ public class Interface extends JFrame {
 
         }
         );
-        int force = game.getPlayer().getStrStat();
-        setLabelForce(force);//<--- à appeler dès qu'il y a un changement de force
-        int intelligence = game.getPlayer().getIntStat();
-        setLabelIntelligence(intelligence);//<--- à appeler dès qu'il y a un changement d'intelligence
-        int eloquence = game.getPlayer().getSpeStat();
-        setLabelEloquence(eloquence);//<--- à appeler dès qu'il y a un changement d'eloquence
+
         setDialog("You play with " + game.getPlayer().getNamePlayer() + " ! \n You can see the points at the left or right of the screen");
 
 //        myMainFrame.addKeyListener(l);
@@ -388,31 +383,22 @@ public class Interface extends JFrame {
         game.printWelcome();
         game.createRooms();
         game.addItems();
-
-        //game.beginning();
-//        game.getPlayer().setStress(5);//<-- test pour vérifier les affichages
-//        game.getPlayer().setSta(5);//<-- test pour vérifier les affichages
-//        game.getPlayer().setStr(9);//<-- test pour vérifier les affichages
-        affichageEnergie(); //<--- à appeler dès qu'il y a un changement d'énergie
-        affichageStress(); //<--- à appeler dès qu'il y a un changement de stress 
-
-//game.play();
-        reload();
+        
     }
 
-    public void setLabelForce(int i) {
+    public void setLabelForce() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        forceStatLabel.setText(Integer.toString(i));
+        forceStatLabel.setText(Integer.toString(game.getPlayer().getStrStat()));
     }
 
-    public void setLabelIntelligence(int i) {
+    public void setLabelIntelligence() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        intelligenceStatLabel.setText(Integer.toString(i));
+        intelligenceStatLabel.setText(Integer.toString(game.getPlayer().getIntStat()));
     }
 
-    public void setLabelEloquence(int i) {
+    public void setLabelEloquence() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        eloquenceStatLabel.setText(Integer.toString(i));
+        eloquenceStatLabel.setText(Integer.toString(game.getPlayer().getSpeStat()));
     }
 
     public static void setDialog(String s) {
@@ -542,58 +528,58 @@ public class Interface extends JFrame {
 
     public void affichageSalles() {
         switch (game.currentRoom.getName()) {
-            case ("hall"):
+            case ("B2 entrance"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
                 break;
-            case ("theatre"):
+            case ("Amphitheatre"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/theatre.jpg")));
                 break;
-            case ("wc"):
+            case ("WC"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/wc.jpg")));
                 break;
-            case ("td4"):
+            case ("TD4"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td4.jpg")));
                 break;
-            case ("td1"):
+            case ("TD1"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td1.jpg")));
                 break;
-            case ("tp1"): //MANQUE IMAGE
+            case ("TP1"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
-            case ("restRoom"): //MANQUE IMAGE
+            case ("Resting room"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
-            case ("downstairsCorridor1"):
+            case ("Corridor down1"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
                 break;
-            case ("downstairsCorridor2 "):
+            case ("Corridor down2 "):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
                 break;
-            case ("upstairsCorridor1"):
+            case ("Corridor upstairs1"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
                 break;
-            case ("upstairsCorridor2 "):
+            case ("Corridor upstairs2"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
                 break;
-            case (" downstairsLift"):
+            case ("Lift down"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
                 break;
-            case ("upstairsLift"):
+            case ("Lift up"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
                 break;
-            case ("annieOffice"): //MANQUE IMAGE
+            case ("Mrs. Geniet's Office"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
-            case ("downStairs"): //MANQUE IMAGE
+            case ("Staircase down"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
-            case ("upStairs "): //MANQUE IMAGE
+            case ("Staircase up"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
-            case ("classRoom"):
+            case ("Classroom"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/salle_cours.jpg")));
                 break;
-            case ("pgOffice"):
+            case ("Mr. Girard's Office"):
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/pgoffice.jpg")));
                 break;
             default:
@@ -602,12 +588,16 @@ public class Interface extends JFrame {
         }
     }
 
-    public void reload() {
-        if ((game.thePlayer.getStressStat() == 10) || (game.thePlayer.getStaStat() == 0) || game.dialogue.getGameOver() == true) {
-            System.exit(0); //create GO interface
-        } else {
-            //mainPanel.updateUI();
-            SwingUtilities.updateComponentTreeUI(myMainFrame);
-        }
+    public void refresh() {
+        affichageSalles();
+        affichageStress();
+        affichageEnergie();
+        setLabelForce();
+        setLabelEloquence();
+        setLabelIntelligence();
+        
+    }
+        public Game getGame() {
+        return game;
     }
 }

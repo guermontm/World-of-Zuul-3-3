@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Game
 {
-
+    private Interface gui; 
     //protected Interface gui;
 // this attribute represents the current room in which the player is located.
     protected Room currentRoom;
@@ -84,10 +84,10 @@ public class Game
      *
      *
      */
-    public Game(int playerChoice)
+    public Game(int playerChoice, Interface w)
     {
-        //gui = new Interface(frameBegin);
-        //gui.run();
+        gui = w;
+        
         choosePlayer(playerChoice);
         event = new RandomEvent(thePlayer);
 
@@ -239,16 +239,16 @@ public class Game
         minimap = new HashMap<Room, String>();
 
         // create the rooms
-        downstairsCorridor1 = new Room("Corridor", "A corridor in the b2 building.");
-        downstairsCorridor2 = new Room("Corridor", "Another corridor.");
-        upstairsCorridor1 = new Room("Corridor", "A corridor in the b2 building, at the first story.");
-        upstairsCorridor2 = new Room("Corridor", "Another corridor, at the first story.");
-        downstairsLift = new Room("Lift", "The lift (elevator). You are level 1 (downstairs)");
-        upstairsLift = new Room("Lift", "The lift which connects the two levels. You are level 2 (upstairs).");
+        downstairsCorridor1 = new Room("Corridor down1", "A corridor in the b2 building.");
+        downstairsCorridor2 = new Room("Corridor down2", "Another corridor.");
+        upstairsCorridor1 = new Room("Corridor upstairs1", "A corridor in the b2 building, at the first story.");
+        upstairsCorridor2 = new Room("Corridor upstairs2", "Another corridor, at the first story.");
+        downstairsLift = new Room("Lift down", "The lift (elevator). You are level 1 (downstairs)");
+        upstairsLift = new Room("Lift up", "The lift which connects the two levels. You are level 2 (upstairs).");
         annieOffice = new Room("Mrs. Geniet's Office", "The office of Mrs. Genient, the teacher of all GPhy students..");
-        downStairs = new Room("Staircase", "The stairs that connect the two levels together. Climbing them can get exhausting.");
+        downStairs = new Room("Staircase down", "The stairs that connect the two levels together. Climbing them can get exhausting.");
         classRoom = new Room("Classroom", "The classroom where the main courses are.");
-        upStairs = new Room("Staircase", "You are at the top of the staircase.");
+        upStairs = new Room("Staircase up", "You are at the top of the staircase.");
         pgOffice = new Room("Mr. Girard's Office", "The big bo$$");
         restRoom = new Room("Resting room", "A room for resting with sofas and coffee.");
         theatre = new Room("Amphitheatre", "The amphitheatre where the oral presentations are being held.");
@@ -365,7 +365,7 @@ public class Game
         } else
         {
             // Moving to the next room
-
+            
             if ((currentRoom == downstairsCorridor1) && (nextRoom == annieOffice))
             {
                 if (!thePlayer.getKeyAnnie())
@@ -374,6 +374,7 @@ public class Game
                 } else
                 {
                     currentRoom = nextRoom;
+                    
                 }
             } else if ((currentRoom == downstairsCorridor2) && (nextRoom == pgOffice))
             {
@@ -387,6 +388,7 @@ public class Game
             } else
             {
                 currentRoom = nextRoom;
+                gui.refresh();
             }
             //System.out.println("Current location : \t " + currentRoom.getName());
             Interface.setDialog("Current location : \t " + currentRoom.getName());
@@ -455,24 +457,31 @@ public class Game
         {
             case 2:
                 event.hiddenCandy();
+                gui.refresh();
                 break;
             case 3:
                 event.allanJoke();
+                gui.refresh();
                 break;
             case 4:
                 event.pillowAttack();
+                gui.refresh();
                 break;
             case 5:
                 event.adaHelp();
+                gui.refresh();
                 break;
             case 6:
                 event.penguinHug();
+                gui.refresh();
                 break;
             case 7:
                 event.teacherMeeting();
+                gui.refresh();
                 break;
             case 8:
                 event.conversation();
+                gui.refresh();
                 break;
         }
     }
@@ -515,6 +524,7 @@ public class Game
                     {
 
                         thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
+                        gui.refresh();
                     }
 
                     //if the NPC is not locked, you can have an important conversation
@@ -549,6 +559,7 @@ public class Game
                             default:
                                 break;
                         }
+                        gui.refresh();
                     }
 
                     //if you interact with the buttons in the lift then you change floors
@@ -707,6 +718,10 @@ public class Game
     public Player getPlayer()
     {
         return thePlayer;
+    }
+
+    public Interface getGui() {
+        return gui;
     }
 
 }

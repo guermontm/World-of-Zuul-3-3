@@ -99,46 +99,4 @@ public class GestionAction implements ActionListener {
         }
         
     }
-
-    // public void actionPerformed2 (ActionEvent e)
-    // {
-    // changeSalle(game.getPlayer().getCurrentRoom().getImageRoom());
-    // wint.majInventaire ();
-    // wint.dialogBox.setText(game.printWelcome());
-    // }
-    // public void actionPerformed3 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("go","east"));
-    // }
-    // public void actionPerformed4 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("go","west")); 
-    // }
-    // public void actionPerformed5 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("go","north")); 
-    // }
-    // public void actionPerformed6 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("go","south")); 
-    // }
-    // public void actionPerformed7 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("look", null)); 
-    // }
-    // public void actionPerformed8 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("pickup", null)); 
-    // }
-    // public void actionPerformed9 (ActionEvent e)
-    // {
-    // game.processCommand(new Command("usePotion", null)); 
-    // }
-    // public void actionPerformed10 (ActionEvent e)
-    // {
-    // //Boï¿½te du message d'information
-    // jopQuit = new JOptionPane();
-    // JOptionPane.showMessageDialog(null, "Thanks, see you later !", "Information", JOptionPane.INFORMATION_MESSAGE);
-    // System.exit(0);
-    // }
 }
