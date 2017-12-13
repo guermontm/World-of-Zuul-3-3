@@ -110,7 +110,7 @@ public class Interface extends JFrame {
         myHelpQuit.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_help.png")));
 
         myDialogBox.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_dialogue.png")));
-        myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
+        myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salle_cours.jpg")));
 
         //***************************************************************************************************************
         //On definit le layout pour le panel principal
