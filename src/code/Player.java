@@ -18,7 +18,8 @@ abstract class Player
     private int stressStat; // stress stat for the player, range between 1 and 10
     private int money; // money of the player (>0)
     private boolean crowbar; // if the player has the crowbar or not. Starts at false
-    private boolean key; //a key for the office of Mrs Geniet, starts at false.
+    private boolean keyAnnie; //a key for the office of Mrs Geniet, starts at false.
+    private boolean keyPG;
 
     /**
      * Constructor for objects of class Player
@@ -27,7 +28,8 @@ abstract class Player
     public Player()
     {
         crowbar = false;
-        key = false;
+        keyAnnie = false;
+        keyPG = false;
         money = 4;
     }
 
@@ -74,10 +76,15 @@ abstract class Player
         return crowbar;
     }
     
-    public boolean getKey()
+    public boolean getKeyAnnie()
     {
-        return key;
+        return keyAnnie;
     }
+    
+    public boolean getKeyPG()
+            {
+                return keyPG;
+            }
     
     public void setStr (int str)
     {
@@ -114,9 +121,14 @@ abstract class Player
        crowbar = bool;
     }
     
-    public void setKey(boolean bool)
+    public void setKeyAnnie(boolean bool)
     {
-        key = bool;
+        keyAnnie = bool;
+    }
+    
+     public void setKeyPG(boolean bool)
+    {
+        keyPG = bool;
     }
     
     public void addMoney (int cash)
@@ -145,7 +157,6 @@ abstract class Player
             break;
 
             case"stressStat":
-                System.out.println("case appelé");
                 setStress(getStressStat() + value);
             break;
 

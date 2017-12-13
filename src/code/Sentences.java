@@ -529,7 +529,6 @@ public class Sentences
         ArrayList<String> lista=list;
         String sentence="";
         int sizeArray = list.size();
-        //System.out.println(sizeArray);
         int i = randomNumber(sizeArray);
         sentence=lista.get(i);
         return sentence;

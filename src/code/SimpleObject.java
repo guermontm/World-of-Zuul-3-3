@@ -33,23 +33,23 @@ public class SimpleObject extends Item
         switch(itemName)
         {
             case "key":
-            System.out.println("You have found a key !");
+            Interface.setDialog("You have found a key !");
             break;
             case "board":
-            System.out.println("You can build board");
+            Interface.setDialog("You can build board");
             break;
             case "computer":
             if (isLock ==false)
             {
-                System.out.println("You can access to the computer");
+                Interface.setDialog("You can access to the computer");
             }
             else
             {
-                System.out.println("There is a computer but you cannot interact with it");
+                Interface.setDialog("There is a computer but you cannot interact with it");
             }
             break;
             default :
-            System.out.println("You have found : "+itemName);
+            Interface.setDialog("You have found : "+itemName);
         }
     }
 }

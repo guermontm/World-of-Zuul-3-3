@@ -49,35 +49,35 @@ public class NPC extends Item
             switch (itemName)
             {
                 case ("Axel"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListAxel()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListAxel()));
                     break;
                 case ("Martin"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListMartin()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListMartin()));
                     break;
                 case ("Nolan"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListNolan()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListNolan()));
                     break;
                 case ("Valentin"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListValentin()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListValentin()));
                     break;
                 case ("Guardian"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListGuardian()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListGuardian()));
                     break;
                 case ("Thomas"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListThomas()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListThomas()));
                     break;
                 case ("Morgane"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListMorgane()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListMorgane()));
                     break;
                 case ("Marie"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListMarie()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListMarie()));
                     break;
                 case ("Mrs Geniet"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListMrsGeniet()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListMrsGeniet()));
                 case ("M2"):
-                    System.out.println("\n"+sentences.randomSentence(sentences.getListM2()));
+                    Interface.setDialog("\n"+sentences.randomSentence(sentences.getListM2()));
                 default:
-                    System.out.println("There is no one to talk to in this room");
+                    Interface.setDialog("There is no one to talk to in this room");
             }
         } else if (!isLock) //for the NPCs that have conversations linked to quests
             

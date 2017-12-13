@@ -20,26 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 import javax.swing.SwingUtilities;
 
 public class Interface extends JFrame {
-//    //***************************Welcome interface******************************
-//
-//    private final JButton myButtonStart;
-//    private final JButton myButtonQuit;
-//    //private final JLabel myLabel1;
-//    private JLabel myLabel2, myLabel3;
-//    private JPanel myPanel1, myPanel2, myPanel3, myPanel4;
-//    protected JFrame myFrameWelcome;
-//
-//    //*********************CHOOSE PLAYER*****************************************
-//    private JLabel playerInterface;
-//    private JButton player1Button, player2Button, player3Button;
-//    private JLabel messageLabel;
-//    private JPanel mainPanel, panelCenterText, panelChoicePlayer;
-//    private JFrame myFrameChoosePlayer;
-
 
     //****************MAIN INTERFACE************************************
     //Declarations
@@ -88,6 +71,9 @@ public class Interface extends JFrame {
 
     //actions of the buttons
     private int option;
+    
+//    for the listener
+//    private Listener l;
 
     public Interface(int choicePlayer, InterfaceBegin wint) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -363,7 +349,7 @@ public class Interface extends JFrame {
 
             public void actionPerformed(ActionEvent e) {
 
-                game.printHelp();
+                game.printHelp(game.currentQuest);
             }
 
         }
@@ -376,6 +362,8 @@ public class Interface extends JFrame {
         setLabelEloquence(eloquence);//<--- à appeler dès qu'il y a un changement d'eloquence
         setDialog("You play with " + game.getPlayer().getNamePlayer() + " ! \n You can see the points at the left or right of the screen");
         
+        
+//        myMainFrame.addKeyListener(l);
         //al the methods needed to launch the game
         game.printWelcome();
         game.createRooms();
@@ -420,7 +408,7 @@ public class Interface extends JFrame {
         myMainFrame.setVisible(true);        
         //enable to use a key listener
         myMainFrame.setFocusable(true);
-        myMainFrame.addKeyListener(game.dialogue);
+//        myMainFrame.addKeyListener(l);
     }
 
     public  void affichageEnergie() {

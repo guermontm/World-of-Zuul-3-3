@@ -60,7 +60,7 @@ public class Container extends Item
     {
         if (! listContent.isEmpty())
         {
-            System.out.println("\n"+"The "+itemName+" contain these objects : " );
+            Interface.setDialog("\n"+"The "+itemName+" contain these objects : " );
             for(int i = 0; i < listContent.size(); i++)
             {
                 if (listContent.get(i).isLock == false)
@@ -71,7 +71,7 @@ public class Container extends Item
         }
         else 
         {
-            System.out.println("\n"+"The "+itemName+" does not contain anything" );
+            Interface.setDialog("\n"+"The "+itemName+" does not contain anything" );
         }
     }
     

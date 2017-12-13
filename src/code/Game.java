@@ -13,7 +13,8 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author (Grp5)
  * @version (V4 - 23/11/17)
  */
-public class Game {
+public class Game
+{
 
     //protected Interface gui;
 // this attribute represents the current room in which the player is located.
@@ -29,9 +30,14 @@ public class Game {
 
     // an integer that can be changed randomly between 1
     private int randomInt;
-    private Dialogue dialogue;
+    protected Dialogue dialogue;
 
     private HashMap<Room, String> minimap;
+
+    // arraylist used to display the instructions of the quests
+    private ArrayList<String> instructions;
+    // Iterator to browse the quests
+    protected int currentQuest = 0;
 
     //NPCs
     private NPC axel;
@@ -67,8 +73,6 @@ public class Game {
 
     private int player;
 
-    //class quest
-    private Quest quest;
     private GestionAction gestionAction;
 
     // Attic & basement have been added to check the up & down directions.
@@ -80,7 +84,8 @@ public class Game {
      *
      *
      */
-    public Game(int playerChoice) {
+    public Game(int playerChoice)
+    {
         //gui = new Interface(frameBegin);
         //gui.run();
         choosePlayer(playerChoice);
@@ -127,13 +132,26 @@ public class Game {
         liftButton = new SimpleObject("button", false);
         stairs = new SimpleObject("stairs", false);
 
-        quest = new Quest();
         dialogue = new Dialogue();
+
+        instructions = new ArrayList<>();
+        instructions.add("You see someone coming to talk to you. It's your old friend, Axel.");
+        instructions.add("You must look for PG so you can get your COOPOO project");
+        instructions.add("You must find your two friends, Martin and Nolan, so they can help you on your project.");
+        instructions.add("You must find your friend Martin so he can help you on your project.");
+        instructions.add("You must get Martin his diploma for him to help you.");
+        instructions.add("You must find your friend Nolan so he can help you on your project.");
+        instructions.add("You must get Nolan out of the toilets!");
+        instructions.add("You must code your project with Nolan and Martin.");
+        instructions.add("You must give your project back to PG.");
+
     }
 
-    public void choosePlayer(int player) {
+    public void choosePlayer(int player)
+    {
         // the constructor will define which player the user has chosen
-        switch (player) {
+        switch (player)
+        {
             case 1:
                 thePlayer = new TypeOne();
                 break;
@@ -154,27 +172,35 @@ public class Game {
      *
      * @return true If the command ends the game, false otherwise.
      */
-    private boolean processCommand() {
+    private boolean processCommand()
+    {
         boolean wantToQuit = false;
 
-        if ((character == 'n') || (character == 'N')) {
+        if ((character == 'n') || (character == 'N'))
+        {
             // go north
             changeRoom("north");
-        } else if ((character == 'e') || (character == 'E')) {
+        } else if ((character == 'e') || (character == 'E'))
+        {
             // go east
             changeRoom("east");
-        } else if ((character == 's') || (character == 'S')) {
+        } else if ((character == 's') || (character == 'S'))
+        {
             // go south
             changeRoom("south");
-        } else if ((character == 'w') || (character == 'W')) {
+        } else if ((character == 'w') || (character == 'W'))
+        {
             // go west
             changeRoom("west");
-        } else if ((character == 'i') || (character == 'I')) {
+        } else if ((character == 'i') || (character == 'I'))
+        {
             interact();
-        } else if ((character == 'h') || (character == 'H')) {
-            printHelp();
-        } else if ((character == 'q') || (character == 'Q')) {
-           Interface.setDialog("You entered Q/");
+        } else if ((character == 'h') || (character == 'H'))
+        {
+            printHelp(currentQuest);
+        } else if ((character == 'q') || (character == 'Q'))
+        {
+            Interface.setDialog("You entered Q/");
             // If the user types 'q', the quit() method asks if he really wants to quit.
             // If so, wantToQuit is set to 'true'.
             wantToQuit = quit();
@@ -187,23 +213,27 @@ public class Game {
      * about the player
      *
      */
-    public void getInformationPlayer() {
-       Interface.setDialog("Your stats:");
-       Interface.setDialog("You have " + thePlayer.getStrStat() + " strength");
-       Interface.setDialog("You have " + thePlayer.getStaStat() + " stamina");
-       Interface.setDialog("You have " + thePlayer.getIntStat() + " intelligence");
-       Interface.setDialog("You have " + thePlayer.getStressStat() + " stress");
-       Interface.setDialog("You have " + thePlayer.getSpeStat() + " speech");
-       Interface.setDialog("You have " + thePlayer.getMoney() + " money");
-        if (!thePlayer.getCrowbar()) {
-           Interface.setDialog("You aren't carrying anything special, except for your papers and stuff.");
-        } else {
-           Interface.setDialog("You have your crowbar in your inventory. You love that thing.");
+    public void getInformationPlayer()
+    {
+        Interface.setDialog("Your stats:");
+        Interface.setDialog("You have " + thePlayer.getStrStat() + " strength");
+        Interface.setDialog("You have " + thePlayer.getStaStat() + " stamina");
+        Interface.setDialog("You have " + thePlayer.getIntStat() + " intelligence");
+        Interface.setDialog("You have " + thePlayer.getStressStat() + " stress");
+        Interface.setDialog("You have " + thePlayer.getSpeStat() + " speech");
+        Interface.setDialog("You have " + thePlayer.getMoney() + " money");
+        if (!thePlayer.getCrowbar())
+        {
+            Interface.setDialog("You aren't carrying anything special, except for your papers and stuff.");
+        } else
+        {
+            Interface.setDialog("You have your crowbar in your inventory. You love that thing.");
         }
 
     }
 
-    public void createRooms() {
+    public void createRooms()
+    {
 
         // For the map display
         minimap = new HashMap<Room, String>();
@@ -275,7 +305,8 @@ public class Game {
     /**
      *
      */
-    public void addItems() {
+    public void addItems()
+    {
         //items for the hall
         hall.addItem(axel);
         hall.addItem(cafet);
@@ -322,31 +353,59 @@ public class Game {
      *
      * @param direction The direction in which the player is trying to go.
      */
-    public void changeRoom(String direction) {
+    public void changeRoom(String direction)
+    {
         Room nextRoom = null;
         // Planning to go to the next room. (hashmap browsing) 
         nextRoom = currentRoom.getExits().get(direction);
 
-        if (nextRoom == null) {
-           Interface.setDialog("You can't go this way.");
-        } else {
+        if (nextRoom == null)
+        {
+            Interface.setDialog("You can't go this way.");
+        } else
+        {
             // Moving to the next room
-            currentRoom = nextRoom;
+
+            if ((currentRoom == downstairsCorridor1) && (nextRoom == annieOffice))
+            {
+                if (!thePlayer.getKeyAnnie())
+                {
+                    Interface.setDialog("This office is locked, you need a key to open it...");
+                } else
+                {
+                    currentRoom = nextRoom;
+                }
+            } else if ((currentRoom == downstairsCorridor2) && (nextRoom == pgOffice))
+            {
+                if (!thePlayer.getKeyPG())
+                {
+                    Interface.setDialog("This office is locked, you need a key to open it...");
+                } else
+                {
+                    currentRoom = nextRoom;
+                }
+            } else
+            {
+                currentRoom = nextRoom;
+            }
             //System.out.println("Current location : \t " + currentRoom.getName());
             Interface.setDialog("Current location : \t " + currentRoom.getName());
-           Interface.setDialog("" + currentRoom.getDescription());
+            Interface.setDialog("" + currentRoom.getDescription());
 
             // Displaying the available exits
             Interface.setDialog("Exits: ");
-            for (String key : currentRoom.getExits().keySet()) {
-                if (currentRoom.getExits().get(key) != null) {
+            for (String key : currentRoom.getExits().keySet())
+            {
+                if (currentRoom.getExits().get(key) != null)
+                {
                     Interface.setDialog(key + "\n");
                 }
             }
-           Interface.setDialog("");
+            Interface.setDialog("");
 
             //random events that can appear in the corridors
-            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2)) {
+            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2))
+            {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
                 rEvent(randomNum);
 
@@ -357,27 +416,30 @@ public class Game {
     /**
      * Main play routine. Loops until end of play.
      */
-    public void play() {
+    public void play()
+    {
         //printWelcome();
         createRooms();
         addItems();
-   
+
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
         boolean finished = false;
-        while (!finished) {
+        while (!finished)
+        {
             character = commandLetter.readCommand();
             beginning();
             finished = processCommand();
 
             //Game Over if you have too much stress, not enough stamina or if you answer wrong during a conversation
-            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true) {
+            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true)
+            {
                 finished = true;
-               Interface.setDialog("You are not ready for this, we are sorry...");
+                Interface.setDialog("You are not ready for this, we are sorry...");
             }
 
         }
-       Interface.setDialog("Thank you for playing. It was nice seeing you today. Goodbye. Hope you have a great day.");
+        Interface.setDialog("Thank you for playing. It was nice seeing you today. Goodbye. Hope you have a great day.");
     }
 
     /**
@@ -387,8 +449,10 @@ public class Game {
      * @param give a random integer that allow to know if a randomEvent will
      * appears
      */
-    public void rEvent(int randomInt) {
-        switch (randomInt) {
+    public void rEvent(int randomInt)
+    {
+        switch (randomInt)
+        {
             case 2:
                 event.hiddenCandy();
                 break;
@@ -417,7 +481,8 @@ public class Game {
      * Method explore allow knowing the item on a room
      *
      */
-    public void explore() {
+    public void explore()
+    {
         currentRoom.printItems();
     }
 
@@ -426,122 +491,133 @@ public class Game {
      * possible
      *
      */
-    public void interact() {
+    public void interact()
+    {
 
-        if (!currentRoom.listRoomItem.isEmpty()) {
-           Interface.setDialog("What item do you want to interact with ?");
+        if (!currentRoom.listRoomItem.isEmpty())
+        {
+            Interface.setDialog("What item do you want to interact with ?");
             currentRoom.printItems();
 
             Scanner sc = new Scanner(System.in);
 
             int n = Integer.parseInt(sc.next());
 
-            for (int i = 0; i < currentRoom.listRoomItem.size(); i++) {
+            for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
+            {
                 // Player wishes to interact with object of index i
-                if (n == i) {
+                if (n == i)
+                {
                     Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
                     currentRoom.listRoomItem.get(i).interactItem();
 
-                    if (dialogue.getStressDialogue() != 0) {
+                    if (dialogue.getStressDialogue() != 0)
+                    {
 
                         thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
                     }
 
-                    if (!dialogue.getKeyBool()) {
-                        thePlayer.setKey(true);
-                    }
-
                     //if the NPC is not locked, you can have an important conversation
-                    if (!currentRoom.listRoomItem.get(i).getLock()) {
-                        switch (currentRoom.listRoomItem.get(i).getName()) {
+                    if (!currentRoom.listRoomItem.get(i).getLock())
+                    {
+                        switch (currentRoom.listRoomItem.get(i).getName())
+                        {
                             case ("PGTD"):
                                 PGTD.setHasDisappeared(true); //goes away
                                 nolan.setLock(); //Conversation with Nolan in the toilet is available
                                 martin.setLock(); //Conversation with Martin about the diploma is available
-                                quest.endQuest(0); //this quest is ended and the next one is started
-                                quest.startQuest(1);
-                               Interface.setDialog(" " + quest.getStatus(1));
-                                quest.startQuest(2);
-                                quest.startQuest(3);
+
                                 break;
                             case ("Martin"):
                                 annie.setLock(); //unlocks conversation with annie in the theatre
-                                quest.endQuest(2);
-                                quest.startQuest(4);
+
+                                break;
                             case ("Nolan"):
                                 guardian.setLock();
-                                quest.endQuest(3);
-                                quest.startQuest(5);
+
+                                break;
                             case ("Mrs Geniet"):
                                 annie.setLock(); //locks annie again
-                                quest.endQuest(4);
-                                thePlayer.setKey(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
+                                thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
+                                break;
                             case ("Guardian"):
                                 guardian.setLock();
                                 thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
-
+                                break;
                             case ("PGEnd"):
-
+                                break;
                             default:
                                 break;
                         }
                     }
 
                     //if you interact with the buttons in the lift then you change floors
-                    if (currentRoom.listRoomItem.get(i) == liftButton) {
+                    if (currentRoom.listRoomItem.get(i) == liftButton)
+                    {
                         //allows to go upstairs
 
-                        if (currentRoom == upstairsLift) {
+                        if (currentRoom == upstairsLift)
+                        {
                             currentRoom = downstairsLift;
-                           Interface.setDialog("The lift is going down!");
-                           Interface.setDialog("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downstairsLift) {
+                            Interface.setDialog("The lift is going down!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
+                        } else if (currentRoom == downstairsLift)
+                        {
                             currentRoom = upstairsLift;
-                           Interface.setDialog("The lift is going up!");
-                           Interface.setDialog("\n" + currentRoom.getDescription());
+                            Interface.setDialog("The lift is going up!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
                         }
                     }
                     //if you interact with the stairs then you change floors
-                    if (currentRoom.listRoomItem.get(i) == stairs) {
+                    if (currentRoom.listRoomItem.get(i) == stairs)
+                    {
                         //allows to go upstairs
 
-                        if (currentRoom == upStairs) {
+                        if (currentRoom == upStairs)
+                        {
                             currentRoom = downStairs;
-                           Interface.setDialog("You are going down the stairs!");
-                           Interface.setDialog("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downStairs) {
+                            Interface.setDialog("You are going down the stairs!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
+                        } else if (currentRoom == downStairs)
+                        {
                             currentRoom = upStairs;
-                           Interface.setDialog("You are climbing the stairs!");
-                           Interface.setDialog("\n" + currentRoom.getDescription());
+                            Interface.setDialog("You are climbing the stairs!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
                         }
                     }
                 }
             }
-        } else {
-           Interface.setDialog("There is nothing to interact with in this room...");
+        } else
+        {
+            Interface.setDialog("There is nothing to interact with in this room...");
         }
     }
 
     /**
      * Method beginning is the start of the game
      */
-    public void beginning() {
+    public void beginning()
+    {
 
-        if ((currentRoom == hall) && (axel.getLock() == false)) {
-            printHelp(); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
+        if ((currentRoom == hall) && (axel.getLock() == false))
+        {
+            currentQuest = 0;
+            printHelp(currentQuest); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
 
             //at the start of the game, a conversation with Axel begins automatically
             axel.interactItem();
+
             //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
             axel.setLock();
-            //the first quest is launched
-            quest.startQuest(0);
+
             PGTD.setLock();
             //printing the room info again so the player is not lost
-           Interface.setDialog("Cuurent Location : " + currentRoom.getName());
+            Interface.setDialog("Cuurent Location : " + currentRoom.getName());
             Interface.setDialog("Exits: ");
-            for (String key : currentRoom.getExits().keySet()) {
-                if (currentRoom.getExits().get(key) != null) {
+            for (String key : currentRoom.getExits().keySet())
+            {
+                if (currentRoom.getExits().get(key) != null)
+                {
                     Interface.setDialog(key + "\n");
                 }
             }
@@ -552,22 +628,22 @@ public class Game {
      * Print out some help information. Contains all the information the user
      * needs to know about the game.
      */
-    public void printHelp() {
-       Interface.setDialog("__________________HELP___________________");
-       Interface.setDialog("You are wandering in the B2 building.");
-       Interface.setDialog("Your goal is to deliver a project.");
-       Interface.setDialog("You can move, and interact with te world.");
-       Interface.setDialog("n: \t\tgo north");
-       Interface.setDialog("e: \t\tgo east");
-       Interface.setDialog("s: \t\tgo south");
-       Interface.setDialog("w: \t\tgo west");
-       Interface.setDialog("h: \t\thelp, duh");
-       Interface.setDialog("q: \t\tquit");
-       Interface.setDialog("i: \tInteract");
-       Interface.setDialog("_________________________________________");
-        getInformationPlayer();
-       Interface.setDialog("_________________________________________");
-       Interface.setDialog("You are in : " + currentRoom.getName());
+    public void printHelp(int q)
+    {
+        Interface.setDialog("__________________HELP___________________");
+        Interface.setDialog("You are wandering in the B2 building.");
+        Interface.setDialog("Your goal is to deliver a project.");
+        Interface.setDialog("You can move, and interact with te world.");
+        Interface.setDialog("n: \t\tgo north");
+        Interface.setDialog("e: \t\tgo east");
+        Interface.setDialog("s: \t\tgo south");
+        Interface.setDialog("w: \t\tgo west");
+        Interface.setDialog("h: \t\thelp, duh");
+        Interface.setDialog("q: \t\tquit");
+        Interface.setDialog("i: \tInteract");
+        Interface.setDialog("_________________________________________");
+        Interface.setDialog("You are in : " + currentRoom.getName());
+        Interface.setDialog("" + instructions.get(q));
 
     }
 
@@ -575,53 +651,61 @@ public class Game {
      * Print out some welcome text. Contains all the information the user needs
      * to know about the game.
      */
-    private void printWelcome() {
-       Interface.setDialog("\n\n\n");
-       Interface.setDialog("<////////////////////////////////[]========0");
-       Interface.setDialog("\n");
-       Interface.setDialog("_________\\/\\/ O R L D 0 F Z U U L___________");
-       Interface.setDialog("\n");
-       Interface.setDialog("0========[]\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\>\n\n\n");
-       Interface.setDialog("Welcome to World of Zuul.");
-       Interface.setDialog("You have to deliver a COOPOO project");
-       Interface.setDialog("on time to the evil lord PG.");
-       Interface.setDialog("May the odds be with you.");
-       Interface.setDialog("_________________________________________");
-       Interface.setDialog("Press any key to enter the beautiful world of Zuul...");
+    public void printWelcome()
+    {
+        Interface.setDialog("\n\n\n");
+        Interface.setDialog("<////////////////////////////////[]========0");
+        Interface.setDialog("\n");
+        Interface.setDialog("_________\\/\\/ O R L D 0 F Z U U L___________");
+        Interface.setDialog("\n");
+        Interface.setDialog("0========[]\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\>\n\n\n");
+        Interface.setDialog("Welcome to World of Zuul.");
+        Interface.setDialog("You have to deliver a COOPOO project");
+        Interface.setDialog("on time to the evil lord PG.");
+        Interface.setDialog("May the odds be with you.");
+        Interface.setDialog("_________________________________________");
+        Interface.setDialog("Press any key to enter the beautiful world of Zuul...");
     }
 
     /**
      * allows the player to quit the game
      */
-    public boolean quit() {
-       Interface.setDialog("Are you sure? [Y/N]");
+    public boolean quit()
+    {
+        Interface.setDialog("Are you sure? [Y/N]");
         char character;
         Scanner reader;
         reader = new Scanner(System.in);
         character = reader.next().charAt(0);
-        if ((character != 'y') && (character != 'Y')) {
-           Interface.setDialog("Thought so.");
+        if ((character != 'y') && (character != 'Y'))
+        {
+            Interface.setDialog("Thought so.");
             return (false);
-        } else {
-           Interface.setDialog("Hope you had a good time.");
+        } else
+        {
+            Interface.setDialog("Hope you had a good time.");
             return (true);
         }
 
     }
 
-    public Item getItem(String name) {
+    public Item getItem(String name)
+    {
         int i;
         String n;
-        for (i = 0; i < currentRoom.listRoomItem.size(); i++) {
+        for (i = 0; i < currentRoom.listRoomItem.size(); i++)
+        {
             n = currentRoom.listRoomItem.get(i).getName();
-            if (name.equals(n)) {
+            if (name.equals(n))
+            {
                 return currentRoom.listRoomItem.get(i);
             }
         }
         return martin;
     }
 
-    public Player getPlayer() {
+    public Player getPlayer()
+    {
         return thePlayer;
     }
 
