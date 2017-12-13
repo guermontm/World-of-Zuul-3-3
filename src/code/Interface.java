@@ -64,7 +64,7 @@ public class Interface extends JFrame {
     private final JButton btnChoice2 = new JButton("2");
     private final JButton btnChoice3 = new JButton("3");
     private final JButton btnChoice4 = new JButton("4");
-    
+
     //private JOptionPane jopQuit;
     private Player player1;
 
@@ -76,10 +76,9 @@ public class Interface extends JFrame {
 
     //actions of the buttons
     private int option;
-    
+
 //    for the listener
 //    private Listener l;
-
     public Interface(int choicePlayer, InterfaceBegin wint) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Fermeture de l'interface chooseplayer
@@ -184,7 +183,7 @@ public class Interface extends JFrame {
         myGbc.fill = GridBagConstraints.VERTICAL;
         myContainer.add(myCommand, myGbc);
         myCommand.setPreferredSize(new Dimension(150, 128));
-        
+
         //Panel NumberChoice
         myGbc.gridx = 0;
         myGbc.gridy = 4;
@@ -193,7 +192,7 @@ public class Interface extends JFrame {
         myGbc.fill = GridBagConstraints.HORIZONTAL;
         myContainer.add(myNumberChoice, myGbc);
         myNumberChoice.setPreferredSize(new Dimension(810, 50));
-        
+
         //**********************************************************************************************************        
         //On definit le layout pour le panel Dialogue Box
         myDialogBox.add(dialogBox);
@@ -294,14 +293,13 @@ public class Interface extends JFrame {
         myGbcPlay.fill = GridBagConstraints.VERTICAL;
         myHelpQuit.add(btnQuit, myGbcPlay);
         btnQuit.setPreferredSize(new Dimension(59, 59));
-        
+
         //On definit le layout pour le panel NumberChoice
-        myNumberChoice.setLayout(new GridLayout(1,4));
+        myNumberChoice.setLayout(new GridLayout(1, 4));
         myNumberChoice.add(btnChoice1);
         myNumberChoice.add(btnChoice2);
         myNumberChoice.add(btnChoice3);
         myNumberChoice.add(btnChoice4);
-
 
         // ADD ACTION LISTENER
         //################  COMMANDE #######################
@@ -384,22 +382,20 @@ public class Interface extends JFrame {
         int eloquence = game.getPlayer().getSpeStat();
         setLabelEloquence(eloquence);//<--- à appeler dès qu'il y a un changement d'eloquence
         setDialog("You play with " + game.getPlayer().getNamePlayer() + " ! \n You can see the points at the left or right of the screen");
-        
-        
+
 //        myMainFrame.addKeyListener(l);
         //al the methods needed to launch the game
         game.printWelcome();
         game.createRooms();
         game.addItems();
-           
+
         //game.beginning();
 //        game.getPlayer().setStress(5);//<-- test pour vérifier les affichages
 //        game.getPlayer().setSta(5);//<-- test pour vérifier les affichages
 //        game.getPlayer().setStr(9);//<-- test pour vérifier les affichages
-    
         affichageEnergie(); //<--- à appeler dès qu'il y a un changement d'énergie
         affichageStress(); //<--- à appeler dès qu'il y a un changement de stress 
-    
+
 //game.play();
         reload();
     }
@@ -428,13 +424,13 @@ public class Interface extends JFrame {
 
     public void run() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        myMainFrame.setVisible(true);        
+        myMainFrame.setVisible(true);
         //enable to use a key listener
         myMainFrame.setFocusable(true);
 //        myMainFrame.addKeyListener(l);
     }
 
-    public  void affichageEnergie() {
+    public void affichageEnergie() {
         int i = game.getPlayer().getStaStat();
 
         switch (i) {
@@ -488,8 +484,8 @@ public class Interface extends JFrame {
                 break;
         }
     }
-    
-        public void affichageStress() {
+
+    public void affichageStress() {
         int i = game.getPlayer().getStressStat();
 
         switch (i) {
@@ -543,29 +539,75 @@ public class Interface extends JFrame {
                 break;
         }
     }
-        public void affichageSalles()
-        {
-            switch(game.currentRoom.getName())
-                    {
-                case ("corridor"):
-                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
-                    break;
-                    case("Amphitheatre"):
-                         myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
-                        break;
-            }
+
+    public void affichageSalles() {
+        switch (game.currentRoom.getName()) {
+            case ("hall"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
+                break;
+            case ("theatre"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/theatre.jpg")));
+                break;
+            case ("wc"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/wc.jpg")));
+                break;
+            case ("td4"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td4.jpg")));
+                break;
+            case ("td1"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td1.jpg")));
+                break;
+            case ("tp1"): //MANQUE IMAGE
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                break;
+            case ("restRoom"): //MANQUE IMAGE
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                break;
+            case ("downstairsCorridor1"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
+                break;
+            case ("downstairsCorridor2 "):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
+                break;
+            case ("upstairsCorridor1"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
+                break;
+            case ("upstairsCorridor2 "):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
+                break;
+            case (" downstairsLift"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
+                break;
+            case ("upstairsLift"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
+                break;
+            case ("annieOffice"): //MANQUE IMAGE
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                break;
+            case ("downStairs"): //MANQUE IMAGE
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                break;
+            case ("upStairs "): //MANQUE IMAGE
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                break;
+            case ("classRoom"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/salle_cours.jpg")));
+                break;
+            case ("pgOffice"):
+                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/pgoffice.jpg")));
+                break;
+            default:
+                break;
+
         }
-        
-        public void reload()
-        {
-            if ((game.thePlayer.getStressStat() == 10) || (game.thePlayer.getStaStat() == 0) || game.dialogue.getGameOver() == true)
-            {
-                System.exit(0); //create GO interface
-            }
-            else
-            {
-                //mainPanel.updateUI();
-                SwingUtilities.updateComponentTreeUI(myMainFrame);
-            }
+    }
+
+    public void reload() {
+        if ((game.thePlayer.getStressStat() == 10) || (game.thePlayer.getStaStat() == 0) || game.dialogue.getGameOver() == true) {
+            System.exit(0); //create GO interface
+        } else {
+            //mainPanel.updateUI();
+            SwingUtilities.updateComponentTreeUI(myMainFrame);
         }
+    }
 }
