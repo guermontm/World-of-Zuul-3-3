@@ -6,7 +6,7 @@ package code;
  * The item has a name when it is create. 
  *
  * @author (Grp5)
- * @version (a version number or a date)
+ * @version (14/12/2017)
  */
 abstract public class Item
 {
@@ -31,8 +31,7 @@ abstract public class Item
 
     /**
      * A method for knowing the name of the item 
-     *
-     * @return    return the name of the item 
+     * @return  itemName  return the name of the item 
      */
     public String getName()
     {
@@ -42,7 +41,7 @@ abstract public class Item
     /**
      * Method which allow knowing the state of the item. 
      *
-     * @return  a boolean
+     * @return isLock a boolean
      * True = the item is lock and the player cannot interact, 
      * False = the item is unlock and the player can interact. 
      */
@@ -52,9 +51,9 @@ abstract public class Item
     }
     
         /**
-     * Method which allow knowing the state of the item. 
+     * getDisappeared Method which allow knowing the state of the item. 
      *
-     * @return  a boolean
+     * @return hasDisappeared a boolean
      * True = the item is lock and the player cannot interact, 
      * False = the item is unlock and the player can interact. 
      */
@@ -75,24 +74,27 @@ abstract public class Item
     
 
     /**
-     * Method which allow changing the state of the item. 
-     * If the item is lock it becomes unlock, 
-     * and if it is unlock the item becomes lock. 
-     *
+     * Method which allow changing the boolean state isLock of the item. 
+     * @param b a boolean, allows to set isLock.
      */
     public void setLock(boolean b)
     {
       isLock = b;
     }
     
-        /**
-     * getter
+     /**
+     * getInteracting method. Get the interacting value, a boolean 
+     * @return interacting boolean
      */
     public boolean getInteracting()
     {
         return interacting;
     }
     
+    /**
+     * setInteracting method. Allows to set the interacting value with a new value b 
+     * @param b a boolean.
+     */
     public void setInteracting(boolean b)
     {
         interacting = b;
