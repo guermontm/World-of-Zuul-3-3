@@ -14,8 +14,8 @@ import java.util.*;
  * The 'sentences' class is composed by a constructor and two methods : randomsentence and randomNumber. 
  *
  *
- * @Nolan Lacroix 
- * @09/11/2017
+ * @author (grp5)
+ * @version (09/11/2017)
  */
 public class Sentences
 {
@@ -35,7 +35,7 @@ public class Sentences
     private ArrayList<String> listM2;
     
     //conversation sentence lists for NPC
-    private ArrayList<String> listMainMrsGeniet;
+    private ArrayList<String> listMainMrsGeniet; 
     private ArrayList<String> listMainAxel;
     private ArrayList<String> listMainMartin;
     private ArrayList<String> listMainNolan;
