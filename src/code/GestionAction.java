@@ -7,10 +7,11 @@ import java.awt.event.ActionListener;
 //import code.Game;
 
 /**
- * Write a description of class GestionMouse here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * GestionAction class
+ *Allows to choose the character on the character selection screen by actionEvents
+ * Allows to select the character choose by clicking.
+ * @author (Grp5)
+ * @version (14/12/2017)
  */
 public class GestionAction implements ActionListener {
 
@@ -18,15 +19,14 @@ public class GestionAction implements ActionListener {
     private final String background;
     private final JOptionPane optionPane = new JOptionPane();
     private int option;
-    private int playerChoice;
+    private int playerChoice; //choice of the player
     private JOptionPane jopQuit;
     private Interface gui; 
 
     /**
-     * Constructor for objects of class GestionMouse
-     * @param g
-     * @param w
-     * @param b
+     * Constructor for objects of class GestionAction
+     * @param w the InterfaceBegin Object
+     * @param b a String
      */
     public GestionAction(InterfaceBegin w, String b) {
         wint = w;
@@ -49,7 +49,7 @@ public class GestionAction implements ActionListener {
                     System.exit(0);
                 }   break;
             case "player1":{
-                //Interface.mainInterface(); // lance l'interface main
+                //Interface.mainInterface(); // launch main interface
                 playerChoice = 1;
                 System.out.println("Player Choice");
                 gui = new Interface(playerChoice, wint);
@@ -64,7 +64,7 @@ public class GestionAction implements ActionListener {
                     break;
                 }
             case "player2":{
-                //wint.mainInterface(); // lance l'interface main
+                //wint.mainInterface(); // launch main interface
                 playerChoice = 2;
                 System.out.println("Player Choice");
                 gui = new Interface(playerChoice, wint);
@@ -78,7 +78,7 @@ public class GestionAction implements ActionListener {
                 break;
                 }
             case "player3":{
-                //wint.mainInterface(); // lance l'interface main
+                //wint.mainInterface(); // launch main interface
                 playerChoice = 3;
                 System.out.println("Player Choice");
                 gui = new Interface(playerChoice, wint);
