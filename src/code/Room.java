@@ -88,6 +88,10 @@ public class Room
         return(mapRoom);
     }
     
+    /*
+    * addItem method, adding a newItem, being an Item Object, to the listRoomItem
+    * @param newItem an Item Object
+    */
     public void addItem (Item newItem){
         
         listRoomItem.add(newItem);
