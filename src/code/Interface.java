@@ -22,6 +22,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
 
+/**
+ * Interface class
+ * Contains all informations about the main interface, allowing to play
+ * Has several buttons :
+ * -btnHaut, btnBasn btnDroite, BtnGauche allow to move from one room to another
+ * -btnRamasser is the interact button. It allows to interact with NPCs and items.
+ * -btnHelp allows to have more information about the game and current quests
+ * -btnQuit to leave the game
+ * -btnPower to activate or disable the player power
+ * -btnChoice1, btnChoice2, btnChoice3, btnChoice4 to select a choice.
+ * 
+ * @author (Grp5)
+ * @version (14/12/2017)
+ */
 public class Interface extends JFrame {
 
     //****************MAIN INTERFACE************************************
@@ -38,7 +52,7 @@ public class Interface extends JFrame {
     private final JLabel myAction = new JLabel();
     private final JLabel myHelpQuit = new JLabel();
 
-    //****************** ECRAN DE GAUCHE voir ligne 240*********************
+    //****************** LEFT SCREEN *********************
     private JLabel forceLabel;
     private JLabel intelligenceLabel;
     private JLabel eloquenceLabel;
@@ -47,11 +61,11 @@ public class Interface extends JFrame {
     private JLabel eloquenceStatLabel; // = new JLabel("0", JLabel.CENTER); //relier cette variable Ã  player    
     private final JPanel myStatsPanel = new JPanel();
 
-    // ************** ECRAN DE DROITE voir ligne 290-300**********************
+    // ************** RIGHT SCREEN **********************
     private final JLabel displayBarreVie = new JLabel(new ImageIcon(this.getClass().getResource("images/Pv_100v.png")), JLabel.CENTER); //health displaying in image format
     private final JLabel displayBarreStress = new JLabel(new ImageIcon(this.getClass().getResource("images/Pv_0_stress.png")), JLabel.CENTER);
 
-    //Button game
+    //game button
     private final JButton btnHaut = new JButton(new ImageIcon(this.getClass().getResource("images/hand_up.png")));
     private final JButton btnBas = new JButton(new ImageIcon(this.getClass().getResource("images/hand_down.png")));
     private final JButton btnDroite = new JButton(new ImageIcon(this.getClass().getResource("images/hand_right.png")));
@@ -80,7 +94,7 @@ public class Interface extends JFrame {
 
     public Interface(int choicePlayer, InterfaceBegin wint) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        // Fermeture de l'interface chooseplayer
+        //  Closing the chooseplayer interface
         game = new Game(choicePlayer, this);
         myMainFrame = wint.myFrameChoosePlayer;
         myMainFrame.setVisible(true);
@@ -96,7 +110,7 @@ public class Interface extends JFrame {
         myContainer.setPreferredSize(new Dimension(750, 560));
         myContainer.setBackground(Color.GRAY);
 
-        //Image du jeu
+        //Game picture added to each label
         myCommand.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_commande.png")));
         myHelpQuit.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_help.png")));
         myNumberChoice.setIcon(new ImageIcon(this.getClass().getResource("images/fond_crepi_number.png")));
@@ -105,12 +119,12 @@ public class Interface extends JFrame {
         myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
 
         //***************************************************************************************************************
-        //On definit le layout pour le panel principal
+        //defining of the layout for the main panel
         myContainer.setLayout(new GridBagLayout());
         //Definition de l'objet servant a positionner les composants
         GridBagConstraints myGbc = new GridBagConstraints();
 
-        //Panel jauge
+        //gauge panel
         myGbc.gridx = 3;
         myGbc.gridy = 0;
         myGbc.gridheight = 3;
@@ -135,7 +149,7 @@ public class Interface extends JFrame {
         myGbc.gridwidth = 1;
         myGbc.fill = GridBagConstraints.VERTICAL;
 
-        // ECRAN DE GAUCHE
+        // LEFT SCREEN
         forceLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/force_test.png")), JLabel.CENTER);
         intelligenceLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/cerveau_test.png")), JLabel.CENTER);
         eloquenceLabel = new JLabel(new ImageIcon(this.getClass().getResource("images/discours_test.png")), JLabel.CENTER);
@@ -156,7 +170,7 @@ public class Interface extends JFrame {
         myStatsPanel.add(eloquenceStatLabel);
         myContainer.add(myStatsPanel, myGbc);
 
-        //Panel Jeu
+        //game panel
         myGbc.gridx = 1;
         myGbc.gridy = 0;
         myGbc.gridheight = 3;
@@ -165,7 +179,7 @@ public class Interface extends JFrame {
         myContainer.add(myGame, myGbc);
         myGame.setPreferredSize(new Dimension(540, 512));
 
-        //Panel Boite Dialog
+        //Dialog box panel
         myGbc.gridx = 1;
         myGbc.gridy = 3;
         myGbc.gridheight = 1;
@@ -193,30 +207,30 @@ public class Interface extends JFrame {
         myNumberChoice.setPreferredSize(new Dimension(810, 50));
 
         //**********************************************************************************************************        
-        //On definit le layout pour le panel Dialogue Box
+        //defining of the layout for the Dialogue Box panel
         myDialogBox.add(dialogBox);
         dialogBox.setSize(540, 123);
         dialogBox.setEditable(false);
         //**********************************************************************************************************        
-        //On definit le layout pour le panel Jauge
+        //defining of the layout for the gauge panel
         myJauge.setLayout(new GridLayout(1, 2));
 
-        //Jauge de vie
+        //life gauge
         myJauge.add(displayBarreVie);
         displayBarreVie.setPreferredSize(new Dimension(300, 40));
         affichageEnergie();
-        //Jauge de stress
+        //stress gauge
         myJauge.add(displayBarreStress);
         displayBarreStress.setPreferredSize(new Dimension(300, 40));
         affichageStress();
 
         //**********************************************************************************************************        
-        //On definit le layout pour le panel Command
+        //defining the layout for the Command panel
         myCommand.setLayout(new GridBagLayout());
-        //Definition de l'objet servant a positionner les composants
+        //Definition of the object used to position the components
         GridBagConstraints myGbcCommand = new GridBagConstraints();
 
-        //Bouton haut
+        //Up button
         myGbcCommand.gridx = 1;
         myGbcCommand.gridy = 0;
         myGbcCommand.gridheight = 1;
@@ -225,7 +239,7 @@ public class Interface extends JFrame {
         myCommand.add(btnHaut, myGbcCommand);
         btnHaut.setPreferredSize(new Dimension(41, 41));
 
-        //Bouton bas
+        //down button
         myGbcCommand.gridx = 1;
         myGbcCommand.gridy = 3;
         myGbcCommand.gridheight = 1;
@@ -234,7 +248,7 @@ public class Interface extends JFrame {
         myCommand.add(btnBas, myGbcCommand);
         btnBas.setPreferredSize(new Dimension(41, 41));
 
-        //Bouton gauche
+        //Left button
         myGbcCommand.gridx = 0;
         myGbcCommand.gridy = 1;
         myGbcCommand.gridheight = 1;
@@ -243,7 +257,7 @@ public class Interface extends JFrame {
         myCommand.add(btnGauche, myGbcCommand);
         btnGauche.setPreferredSize(new Dimension(41, 41));
 
-        //Bouton droite
+        //Right button
         myGbcCommand.gridx = 2;
         myGbcCommand.gridy = 1;
         myGbcCommand.gridheight = 1;
@@ -252,7 +266,7 @@ public class Interface extends JFrame {
         myCommand.add(btnDroite, myGbcCommand);
         btnDroite.setPreferredSize(new Dimension(41, 41));
 
-        //Bouton interaction
+        //interaction button (also named btnRamasser)
         myGbcCommand.gridx = 1;
         myGbcCommand.gridy = 1;
         myGbcCommand.gridheight = 1;
@@ -262,12 +276,12 @@ public class Interface extends JFrame {
         btnRamasser.setPreferredSize(new Dimension(41, 41));
 
         //********************************************************************************************************
-        //On definit le layout pour le panel Help and Quit 
+        //defining the layout for the Help and Quit panel
         myHelpQuit.setLayout(new GridBagLayout());
-        //Definition de l'objet servant Ã  positionner les composants
+        //Definition of the object used to position the components
         GridBagConstraints myGbcPlay = new GridBagConstraints();
 
-        //Bouton Pouvoir spécial
+        //Special power button
         myGbcPlay.gridx = 0;
         myGbcPlay.gridy = 1;
         myGbcPlay.gridheight = 1;
@@ -276,7 +290,7 @@ public class Interface extends JFrame {
         myHelpQuit.add(btnPower, myGbcPlay);
         btnPower.setPreferredSize(new Dimension(59, 59));
 
-        //Bouton Help
+        //help button
         myGbcPlay.gridx = 1;
         myGbcPlay.gridy = 1;
         myGbcPlay.gridheight = 1;
@@ -285,7 +299,7 @@ public class Interface extends JFrame {
         myHelpQuit.add(btnHelp, myGbcPlay);
         btnHelp.setPreferredSize(new Dimension(59, 59));
 
-        //Bouton QUIT
+        //quit button
         myGbcPlay.gridx = 2;
         myGbcPlay.gridy = 1;
         myGbcPlay.gridheight = 1;
@@ -294,7 +308,7 @@ public class Interface extends JFrame {
         myHelpQuit.add(btnQuit, myGbcPlay);
         btnQuit.setPreferredSize(new Dimension(59, 59));
 
-        //On definit le layout pour le panel NumberChoice
+        //defining the layout for the NumberChoice panel
         myNumberChoice.setLayout(new GridLayout(1, 4));
         myNumberChoice.add(btnChoice1);
         myNumberChoice.add(btnChoice2);
@@ -302,7 +316,7 @@ public class Interface extends JFrame {
         myNumberChoice.add(btnChoice4);
 
         // ADD ACTION LISTENER
-        //################  COMMANDE #######################
+        //################  COMMAND #######################
         btnDroite.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -405,28 +419,47 @@ public class Interface extends JFrame {
             }
         });
 
-        //al the methods needed to launch the game
+        //all the methods needed to launch the game
         game.createRooms();
         game.addItems();
         Interface.setDialog(game.getInstructions().get(0));
         Interface.setDialog("Press the interact button to be able to talk to him! (the open hand on your right)");
     }
 
+    /**
+     * setLabelForce method : displays the strenth stat value in front of the 
+     * forceStatLabel
+     *
+     */
     public void setLabelForce() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         forceStatLabel.setText(Integer.toString(game.getPlayer().getStrStat()));
     }
 
+    /**
+     * setLabelIntelligence method : displays the intelligence stat value in
+     * front of the intelligenceStatLabel
+     *
+     */
     public void setLabelIntelligence() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         intelligenceStatLabel.setText(Integer.toString(game.getPlayer().getIntStat()));
     }
 
+    /**
+     * setLabelEloquence method : displays the eloquence stat value in
+     * front of the eloquenceStatLabel
+     *
+     */
     public void setLabelEloquence() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         eloquenceStatLabel.setText(Integer.toString(game.getPlayer().getSpeStat()));
     }
 
+    /**
+     * setDialog method : displays a String in a dialogBox
+     * @param s String the sentence to display in the dialogBox
+     */
     public static void setDialog(String s) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //dialogBox.setLineWrap(true); 
@@ -434,11 +467,18 @@ public class Interface extends JFrame {
         //dialogBox.setText(s);
     }
 
+    /**
+     * run method : allows to set visible the main frame.
+     */
     public void run() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         myMainFrame.setVisible(true);
     }
 
+    /**
+     * affichageEnergie method : displays picture for the energy stat according
+     * to the energy rate that the player has.
+     */
     public void affichageEnergie() {
         int i = game.getPlayer().getStaStat();
 
@@ -494,6 +534,10 @@ public class Interface extends JFrame {
         }
     }
 
+    /**
+     * affichageStress method : displays picture for the stress stat according
+     * to the stress rate that the player has.
+     */
     public void affichageStress() {
         int i = game.getPlayer().getStressStat();
 
@@ -549,6 +593,11 @@ public class Interface extends JFrame {
         }
     }
 
+    /**
+     * affichageSalles method : displays picture depending on where the player is
+     * and depending on the non-player character with whom the player interacts
+     *
+     */
     public void affichageSalles() {
         switch (game.currentRoom.getName()) {
             case ("B2 entrance"):
@@ -748,6 +797,12 @@ public class Interface extends JFrame {
         }
     }
 
+    /**
+     * refresh method : refreshes stat labels of the player : energy, strength, 
+     * eloquence, intelligence, stress
+     * refreshes the room.
+     *
+     */
     public void refresh() {
         affichageSalles();
         affichageStress();
@@ -760,14 +815,27 @@ public class Interface extends JFrame {
 
     }
 
+    /**
+     * getName method : allows to return a Game object named game
+     *@return a Game object named game
+     */
     public Game getGame() {
         return game;
     }
 
+    /**
+     * getChoiceInteract method : allows to return a choiceInteract integer
+     * @return choiceInteract integer
+     */
     public int getChoiceInteract() {
         return choiceInteract;
     }
     
+    /**
+     * setButtons method : allows to return a Game object named game
+     * set disable a button if there is no exit. 
+     * set enable a button if there is an exit 
+     */
     public void setButtons()
     {
         if (game.currentRoom.getExit("north") == null)
