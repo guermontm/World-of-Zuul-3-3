@@ -20,8 +20,10 @@ public class NPC extends Item
      * object is Lock until an event
      *
      * @param name is the name of the NPC
-     * @param isLock is a boolean saying if you can interact with the NPC (false
-     * when you can)
+     * @param isLock is a boolean saying if you can interact (conversation) with
+     * the NPC (false when you can) 
+     * @param hasDisappeared is a boolean allowing to know if the NPC is still 
+     * present in the room (false : still here)
      */
     public NPC(String name, boolean isLock, boolean hasDisappeared)
     {
@@ -39,7 +41,9 @@ public class NPC extends Item
 
     /**
      * Method interactItem allow to listen to what the non player character have
-     * to say
+     * to say.
+     * First, this allows to know if an NPC has to say a randomSentence (if
+     * isLock is true). If isLock is false, calls mainSentences (conversation)
      *
      */
     public void interactItem()
