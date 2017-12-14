@@ -44,7 +44,7 @@ public class RandomEvent
      */
     public void allanJoke()
     {
-        player.setStress(10);
+        player.setStress(0);
         Interface.setDialog("Allan appears from the corner of the corridor, he tells you a joke so funny that you are not stressed anymore!");
     }
 

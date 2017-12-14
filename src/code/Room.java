@@ -92,6 +92,14 @@ public class Room
         
         listRoomItem.add(newItem);
     }
+    
+    /*
+    *getter for a specific exit of a room
+    */
+    public Room getExit(String direction)
+    {
+        return mapRoom.get(direction);
+    }
 
     /**
     * Getter for the items in the room.

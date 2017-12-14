@@ -714,6 +714,7 @@ public class Interface extends JFrame {
         setLabelForce();
         setLabelEloquence();
         setLabelIntelligence();
+        setButtons();
         game.gameOver();
 
     }
@@ -724,5 +725,38 @@ public class Interface extends JFrame {
 
     public int getChoiceInteract() {
         return choiceInteract;
+    }
+    
+    public void setButtons()
+    {
+        if (game.currentRoom.getExit("north") == null)
+        {
+            btnHaut.setEnabled(false);
+        }
+        else{
+            btnHaut.setEnabled(true);
+        }
+         if (game.currentRoom.getExit("east") == null)
+        {
+            btnDroite.setEnabled(false);
+        }
+        else{
+            btnDroite.setEnabled(true);
+        }
+          if (game.currentRoom.getExit("south") == null)
+        {
+            btnBas.setEnabled(false);
+        }
+        else{
+            btnBas.setEnabled(true);
+        }
+           if (game.currentRoom.getExit("west") == null)
+        {
+            btnGauche.setEnabled(false);
+        }
+        else{
+            btnGauche.setEnabled(true);
+        }
+            
     }
 }

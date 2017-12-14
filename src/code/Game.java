@@ -382,15 +382,6 @@ public class Game {
             Interface.setDialog("Current location : \t " + currentRoom.getName());
             Interface.setDialog("" + currentRoom.getDescription());
 
-            // Displaying the available exits
-            Interface.setDialog("Exits: ");
-            for (String key : currentRoom.getExits().keySet()) {
-                if (currentRoom.getExits().get(key) != null) {
-                    Interface.setDialog(key + "\n");
-                }
-            }
-            Interface.setDialog("");
-
             //random events that can appear in the corridors
             if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2)) {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
@@ -440,8 +431,9 @@ public class Game {
                 gui.refresh();
                 break;
             case 3:
-                event.allanJoke();
                 allanThere = true;
+                gui.refresh();
+                event.allanJoke();
                 gui.refresh();
                 break;
             case 4:
