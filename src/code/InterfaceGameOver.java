@@ -18,8 +18,13 @@ import javax.swing.JPanel;
 
 
 /**
- *
- * @author Adèle
+ *InterfaceGameOver class
+ * Interface used when there is a game over.
+ * The user can play again or quit the game.
+ * Contains actionPerformed to click on buttons.
+ * 
+ * @author (Grp5)
+ * @version (14/12/2017)
  */
 public class InterfaceGameOver extends JFrame {
     //***************************Welcome interface******************************
@@ -32,7 +37,6 @@ public class InterfaceGameOver extends JFrame {
 
     public InterfaceGameOver() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        // Game game peut etre en parametre du constructeur de l'interface sauf qu'on a besoin de game = new Game (1) dans GestionAction
         //*************************************WELCOME INTERFACE***************************************************************
         myFrameGameOver = new JFrame("Game Over");
         myFrameGameOver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,9 +55,9 @@ public class InterfaceGameOver extends JFrame {
         myPanel1.add(myLabel2, BorderLayout.CENTER);
 
         myPanel1.add(myButtonQuit, BorderLayout.SOUTH);
-
+        
         myButtonQuit.addActionListener(new ActionListener() {
-
+            
             public void actionPerformed(ActionEvent e) {
 
                 int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit ?",
