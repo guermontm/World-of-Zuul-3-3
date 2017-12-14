@@ -1,9 +1,8 @@
 package code;
 
 /**
- * This class inherits from item and represents the item type : simple object.
- * It means that the attributes are initialised with specific values and
- * specific methods.
+ * This class inherits from item and represents the item type : simple object. 
+ * It means that the attributes are initialised with specific values and specific methods. 
  *
  * @author (Group 5)
  * @version (19/11/17)
@@ -11,9 +10,9 @@ package code;
 public class SimpleObject extends Item {
 
     /**
-     * Constructor for objects of class TypeOne Some item does not appears until
-     * some quest are not achieved or appears randomly. When isLock is true the
-     * object is Lock until an event
+     * Constructor for simple objects
+     * Some item does not appears until some quest are not achieved or appears randomly. 
+     * When isLock is true the object is Lock until an event 
      */
     public SimpleObject(String name, boolean isLock) {
         // the name is given at the creation of the item  
@@ -23,9 +22,9 @@ public class SimpleObject extends Item {
     }
 
     /**
-     * Method interactItem give for each object a sentence which depend of the
-     * name of the object
-     *
+     * Method interactItem give for each object a sentence which depend of the name of the object.
+     * The sentences is displayed on the interface.
+     * In the case of the computer, the sentences will be different depending on the isLock attribute.
      */
     public void interactItem() {
         switch (itemName) {
