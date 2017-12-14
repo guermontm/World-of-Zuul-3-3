@@ -2,13 +2,12 @@ package code;
 
 import javax.swing.JOptionPane;
 
-/*
- *The Dialogue class is the class where we store all the complex conversation between the player and the NPCs.
-*each conversation is a method and can be called in the main class.
- */
 /**
+ * The Dialogue class is the class where we store all the complex conversation between the player and the NPCs.
+ * each conversation is a method and can be called in the main class.
  *
  * @author Group 5
+ * @version (14/12/17)
  */
 public class Dialogue {
 
@@ -26,21 +25,32 @@ public class Dialogue {
     }
 
     /**
-     *
-     * @param playerChoice
+     * setChoice method. set the choice with a new value : playerChoice, an integer
+     * @param playerChoice, an integer
      */
     public void setChoice(int playerChoice) {
         choice = playerChoice;
     }
 
+    /**
+     * getChoice method. allowing to return the an integer, named choice
+     * @return choice, an integer
+     */
     public int getChoice() {
         return choice;
     }
 
+    /**
+     * resetChoice method. set the choice to -1.
+     */
     public void resetChoice() {
         choice = -1;
     }
 
+    /**
+     * getStressDialogue method. allowing to return an integer named stress
+     * @return stress, an integer
+     */
     public int getStressDialogue() {
         return stress;
     }
@@ -796,6 +806,15 @@ public class Dialogue {
             }
         }
     }
+    
+    /**
+     * popWindow method, used during a conversation with a NPC.
+     * Pop a window asking the user to choose between the answers 1 or 2.
+     * Used an Object tab, named choix, containing the Strings "1" and "2"
+     * Ask to the user to make a choice, with the HOptionPane
+     * if option is yes, set the choice to 1
+     * if option is no, set the choice to 2.
+     */
     public void popWindow() {
         Object[] choix = {"1", "2"};
         option = JOptionPane.showOptionDialog(null, "Make Your Choice",
@@ -811,6 +830,7 @@ public class Dialogue {
     }
     
     /**
+     * popGameOver method
      * A method to display the game over interface if you enconter one during a conversation
      */
     public void popGameOver(){
