@@ -19,7 +19,6 @@ abstract class Player
     private int money; // money of the player (>0)
     private boolean crowbar; // if the player has the crowbar or not. Starts at false
     private boolean keyAnnie; //a key for the office of Mrs Geniet, starts at false.
-    private boolean keyPG; //a key for the office of Mr PG, starts at false
 
     /**
      * Constructor for objects of class Player
@@ -29,7 +28,6 @@ abstract class Player
     {
         crowbar = false;
         keyAnnie = false;
-        keyPG = false;
         money = 4;
     }
 
@@ -125,15 +123,7 @@ abstract class Player
         return keyAnnie;
     }
     
-    /**
-     * getKeyPG Method, allowing to return the boolean value of the player.
-     * If true, the player is owning the key of the PG's office.
-     * @return the boolean keyPG
-     */
-    public boolean getKeyPG()
-            {
-                return keyPG;
-            }
+
     
     /**
      * setStr Method, allowing to set the strength of the player with a new value
@@ -207,14 +197,6 @@ abstract class Player
         keyAnnie = bool;
     }
     
-    /**
-     * setKeyPG Method, allowing to set the boolean keyPG of the player with a new value
-     * @param bool integer, being the new value for the player stat.
-     */
-     public void setKeyPG(boolean bool)
-    {
-        keyPG = bool;
-    }
     
     /**
      * addMoney Method, allowing to add a cash value to the current money of the player.
