@@ -394,32 +394,6 @@ public class Game {
     }
 
     /**
-     * Main play routine. Loops until end of play.
-     */
-    public void play() {
-        //printWelcome();
-        createRooms();
-        addItems();
-
-        // Enter the main command loop.  Here we repeatedly read commands and
-        // execute them until the game is over.
-        boolean finished = false;
-        while (!finished) {
-            character = commandLetter.readCommand();
-            beginning();
-            finished = processCommand();
-
-            //Game Over if you have too much stress, not enough stamina or if you answer wrong during a conversation
-            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true) {
-                finished = true;
-                Interface.setDialog("You are not ready for this, we are sorry...");
-            }
-
-        }
-        Interface.setDialog("Thank you for playing. It was nice seeing you today. Goodbye. Hope you have a great day.");
-    }
-
-    /**
      * method that uses the randomInt attribute to call randomly a method in the
      * RandomEvent class (each number is linked to a method in RandomEvent)
      *
@@ -482,32 +456,6 @@ public class Game {
             currentRoom.printItems();
         } else {
             Interface.setDialog("There is nothing to interact with in this room...");
-        }
-    }
-
-    /**
-     * Method beginning is the start of the game
-     */
-    public void beginning() {
-
-        if ((currentRoom == hall) && (axel.getLock() == false)) {
-            currentQuest = 0;
-            printHelp(currentQuest); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
-
-            //at the start of the game, a conversation with Axel begins automatically
-            //axel.interactItem();
-            //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
-            axel.setLock(true);
-
-            PGTD.setLock(false);
-            //printing the room info again so the player is not lost
-            Interface.setDialog("Current Location : " + currentRoom.getName());
-            Interface.setDialog("Exits: ");
-            for (String key : currentRoom.getExits().keySet()) {
-                if (currentRoom.getExits().get(key) != null) {
-                    Interface.setDialog(key + "\n");
-                }
-            }
         }
     }
 
@@ -669,7 +617,7 @@ public class Game {
                             {
                                 Interface.setDialog("[Nolan] Oh my god thanks, i thought I would be locked in here forever!");
                                 nolan.setHasDisappeared(true);
-                                if (!diploma.getLock()) //if you haven't finished the quests with martin
+                                if (diploma.getLock()) //if you haven't finished the quests with martin
                                 {
                                     Interface.setDialog("[Nolan] Now you need to find Martin so that we can finish this project!");
                                     currentQuest = 3;
