@@ -326,7 +326,7 @@ public class Game {
         td4.addItem(board);
         td4.addItem(PGTD);
         //items for TD1
-        td1.addItem(M2);
+        td1.addItem(thomas);
         //items for wc
         wc.addItem(nolan);
         //items for restingroom
@@ -343,6 +343,8 @@ public class Game {
         upStairs.addItem(stairs);
         //items for the classroom
         classRoom.addItem(clement);
+        //items for corridor upstairs
+        upstairsCorridor1.addItem(M2);
     }
 
     /**
@@ -493,8 +495,7 @@ public class Game {
             printHelp(currentQuest); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
 
             //at the start of the game, a conversation with Axel begins automatically
-            axel.interactItem();
-
+            //axel.interactItem();
             //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
             axel.setLock(true);
 
@@ -519,14 +520,16 @@ public class Game {
         Interface.setDialog("You are wandering in the B2 building.");
         Interface.setDialog("Your goal is to deliver a project.");
         Interface.setDialog("You can move, and interact with te world.");
-        Interface.setDialog("n: \t\tgo north");
-        Interface.setDialog("e: \t\tgo east");
-        Interface.setDialog("s: \t\tgo south");
-        Interface.setDialog("w: \t\tgo west");
-        Interface.setDialog("h: \t\thelp, duh");
-        Interface.setDialog("q: \t\tquit");
-        Interface.setDialog("i: \tInteract");
+        Interface.setDialog("hand buttons:  go north");
+        Interface.setDialog("\t\tgo east");
+        Interface.setDialog("\t\tgo south");
+        Interface.setDialog("\t\tgo west");
+        Interface.setDialog("question mark button: \t\thelp, duh");
+        Interface.setDialog("X mark button: \t\tquit");
+        Interface.setDialog("open hand button: \t\tInteract");
+        Interface.setDialog("Star button : special power");
         Interface.setDialog("_________________________________________");
+        Interface.setDialog("You are playing with the character : " + thePlayer.getNamePlayer());
         Interface.setDialog("You are in : " + currentRoom.getName());
         Interface.setDialog("" + instructions.get(q));
 
@@ -618,6 +621,12 @@ public class Game {
                 //if the NPC is not locked, you can have an important conversation
                 if (!currentRoom.listRoomItem.get(i).getLock()) {
                     switch (currentRoom.listRoomItem.get(i).getName()) {
+                        case ("Axel"):
+                            //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
+                            axel.setLock(true);
+                            PGTD.setLock(false);
+                            currentQuest = 1;
+                            break;
                         case ("PGTD"):
                             PGTD.setHasDisappeared(true); //goes away
                             nolan.setLock(false); //Conversation with Nolan in the toilet is available
@@ -645,8 +654,8 @@ public class Game {
                             Interface.setDialog("You are coding for your project it is gonna take a little moment...");
                             Interface.setDialog("");
                             Interface.setDialog("Here you go! Martin Nolan and you are really proud of what you have done, the next step is now to hand it over to PG!");
-                                PGEnd.setLock(false);
-                                currentQuest = 8;
+                            PGEnd.setLock(false);
+                            currentQuest = 8;
                             break;
                         default:
                             break;
@@ -673,7 +682,7 @@ public class Game {
                             }
                             break;
                         case "Martin":
-                            if (diploma.isLock) { // if you have the diploma
+                            if (!diploma.isLock) { // if you have the diploma
                                 Interface.setDialog("[Martin] Oh thanks for my diploma, I owe you one!");
                                 if (!thePlayer.getCrowbar()) { //if you haven't finished the quests with Nolan
                                     Interface.setDialog("[Martin] Now we need Nolan and we can start coding, so we can be home before midnight");
@@ -727,14 +736,12 @@ public class Game {
     public Dialogue getDialogue() {
         return dialogue;
     }
-    
+
     /**
      * a method to display the GO interface
      */
-    public void gameOver()
-    {
-        if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || (dialogue.getGameOver()))
-        {
+    public void gameOver() {
+        if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || (dialogue.getGameOver())) {
             new InterfaceGameOver();
         }
     }
@@ -746,7 +753,9 @@ public class Game {
     public void setLucThere(boolean lucThere) {
         this.lucThere = lucThere;
     }
-    
-    
+
+    public ArrayList<String> getInstructions() {
+        return instructions;
+    }
 
 }

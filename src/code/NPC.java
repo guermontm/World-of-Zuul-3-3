@@ -75,8 +75,10 @@ public class NPC extends Item
                     break;
                 case ("Mrs Geniet"):
                     Interface.setDialog("\n"+sentences.randomSentence(sentences.getListMrsGeniet()));
+                    break;
                 case ("M2"):
                     Interface.setDialog("\n"+sentences.randomSentence(sentences.getListM2()));
+                    break;
                 default:
                     Interface.setDialog("There is no one to talk to in this room");
             }
