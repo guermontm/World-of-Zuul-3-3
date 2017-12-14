@@ -4,11 +4,9 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * The main class of the game. When a new game is chreated and play(int) is
- * called, the game is launched. The user appears in a room and the main quest
- * is activated. In the constructor we call every other constructors. This class
- * is where we call all the methods from the other classes in order for the game
- * to run.
+ * The main class of the game. When a new game is created and launched, the user
+ * appears in a room and the main quest is activated. 
+ * All other constructors are called
  *
  * @author (Grp5)
  * @version (V5-13/12/2017)
@@ -85,14 +83,13 @@ public class Game {
      * parameters for the game
      *
      *
-     * @param playerChoice an int that defines which character you want to play
-     * with
+     * @param playerChoice an int that defines which character you want to play with
      * @param w takes the interface to be able to display it during the game
      */
     public Game(int playerChoice, Interface w) {
         gui = w;
 
-        choosePlayer(playerChoice); //à laisser la?
+        choosePlayer(playerChoice); 
         event = new RandomEvent(thePlayer);
 
         //NPCs
@@ -154,10 +151,9 @@ public class Game {
     }
 
     /**
-     * Method choosePlayer allows to chose between three types of player they
-     * differ by their stat and their special ability
-     *
-     * @param player
+     * Method choosePlayer allows to chose between three types of player
+     * they differ by their stat and their special ability
+     * @param player integer
      */
     public void choosePlayer(int player) {
         // the constructor will define which player the user has chosen
@@ -178,7 +174,7 @@ public class Game {
     }
 
     /**
-     * Method getInformationPlayer print all the information and statistics
+     * Method getInformationPlayer. Displays all the information and statistics
      * about the player
      *
      */
@@ -315,7 +311,7 @@ public class Game {
         upstairsCorridor1.addItem(M2);
     }
 
-    /**
+    //**
      * allows the player to change room, depends on the exits that exists in the
      * current room. Depends on what character the player types : N, S, E, W
      * when the player enter in the new room, depending of the room, some random
@@ -367,8 +363,7 @@ public class Game {
      * method that uses the randomInt attribute to call randomly a method in the
      * RandomEvent class (each number is linked to a method in RandomEvent)
      *
-     * @param randomInt a random integer that allow to know if a randomEvent
-     * will appear
+     * @param randomInt a random integer that allow to know if a randomEvent will appear
      */
     public void rEvent(int randomInt) {
         switch (randomInt) {
@@ -408,7 +403,7 @@ public class Game {
     }
 
     /**
-     * Method explore allow knowing the item on a room
+     * Method explore allow knowing the item on the current room
      *
      */
     public void explore() {
@@ -417,7 +412,9 @@ public class Game {
 
     /**
      * Method interact allow interacting with the item of the room if it is
-     * possible
+     * possible.
+     * Check if a room is empty
+     * Check if the item is lock
      *
      */
     public void interact() {
@@ -475,6 +472,8 @@ public class Game {
 
     /**
      * allows the player to quit the game
+     * return a boolean.
+     * If yes, leave the game.
      */
     public boolean quit() {
         Interface.setDialog("Are you sure? [Y/N]");
@@ -492,6 +491,12 @@ public class Game {
 
     }
 
+    /**
+     * getItem method, allowing to access items in a room.
+     * @param String name, the name of the item.
+     * @return an Item object.
+     * By default, return martin Item.
+     */
     public Item getItem(String name) {
         int i;
         String n;
@@ -504,22 +509,45 @@ public class Game {
         return martin;
     }
 
+    /**
+     * getPlayer method. Get thePlayer attribute, being a Player object.
+     * @return thePlayer, a Player Object.
+     */
     public Player getPlayer() {
         return thePlayer;
     }
 
+    /**
+     * getGui method. Get gui attribute, being an Interface object.
+     * @return gui, an Interface Object.
+     */
     public Interface getGui() {
         return gui;
     }
 
+    /**
+     * isAllanThere method. Get the boolean allanThere
+     * @return allanThere, a boolean
+     */
     public boolean isAllanThere() {
         return allanThere;
     }
-
+    
+    
+    /**
+     * isLucThere method. Get the boolean LucThere
+     * @return lucThere, a boolean
+     */
     public boolean isLucThere() {
         return lucThere;
     }
 
+    /**
+     * afterInteract method. Allows to interact with an item chosen in the current room.
+     * A tab containing all the items of the current room is called. 
+     * With a loop, search the selected item (choiceInteract) into the tab.
+     * @parameters 
+     */
     public void afterInteract(int choiceInteract) {
         n = choiceInteract;
         // Player wishes to interact with object of index i
@@ -527,14 +555,14 @@ public class Game {
             if (n == i) {
                 Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
                 currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
-                gui.refresh();
+                gui.refresh(); //refresh the interface
                 dialogue.setChoice(n);
                 currentRoom.listRoomItem.get(i).interactItem();
 
                 if (dialogue.getStressDialogue() != 0) {
 
                     thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
-                    gui.refresh();
+                    gui.refresh(); //refresh the interface
                 }
 
                 //if the NPC is not locked, you can have an important conversation
@@ -657,12 +685,17 @@ public class Game {
         }
     }
 
+    /**
+     * getDialogue method. allows to return a dialogue value, being a Dialogue Object.
+     *@return dialogue Dialogue.
+     */
     public Dialogue getDialogue() {
         return dialogue;
     }
 
     /**
-     * a method to display the GO interface
+     * gameOver method.
+     * a method to display the GO interface if the stress is equals to 10 or stamina equals to 0.
      */
     public void gameOver() {
         if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0)) {
@@ -670,30 +703,58 @@ public class Game {
         }
     }
 
+    /**
+     * setAllanThere method. allows set the boolean allanThere with a new value
+     * @param allanThere a boolean
+     */
     public void setAllanThere(boolean allanThere) {
         this.allanThere = allanThere;
     }
 
+    /**
+     * setLucThere method. allows set the boolean lucThere with a new value
+     * @param LucThere a boolean
+     */
     public void setLucThere(boolean lucThere) {
         this.lucThere = lucThere;
     }
 
+    /**
+     * isPillowThere method. allows to return a boolean pillowThere
+     * @return pillowThere a boolean
+     */
     public boolean isPillowThere() {
         return pillowThere;
     }
 
+    /**
+     * setPillowThere method. allows set the boolean pillowThere with a new value
+     * @param pillowThere a boolean
+     */
     public void setPillowThere(boolean pillowThere) {
         this.pillowThere = pillowThere;
     }
 
+    /**
+     * isPenguinThere method. allows to return a boolean penguinThere
+     * @return penguinThere a boolean
+     */
     public boolean isPenguinThere() {
         return penguinThere;
     }
 
+    /**
+     * setPenguinThere method. allows set the boolean penguinThere with a new value
+     * @param penguinThere a boolean
+     */
     public void setPenguinThere(boolean penguinThere) {
         this.penguinThere = penguinThere;
     }
 
+    /**
+     * getInstructions method. return a String ArrayList named instructions
+     * @return instructions, an arrayList of Strings.
+     */
     public ArrayList<String> getInstructions() {
         return instructions;
     }
