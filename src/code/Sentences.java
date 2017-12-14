@@ -168,7 +168,7 @@ public class Sentences
        sentenceThomas2="[Thomas] psss psss pssssss *does not speak loudly, it seems not possible to hear him*";
        
        sentenceMorgane1="[Morgane] Hellooooo! What are you doing here? I heard that Martin was looking or you!";
-       sentenceMorgane2="[Morgane] Go away please, I don't want to talk to you right now";
+       sentenceMorgane2="[Morgane] We are going to the have a beer later if you want to join!";
        
        sentenceMarie1="[Marie] Come with us to the escape game tonight !";
        sentenceMarie2="[Marie] Don't forget there are 9 other projects to finish after the COOPOO subject !";
@@ -220,6 +220,9 @@ public class Sentences
        listM2.add(sentenceM22);
        listM2.add(sentenceM23);
        
+       listThomas.add(sentenceThomas1);
+       listThomas.add(sentenceThomas2);
+       
        //The conversation sentences for NPC
        sentenceMainMrsGeniet1="[Mrs Geniet] Yes? What do you want from me?";
        sentenceMainMrsGeniet2="[Mrs Geniet] Yes, it's about time that he thinks about that! Take the keys to my office, but don't forget to bring them back.";
@@ -241,7 +244,7 @@ public class Sentences
        sentenceMainMartin3="[Martin] Nothing. I need my diploma, but I'm lazy...";
        sentenceMainMartin4="[Martin] No, I am just lazy. I think Mrs Geniet has my diploma, but she is watching oral presentations.";
        sentenceMainMartin5="[Martin] I guess the diploma is inside Mrs Geniet's office. But she's currently doing the oral presentations.";
-       sentenceMainMartin6="[Martin] Nope, ahah ! Please, be friendly, help me. She is doing the oral presentations !";
+       sentenceMainMartin6="[Martin] Nope, ahah ! Please, be friendly, help me. Mrs Geniet has my diploma, She is doing the oral presentations !";
        sentenceMainMartin7="[Martin] Thanks my friend !";
        sentenceMainMartin8="[Martin] Oh, yes, you're really nice ! Thanks !";
        

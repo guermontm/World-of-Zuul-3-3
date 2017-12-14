@@ -611,6 +611,16 @@ public class Interface extends JFrame {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor4_withl3.jpg")));
                     game.setLucThere(false);
                 }
+                 else if (game.isPillowThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor4_withpillow.jpg")));
+                    game.setPillowThere(false);
+                }
+                else if(game.isPenguinThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor4_withpenguin.jpg")));
+                    game.setPenguinThere(false);
+                }
                 else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor4.jpg")));
                 }
@@ -626,6 +636,17 @@ public class Interface extends JFrame {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor3_withl3.jpg")));
                     game.setLucThere(false);
                 }
+                else if (game.isPillowThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor3_withpillow.jpg")));
+                    game.setPillowThere(false);
+                }
+                else if(game.isPenguinThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor3_withpenguin.jpg")));
+                    game.setPenguinThere(false);
+                }
+                
                 else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor3.jpg")));
                 }
@@ -643,6 +664,16 @@ public class Interface extends JFrame {
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withm2.jpg")));
                 }
+                 else if (game.isPillowThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withpillow.jpg")));
+                    game.setPillowThere(false);
+                }
+                else if(game.isPenguinThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withpenguin.jpg")));
+                    game.setPenguinThere(false);
+                }
                 else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
                 }
@@ -655,6 +686,16 @@ public class Interface extends JFrame {
                 else if (game.isLucThere())
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withl3.jpg")));
+                }
+                 else if (game.isPillowThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withpillow.jpg")));
+                    game.setPillowThere(false);
+                }
+                else if(game.isPenguinThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withpenguin.jpg")));
+                    game.setPenguinThere(false);
                 }
                 else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));

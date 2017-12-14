@@ -60,13 +60,16 @@ public class Container extends Item
     {
         if (! listContent.isEmpty())
         {
-            Interface.setDialog("\n"+"The "+itemName+" contain these objects : " );
+            Interface.setDialog("\n"+"You are searching the "+itemName+" to see if there is anything in it" );
             for(int i = 0; i < listContent.size(); i++)
             {
                 if (listContent.get(i).isLock == false)
                 {
-                    Interface.setDialog("\n"+listContent.get(i).getName());
+                    Interface.setDialog("\n"+"Oh well done you have found : "+listContent.get(i).getName());
                     listContent.get(i).interactItem();
+                }
+                else {
+                    Interface.setDialog("But no, there nothing in here!");
                 }
             }
             

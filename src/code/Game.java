@@ -33,6 +33,8 @@ public class Game {
     //boolean used to display the NPCs during the random events
     private boolean allanThere;
     private boolean lucThere;
+    private boolean pillowThere;
+    private boolean penguinThere;
 
     private HashMap<Room, String> minimap;
 
@@ -173,39 +175,6 @@ public class Game {
     }
 
     /**
-     * Given a command, process (that is: execute) the command.
-     *
-     * @return true If the command ends the game, false otherwise.
-     */
-    private boolean processCommand() {
-        boolean wantToQuit = false;
-
-        if ((character == 'n') || (character == 'N')) {
-            // go north
-            changeRoom("north");
-        } else if ((character == 'e') || (character == 'E')) {
-            // go east
-            changeRoom("east");
-        } else if ((character == 's') || (character == 'S')) {
-            // go south
-            changeRoom("south");
-        } else if ((character == 'w') || (character == 'W')) {
-            // go west
-            changeRoom("west");
-        } else if ((character == 'i') || (character == 'I')) {
-            interact();
-        } else if ((character == 'h') || (character == 'H')) {
-            printHelp(currentQuest);
-        } else if ((character == 'q') || (character == 'Q')) {
-            Interface.setDialog("You entered Q/");
-            // If the user types 'q', the quit() method asks if he really wants to quit.
-            // If so, wantToQuit is set to 'true'.
-            wantToQuit = quit();
-        }
-        return wantToQuit;
-    }
-
-    /**
      * Method getInformationPlayer print all the information and statistics
      * about the player
      *
@@ -238,11 +207,11 @@ public class Game {
         // create the rooms
         downstairsCorridor1 = new Room("Corridor down1", "A corridor in the b2 building.");
         downstairsCorridor2 = new Room("Corridor down2", "Another corridor.");
-        upstairsCorridor1 = new Room("Corridor upstairs1", "A corridor in the b2 building, at the first story.");
-        upstairsCorridor2 = new Room("Corridor upstairs2", "Another corridor, at the first story.");
+        upstairsCorridor1 = new Room("Corridor upstairs1", "A corridor in the b2 building, on the first floor.");
+        upstairsCorridor2 = new Room("Corridor upstairs2", "Another corridor, on the first floor.");
         downstairsLift = new Room("Lift down", "The lift (elevator). You are level 1 (downstairs)");
         upstairsLift = new Room("Lift up", "The lift which connects the two levels. You are level 2 (upstairs).");
-        annieOffice = new Room("Mrs. Geniet's Office", "The office of Mrs. Genient, the teacher of all GPhy students..");
+        annieOffice = new Room("Mrs. Geniet's Office", "The office of Mrs. Geniet, the teacher of all GPhy students..");
         downStairs = new Room("Staircase down", "The stairs that connect the two levels together. Climbing them can get exhausting.");
         classRoom = new Room("Classroom", "The classroom where the main courses are.");
         upStairs = new Room("Staircase up", "You are at the top of the staircase.");
@@ -262,7 +231,7 @@ public class Game {
         downstairsLift.setExits(null, null, hall, null);
         downstairsCorridor1.setExits(td1, downstairsCorridor2, annieOffice, hall);
         td1.setExits(null, null, downstairsCorridor1, null);
-        td4.setExits(null, null, downstairsCorridor1, null);
+        td4.setExits(null, null, downstairsCorridor2, null);
         annieOffice.setExits(downstairsCorridor1, null, null, null);
         downstairsCorridor2.setExits(td4, downStairs, pgOffice, downstairsCorridor1);
         pgOffice.setExits(downstairsCorridor2, null, null, null);
@@ -377,7 +346,7 @@ public class Game {
                 currentRoom = nextRoom;
                 gui.refresh();
             }
-            Interface.setDialog("Current location : \t " + currentRoom.getName());
+            Interface.setDialog("\n"+"Current location : \t " + currentRoom.getName());
             Interface.setDialog("" + currentRoom.getDescription());
 
             //random events that can appear in the corridors
@@ -406,18 +375,19 @@ public class Game {
                 allanThere = true;
                 gui.refresh();
                 event.allanJoke();
-                gui.refresh();
                 break;
             case 4:
-                event.pillowAttack();
+                pillowThere = true;
                 gui.refresh();
+                event.pillowAttack();
                 break;
             case 5:
+                lucThere = true;
                 event.adaHelp();
                 gui.refresh();
-                lucThere = false;
                 break;
             case 6:
+                penguinThere = true;
                 event.penguinHug();
                 gui.refresh();
                 break;
@@ -572,6 +542,7 @@ public class Game {
                             currentQuest = 1;
                             break;
                         case ("PGTD"):
+                            PGTD.setLock(true);
                             PGTD.setHasDisappeared(true); //goes away
                             nolan.setLock(false); //Conversation with Nolan in the toilet is available
                             martin.setLock(false); //Conversation with Martin about the diploma is available
@@ -580,7 +551,8 @@ public class Game {
                         case ("Martin"):
                             annie.setLock(false); //unlocks conversation with annie in the theatre
                             martin.setLock(true);
-                            currentQuest = 5;
+                            nolan.setLock(true); //locks Nolan until you finish the quests
+                            currentQuest = 4;
                             break;
                         case ("Nolan"):
                             guardian.setLock(false);
@@ -630,7 +602,8 @@ public class Game {
                                 Interface.setDialog("[Martin] Oh thanks for my diploma, I owe you one!");
                                 if (!thePlayer.getCrowbar()) { //if you haven't finished the quests with Nolan
                                     Interface.setDialog("[Martin] Now we need Nolan and we can start coding, so we can be home before midnight");
-                                    currentQuest = 4;
+                                    nolan.setLock(true);
+                                    currentQuest = 5;
                                     nolan.setLock(false);
                                 } else {
                                     Interface.setDialog("[Martin] I saw Nolan, he said that you helped him, so now we are ready to code!");
@@ -685,7 +658,7 @@ public class Game {
      * a method to display the GO interface
      */
     public void gameOver() {
-        if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || (dialogue.getGameOver())) {
+        if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0)) {
             new InterfaceGameOver();
         }
     }
@@ -696,6 +669,22 @@ public class Game {
 
     public void setLucThere(boolean lucThere) {
         this.lucThere = lucThere;
+    }
+
+    public boolean isPillowThere() {
+        return pillowThere;
+    }
+
+    public void setPillowThere(boolean pillowThere) {
+        this.pillowThere = pillowThere;
+    }
+
+    public boolean isPenguinThere() {
+        return penguinThere;
+    }
+
+    public void setPenguinThere(boolean penguinThere) {
+        this.penguinThere = penguinThere;
     }
 
     public ArrayList<String> getInstructions() {
