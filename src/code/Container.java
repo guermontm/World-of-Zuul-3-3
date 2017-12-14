@@ -10,13 +10,15 @@ import java.util.*;
  */
 public class Container extends Item 
 {
-    protected ArrayList<SimpleObject> listContent; 
+    protected ArrayList<SimpleObject> listContent;
+    
+    
     /**
      * Constructor for objects of class TypeOne
      * Some item does not appears until some quest are not achieved or appears randomly. 
      * When isLock is true the object is Lock until an event 
-     * @param name
-     * @param isLock
+     * @param name a String
+     * @param isLock a boolean
      */
     public Container(String name,boolean isLock)
     {
@@ -29,8 +31,9 @@ public class Container extends Item
     }
 
     /**
-     * 
-     * @param nameObj 
+     * addObject method : allows to add a SimpleObject named nameObj to a 
+     * listContent
+     * @param nameObj a SimpleObject
      */
     public void addObject(SimpleObject nameObj)
     {
@@ -38,8 +41,9 @@ public class Container extends Item
     }
 
     /**
-     * 
-     * @param removeObj 
+     * removeObj method : allows to remove an object i of the listContent, if
+     * this object exists.
+     * @param removeObj a String
      */
     public void removeObject(String removeObj)
     {
@@ -54,7 +58,7 @@ public class Container extends Item
     
     /**
      * If the item is a container it is possible to search inside. 
-     * The interactItem method will return what it contains.  
+     * The interactItem method will display what it contains.  
      */
     public void interactItem()
     {
