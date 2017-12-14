@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Set;
 
 public class Interface extends JFrame {
 
@@ -382,27 +383,30 @@ public class Interface extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(0);
                 choiceInteract=0; 
-                game.afterInteract(0);
+                game.afterInteract(choiceInteract);
             }
         });
         btnChoice2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(1);
                 choiceInteract=1; 
-                game.afterInteract(1);
+                game.afterInteract(choiceInteract);
+                game.getDialogue().setChoice(choiceInteract);
+    
             }
         });
         btnChoice3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(2);
-                game.afterInteract(2);
+                choiceInteract=2;
+                game.afterInteract(choiceInteract);
             }
         });
         btnChoice4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(3);
                 choiceInteract=3;
-                game.afterInteract(3);
+                game.afterInteract(choiceInteract);
             }
         });
 

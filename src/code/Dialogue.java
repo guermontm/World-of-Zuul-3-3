@@ -29,40 +29,50 @@ public class Dialogue
     }
 
     /**
-     * Method playerChoice allows to ask the user for a character to choose
+     * Method getChoice allows to ask the user for a character to choose
      * between options in a conversation
      *
      * @return choice an int that is the choice of the user
      */
-    public int playerChoice()
+//    public int PlayerChoice()
+//    {
+//        char character;
+//        Scanner reader;
+//        choice = 0;
+//        reader = new Scanner(System.in);
+//        character = reader.next().charAt(0);
+//
+//        while (character != '1' && character != '2' && character != 'q')
+//        {
+//            reader = new Scanner(System.in);
+//            character = reader.next().charAt(0);
+//        }
+//
+//        switch (character)
+//        {
+//            case '1':
+//                choice = 1;
+//                break;
+//            case '2':
+//                choice = 2;
+//                break;
+//            case 'q':
+//                Interface.setDialog("ok no problem, we are quitting");
+//                break;
+//            default:
+//                break;
+//        }
+//        return choice;
+//    }
+  
+    public void setChoice(int playerChoice)
     {
-        char character;
-        Scanner reader;
-        choice = 0;
-        reader = new Scanner(System.in);
-        character = reader.next().charAt(0);
-
-        while (character != '1' && character != '2' && character != 'q')
-        {
-            reader = new Scanner(System.in);
-            character = reader.next().charAt(0);
-        }
-
-        switch (character)
-        {
-            case '1':
-                choice = 1;
-                break;
-            case '2':
-                choice = 2;
-                break;
-            case 'q':
-                Interface.setDialog("ok no problem, we are quitting");
-                break;
-            default:
-                break;
-        }
-        return choice;
+        choice = playerChoice;
+    }
+    
+    public int getChoice()
+    {
+        return choice; 
     }
     
     public int getStressDialogue()
@@ -74,11 +84,7 @@ public class Dialogue
     {
         return gameOver;
     }
-    
-    public int getChoice()
-    {
-        return choice;
-    }
+
 
     /**
      * Method dialogueAxel is used to call the conversation between Axel and the
@@ -91,10 +97,10 @@ public class Dialogue
             Interface.setDialog(sentences.getListMainAxel(0));
             //add un keylistener sur la dialogue box pour pouvoir faire entrée pour appeler la suite
 
-            //possible answers are printed and then the function playerChoice is called to allow the user to chose an answer 
+            //possible answers are printed and then the function getChoice is called to allow the user to chose an answer 
             Interface.setDialog("1: " + sentences.getListMainPlayerToAxel(0));
             Interface.setDialog("2: " + sentences.getListMainPlayerToAxel(1));
-            choice = playerChoice();
+            choice = getChoice();
 
             if ((choice == 1) || (choice == 2))
             {
@@ -102,7 +108,7 @@ public class Dialogue
 
                 Interface.setDialog("1 :" + sentences.getListMainPlayerToAxel(2));
                 Interface.setDialog("2 :" + sentences.getListMainPlayerToAxel(3));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -110,7 +116,7 @@ public class Dialogue
 
                     Interface.setDialog("1 :" + sentences.getListMainPlayerToAxel(4));
                     Interface.setDialog("2 :" + sentences.getListMainPlayerToAxel(5));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -129,7 +135,7 @@ public class Dialogue
 
                     Interface.setDialog("1 :" + sentences.getListMainPlayerToAxel(5));
                     Interface.setDialog("2 :" + sentences.getListMainPlayerToAxel(6));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -141,6 +147,10 @@ public class Dialogue
                        
                     }
                 }
+            }
+            else
+            {
+              Interface.setDialog("This choice does not exist");
             }
         }
     }
@@ -156,14 +166,14 @@ public class Dialogue
         Interface.setDialog(sentences.getListMainMartin(0));
         Interface.setDialog("1 : " + sentences.getListMainPlayerToMartin(0));
         Interface.setDialog("2 : " + sentences.getListMainPlayerToMartin(1));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
             Interface.setDialog(sentences.getListMainMartin(1));
             Interface.setDialog("1 : " + sentences.getListMainPlayerToMartin(2));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToMartin(3));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -178,7 +188,7 @@ public class Dialogue
             Interface.setDialog(sentences.getListMainMartin(2));
             Interface.setDialog("1 : " + sentences.getListMainPlayerToMartin(3));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToMartin(4));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -192,7 +202,7 @@ public class Dialogue
         //you end up here in any case
         Interface.setDialog("1 : " + sentences.getListMainPlayerToMartin(5));
         Interface.setDialog("2 : " + sentences.getListMainPlayerToMartin(6));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
@@ -214,21 +224,21 @@ public class Dialogue
         Interface.setDialog(sentences.getListMainNolan(0));
         Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(0));
         Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(1));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
             Interface.setDialog(sentences.getListMainNolan(3));
             Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(4));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(5));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
                 Interface.setDialog(sentences.getListMainNolan(4));
                 Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(6));
                 Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(7));
-                choice = playerChoice();
+                choice = getChoice();
 
                 //no need for a if because you end up in the same place, but we still give the choice to the player
                 Interface.setDialog(sentences.getListMainNolan(6));
@@ -237,7 +247,7 @@ public class Dialogue
                 Interface.setDialog(sentences.getListMainNolan(5));
                 Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(8));
                 Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(9));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -258,21 +268,21 @@ public class Dialogue
 
             Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(2));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(3));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
                 Interface.setDialog(sentences.getListMainNolan(3));
                 Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(4));
                 Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(5));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
                     Interface.setDialog(sentences.getListMainNolan(4));
                     Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(6));
                     Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(7));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     //no need for a if because you end up in the same place, but we still give the choice to the player
                     Interface.setDialog(sentences.getListMainNolan(6));
@@ -281,7 +291,7 @@ public class Dialogue
                     Interface.setDialog(sentences.getListMainNolan(5));
                     Interface.setDialog("1 : " + sentences.getListMainPlayerToNolan(8));
                     Interface.setDialog("2 : " + sentences.getListMainPlayerToNolan(9));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -310,14 +320,14 @@ public class Dialogue
         Interface.setDialog(sentences.getListMainPGTD(0));
         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGTD(0));
         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGTD(1));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
             Interface.setDialog(sentences.getListMainPGTD(1));
             Interface.setDialog("1 : " + sentences.getListPlayerToMainPGTD(4));
             Interface.setDialog("2 : " + sentences.getListPlayerToMainPGTD(5));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -338,7 +348,7 @@ public class Dialogue
 
             Interface.setDialog("1 : " + sentences.getListPlayerToMainPGTD(2));
             Interface.setDialog("2 : " + sentences.getListPlayerToMainPGTD(3));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -351,7 +361,7 @@ public class Dialogue
                 Interface.setDialog(sentences.getListMainPGTD(1));
                 Interface.setDialog("1 : " + sentences.getListPlayerToMainPGTD(4));
                 Interface.setDialog("2 : " + sentences.getListPlayerToMainPGTD(5));
-                choice = playerChoice();
+                choice = getChoice();
                 
                 if (choice == 1)
             {
@@ -379,7 +389,7 @@ public class Dialogue
         Interface.setDialog(sentences.getListMainMrsGeniet(0));
         Interface.setDialog("1 : " + sentences.getListMainPlayerToMrsGeniet(0));
         Interface.setDialog("2 : " + sentences.getListMainPlayerToMrsGeniet(1));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
@@ -394,7 +404,7 @@ public class Dialogue
 
             Interface.setDialog("1 : " + sentences.getListMainPlayerToMrsGeniet(2));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToMrsGeniet(3));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -422,21 +432,21 @@ public class Dialogue
         Interface.setDialog(sentences.getListMainGuardian(0));
         Interface.setDialog("1 : " + sentences.getListMainPlayerToGuardian(0));
         Interface.setDialog("2 : " + sentences.getListMainPlayerToGuardian(1));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
             Interface.setDialog(sentences.getListMainGuardian(1));
             Interface.setDialog("1 : " + sentences.getListMainPlayerToGuardian(2));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToGuardian(3));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
                 Interface.setDialog(sentences.getListMainGuardian(2));
                 Interface.setDialog("1 : " + sentences.getListMainPlayerToGuardian(4));
                 Interface.setDialog("2 : " + sentences.getListMainPlayerToGuardian(5));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -450,7 +460,7 @@ public class Dialogue
                 Interface.setDialog(sentences.getListMainGuardian(3));
                 Interface.setDialog("1 : " + sentences.getListMainPlayerToGuardian(4));
                 Interface.setDialog("2 : " + sentences.getListMainPlayerToGuardian(5));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -465,7 +475,7 @@ public class Dialogue
             Interface.setDialog(sentences.getListMainGuardian(2));
             Interface.setDialog("1 : " + sentences.getListMainPlayerToGuardian(4));
             Interface.setDialog("2 : " + sentences.getListMainPlayerToGuardian(5));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -491,7 +501,7 @@ public class Dialogue
 
         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(0));
         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(1));
-        choice = playerChoice();
+        choice = getChoice();
 
         if (choice == 1)
         {
@@ -499,7 +509,7 @@ public class Dialogue
 
             Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(2));
             Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(3));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
@@ -513,7 +523,7 @@ public class Dialogue
 
                 Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(8));
                 Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(9));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -528,7 +538,7 @@ public class Dialogue
 
                 Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(10));
                 Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(11));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -536,7 +546,7 @@ public class Dialogue
 
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(13));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(14));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -544,7 +554,7 @@ public class Dialogue
 
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(15));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(16));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -563,7 +573,7 @@ public class Dialogue
 
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(16));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(17));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -580,7 +590,7 @@ public class Dialogue
                     //no matter what you chose, you end up at the same point so no need to put that in the if                        
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(18));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(19));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -593,7 +603,7 @@ public class Dialogue
                     Interface.setDialog(sentences.getListMainPGEnd(19));
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(20));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(21));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -606,7 +616,7 @@ public class Dialogue
                     Interface.setDialog(sentences.getListMainPGEnd(21));
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(22));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(23));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -625,7 +635,7 @@ public class Dialogue
                     Interface.setDialog(sentences.getListMainPGEnd(10));
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(10));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(12));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -634,7 +644,7 @@ public class Dialogue
                         Interface.setDialog(sentences.getListMainPGEnd(11));
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(13));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(14));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -642,7 +652,7 @@ public class Dialogue
 
                             Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(15));
                             Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(16));
-                            choice = playerChoice();
+                            choice = getChoice();
 
                             if (choice == 1)
                             {
@@ -661,7 +671,7 @@ public class Dialogue
 
                             Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(16));
                             Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(17));
-                            choice = playerChoice();
+                            choice = getChoice();
 
                             if (choice == 1)
                             {
@@ -678,7 +688,7 @@ public class Dialogue
                         //no matter what you chose, you end up at the same point so no need to put that in the if                        
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(18));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(19));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -691,7 +701,7 @@ public class Dialogue
                         Interface.setDialog(sentences.getListMainPGEnd(19));
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(20));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(21));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -704,7 +714,7 @@ public class Dialogue
                         Interface.setDialog(sentences.getListMainPGEnd(21));
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(22));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(23));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -735,14 +745,14 @@ public class Dialogue
 
             Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(4));
             Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(5));
-            choice = playerChoice();
+            choice = getChoice();
 
             if (choice == 1)
             {
                 Interface.setDialog(sentences.getListMainPGEnd(4)); //crossing with the other part
                 Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(8));
                 Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(9));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -757,7 +767,7 @@ public class Dialogue
 
                 Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(10));
                 Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(11));
-                choice = playerChoice();
+                choice = getChoice();
 
                 if (choice == 1)
                 {
@@ -765,7 +775,7 @@ public class Dialogue
 
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(13));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(14));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -773,7 +783,7 @@ public class Dialogue
 
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(15));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(16));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -792,7 +802,7 @@ public class Dialogue
 
                         Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(16));
                         Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(17));
-                        choice = playerChoice();
+                        choice = getChoice();
 
                         if (choice == 1)
                         {
@@ -809,7 +819,7 @@ public class Dialogue
                     //no matter what you chose, you end up at the same point so no need to put that in the if                        
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(18));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(19));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -822,7 +832,7 @@ public class Dialogue
                     Interface.setDialog(sentences.getListMainPGEnd(19));
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(20));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(21));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -835,7 +845,7 @@ public class Dialogue
                     Interface.setDialog(sentences.getListMainPGEnd(21));
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(22));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(23));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {
@@ -855,7 +865,7 @@ public class Dialogue
 
                     Interface.setDialog("1 : " + sentences.getListPlayerToMainPGEnd(6));
                     Interface.setDialog("2 : " + sentences.getListPlayerToMainPGEnd(7));
-                    choice = playerChoice();
+                    choice = getChoice();
 
                     if (choice == 1)
                     {

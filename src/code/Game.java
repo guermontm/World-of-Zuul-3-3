@@ -842,6 +842,10 @@ public class Game
                 }
             }
     }
+
+    public Dialogue getDialogue() {
+        return dialogue;
+    }
     
 
 }
