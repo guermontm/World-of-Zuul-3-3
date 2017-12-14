@@ -1,8 +1,5 @@
 package code;
 
-
-import java.util.Scanner;
-
 /*
  *The Dialogue class is the class where we store all the complex conversation between the player and the NPCs.
 *each conversation is a method and can be called in the main class.
@@ -28,43 +25,10 @@ public class Dialogue
         stress = 0;
     }
 
-    /**
-     * Method getChoice allows to ask the user for a character to choose
-     * between options in a conversation
-     *
-     * @return choice an int that is the choice of the user
-     */
-//    public int PlayerChoice()
-//    {
-//        char character;
-//        Scanner reader;
-//        choice = 0;
-//        reader = new Scanner(System.in);
-//        character = reader.next().charAt(0);
-//
-//        while (character != '1' && character != '2' && character != 'q')
-//        {
-//            reader = new Scanner(System.in);
-//            character = reader.next().charAt(0);
-//        }
-//
-//        switch (character)
-//        {
-//            case '1':
-//                choice = 1;
-//                break;
-//            case '2':
-//                choice = 2;
-//                break;
-//            case 'q':
-//                Interface.setDialog("ok no problem, we are quitting");
-//                break;
-//            default:
-//                break;
-//        }
-//        return choice;
-//    }
-  
+   /**
+    * 
+    * @param playerChoice 
+    */
     public void setChoice(int playerChoice)
     {
         choice = playerChoice;
@@ -95,11 +59,11 @@ public class Dialogue
     {
         {
             Interface.setDialog(sentences.getListMainAxel(0));
-            //add un keylistener sur la dialogue box pour pouvoir faire entrée pour appeler la suite
 
             //possible answers are printed and then the function getChoice is called to allow the user to chose an answer 
             Interface.setDialog("1: " + sentences.getListMainPlayerToAxel(0));
             Interface.setDialog("2: " + sentences.getListMainPlayerToAxel(1));
+            
             choice = getChoice();
 
             if ((choice == 1) || (choice == 2))

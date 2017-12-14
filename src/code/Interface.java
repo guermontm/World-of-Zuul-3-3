@@ -78,8 +78,6 @@ public class Interface extends JFrame {
     private int option;
     private int choiceInteract; 
 
-//    for the listener
-//    private Listener l;
     public Interface(int choicePlayer, InterfaceBegin wint) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Fermeture de l'interface chooseplayer
@@ -206,10 +204,11 @@ public class Interface extends JFrame {
         //Jauge de vie
         myJauge.add(displayBarreVie);
         displayBarreVie.setPreferredSize(new Dimension(300, 40));
-
+        affichageEnergie();
         //Jauge de stress
         myJauge.add(displayBarreStress);
         displayBarreStress.setPreferredSize(new Dimension(300, 40));
+        affichageStress();
 
         //**********************************************************************************************************        
         //On definit le layout pour le panel Command
@@ -354,7 +353,7 @@ public class Interface extends JFrame {
 
             public void actionPerformed(ActionEvent e) {
 
-                option = JOptionPane.showConfirmDialog(null, "Are you sure to quit ?",
+                option = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit ?",
                         "Oh noooooooooooooooo !",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
@@ -381,36 +380,31 @@ public class Interface extends JFrame {
         //################  Numbers for the choices #######################
         btnChoice1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.setChoice(0);
                 choiceInteract=0; 
                 game.afterInteract(choiceInteract);
             }
         });
         btnChoice2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.setChoice(1);
                 choiceInteract=1; 
                 game.afterInteract(choiceInteract);
-                game.getDialogue().setChoice(choiceInteract);
+                game.getDialogue().setChoice(choiceInteract); //to chose between two answers
     
             }
         });
         btnChoice3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.setChoice(2);
                 choiceInteract=2;
                 game.afterInteract(choiceInteract);
             }
         });
         btnChoice4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                game.setChoice(3);
                 choiceInteract=3;
                 game.afterInteract(choiceInteract);
             }
         });
 
-//        myMainFrame.addKeyListener(l);
         //al the methods needed to launch the game
         game.printWelcome();
         game.createRooms();
@@ -443,9 +437,6 @@ public class Interface extends JFrame {
     public void run() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         myMainFrame.setVisible(true);
-        //enable to use a key listener
-        myMainFrame.setFocusable(true);
-//        myMainFrame.addKeyListener(l);
     }
 
     public void affichageEnergie() {
@@ -729,20 +720,4 @@ public class Interface extends JFrame {
     public int getChoiceInteract() {
         return choiceInteract;
     }
-
-    
-    /**
-     * pour pouvoir faire interact, besoin de savoir ce que le user a rentré
-     */
-//    public void actionPerformed(ActionEvent ae) {
-//        if (ae.getActionCommand().equals("1")) {
-//            game.setChoice(0);
-//        } else if (ae.getActionCommand().equals("2")) {
-//            game.setChoice(1);
-//        } else if (ae.getActionCommand().equals("3")) {
-//            game.setChoice(2);
-//        } else if (ae.getActionCommand().equals("4")) {
-//            game.setChoice(3);
-//        }
-//    }
 }

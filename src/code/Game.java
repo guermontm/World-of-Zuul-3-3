@@ -1,4 +1,5 @@
 package code;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -12,9 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author (Grp5)
  * @version (V5-13/12/2017)
  */
-public class Game
-{
-    private Interface gui; 
+public class Game {
+
+    private Interface gui;
     // this attribute represents the current room in which the player is located.
     protected Room currentRoom;
     // this attribute represents the player 
@@ -25,12 +26,12 @@ public class Game
     RandomEvent event;
     //a character used to get the entries by the user
     char character;
-    
+
     //dialogue attribute to be able to call the dialogues for the NPCs
     protected Dialogue dialogue;
-    
+
     //an int used for the choices
-    private int n =-1;
+    private int n = -1;
     //boolean used to display the NPCs during the random events
     private boolean allanThere;
     private boolean lucThere;
@@ -55,6 +56,7 @@ public class Game
     private NPC morgane;
     private NPC marie;
     private NPC clement;
+    private NPC PGEnd;
 
     //items
     private Container cafet;
@@ -82,20 +84,20 @@ public class Game
      * parameters for the game
      *
      *
-     * @param playerChoice an int that defines which character you want to play with
+     * @param playerChoice an int that defines which character you want to play
+     * with
      * @param w takes the interface to be able to display it during the game
      */
-    public Game(int playerChoice, Interface w)
-    {
+    public Game(int playerChoice, Interface w) {
         gui = w;
-        
+
         choosePlayer(playerChoice); //à laisser la?
         event = new RandomEvent(thePlayer);
 
         commandLetter = new CommandLetter();
 
         //NPCs
-        axel = new NPC("Axel", true, false);
+        axel = new NPC("Axel", false, false);
         nolan = new NPC("Nolan", true, false);
         martin = new NPC("Martin", true, false);
         annie = new NPC("Mrs Geniet", true, false);
@@ -107,6 +109,7 @@ public class Game
         marie = new NPC("Marie", true, false);
         clement = new NPC("Clément", true, false);
         PGTD = new NPC("PGTD", true, false);
+        PGEnd = new NPC("PGEnd", true, false);
 
         //items for the rooms
         cafet = new Container("cafet", false);
@@ -150,15 +153,14 @@ public class Game
     }
 
     /**
-     * Method choosePlayer allows to chose between three types of player
-     * they differ by their stat and their special ability
-     * @param player 
+     * Method choosePlayer allows to chose between three types of player they
+     * differ by their stat and their special ability
+     *
+     * @param player
      */
-    public void choosePlayer(int player)
-    {
+    public void choosePlayer(int player) {
         // the constructor will define which player the user has chosen
-        switch (player)
-        {
+        switch (player) {
             case 1:
                 thePlayer = new TypeOne();
                 break;
@@ -179,34 +181,26 @@ public class Game
      *
      * @return true If the command ends the game, false otherwise.
      */
-    private boolean processCommand()
-    {
+    private boolean processCommand() {
         boolean wantToQuit = false;
 
-        if ((character == 'n') || (character == 'N'))
-        {
+        if ((character == 'n') || (character == 'N')) {
             // go north
             changeRoom("north");
-        } else if ((character == 'e') || (character == 'E'))
-        {
+        } else if ((character == 'e') || (character == 'E')) {
             // go east
             changeRoom("east");
-        } else if ((character == 's') || (character == 'S'))
-        {
+        } else if ((character == 's') || (character == 'S')) {
             // go south
             changeRoom("south");
-        } else if ((character == 'w') || (character == 'W'))
-        {
+        } else if ((character == 'w') || (character == 'W')) {
             // go west
             changeRoom("west");
-        } else if ((character == 'i') || (character == 'I'))
-        {
+        } else if ((character == 'i') || (character == 'I')) {
             interact();
-        } else if ((character == 'h') || (character == 'H'))
-        {
+        } else if ((character == 'h') || (character == 'H')) {
             printHelp(currentQuest);
-        } else if ((character == 'q') || (character == 'Q'))
-        {
+        } else if ((character == 'q') || (character == 'Q')) {
             Interface.setDialog("You entered Q/");
             // If the user types 'q', the quit() method asks if he really wants to quit.
             // If so, wantToQuit is set to 'true'.
@@ -220,8 +214,7 @@ public class Game
      * about the player
      *
      */
-    public void getInformationPlayer()
-    {
+    public void getInformationPlayer() {
         Interface.setDialog("Your stats:");
         Interface.setDialog("You have " + thePlayer.getStrStat() + " strength");
         Interface.setDialog("You have " + thePlayer.getStaStat() + " stamina");
@@ -229,21 +222,19 @@ public class Game
         Interface.setDialog("You have " + thePlayer.getStressStat() + " stress");
         Interface.setDialog("You have " + thePlayer.getSpeStat() + " speech");
         Interface.setDialog("You have " + thePlayer.getMoney() + " money");
-        if (!thePlayer.getCrowbar())
-        {
+        if (!thePlayer.getCrowbar()) {
             Interface.setDialog("You aren't carrying anything special, except for your papers and stuff.");
-        } else
-        {
+        } else {
             Interface.setDialog("You have your crowbar in your inventory. You love that thing.");
         }
 
     }
 
     /**
-     * Method createRooms is used to create the rooms of the game, it initialize them with a name and a description
+     * Method createRooms is used to create the rooms of the game, it initialize
+     * them with a name and a description
      */
-    public void createRooms()
-    {
+    public void createRooms() {
 
         // For the map display
         minimap = new HashMap<Room, String>();
@@ -313,10 +304,9 @@ public class Game
     }
 
     /**
-     *Method addItems is used to add all the items in the specific rooms
+     * Method addItems is used to add all the items in the specific rooms
      */
-    public void addItems()
-    {
+    public void addItems() {
         //items for the hall
         hall.addItem(axel);
         hall.addItem(cafet);
@@ -363,39 +353,29 @@ public class Game
      *
      * @param direction The direction in which the player is trying to go.
      */
-    public void changeRoom(String direction)
-    {
+    public void changeRoom(String direction) {
         Room nextRoom = null;
         // Planning to go to the next room. (hashmap browsing) 
         nextRoom = currentRoom.getExits().get(direction);
 
-        if (nextRoom == null)
-        {
+        if (nextRoom == null) {
             Interface.setDialog("You can't go this way.");
-        } else
-        {
+        } else {
             // Moving to the next room
-            
-            if ((currentRoom == downstairsCorridor1) && (nextRoom == annieOffice))
-            {
-                if (!thePlayer.getKeyAnnie())
-                {
+
+            if ((currentRoom == downstairsCorridor1) && (nextRoom == annieOffice)) {
+                if (!thePlayer.getKeyAnnie()) {
                     Interface.setDialog("This office is locked, you need a key to open it...");
-                } else
-                {
-                    currentRoom = nextRoom;                    
-                }
-            } else if ((currentRoom == downstairsCorridor2) && (nextRoom == pgOffice))
-            {
-                if (!thePlayer.getKeyPG())
-                {
-                    Interface.setDialog("This office is locked, you need a key to open it...");
-                } else
-                {
+                } else {
                     currentRoom = nextRoom;
                 }
-            } else
-            {
+            } else if ((currentRoom == downstairsCorridor2) && (nextRoom == pgOffice)) {
+                if (!thePlayer.getKeyPG()) {
+                    Interface.setDialog("This office is locked, you need a key to open it...");
+                } else {
+                    currentRoom = nextRoom;
+                }
+            } else {
                 currentRoom = nextRoom;
                 gui.refresh();
             }
@@ -404,18 +384,15 @@ public class Game
 
             // Displaying the available exits
             Interface.setDialog("Exits: ");
-            for (String key : currentRoom.getExits().keySet())
-            {
-                if (currentRoom.getExits().get(key) != null)
-                {
+            for (String key : currentRoom.getExits().keySet()) {
+                if (currentRoom.getExits().get(key) != null) {
                     Interface.setDialog(key + "\n");
                 }
             }
             Interface.setDialog("");
 
             //random events that can appear in the corridors
-            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2))
-            {
+            if ((currentRoom == upstairsCorridor2) || (currentRoom == upstairsCorridor1) || (currentRoom == downstairsCorridor1) || (currentRoom == downstairsCorridor2)) {
                 int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
                 rEvent(randomNum);
 
@@ -426,8 +403,7 @@ public class Game
     /**
      * Main play routine. Loops until end of play.
      */
-    public void play()
-    {
+    public void play() {
         //printWelcome();
         createRooms();
         addItems();
@@ -435,15 +411,13 @@ public class Game
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
         boolean finished = false;
-        while (!finished)
-        {
+        while (!finished) {
             character = commandLetter.readCommand();
             beginning();
             finished = processCommand();
 
             //Game Over if you have too much stress, not enough stamina or if you answer wrong during a conversation
-            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true)
-            {
+            if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || dialogue.getGameOver() == true) {
                 finished = true;
                 Interface.setDialog("You are not ready for this, we are sorry...");
             }
@@ -456,12 +430,11 @@ public class Game
      * method that uses the randomInt attribute to call randomly a method in the
      * RandomEvent class (each number is linked to a method in RandomEvent)
      *
-     * @param randomInt a random integer that allow to know if a randomEvent will appear
+     * @param randomInt a random integer that allow to know if a randomEvent
+     * will appear
      */
-    public void rEvent(int randomInt)
-    {
-        switch (randomInt)
-        {
+    public void rEvent(int randomInt) {
+        switch (randomInt) {
             case 2:
                 event.hiddenCandy();
                 gui.refresh();
@@ -499,8 +472,7 @@ public class Game
      * Method explore allow knowing the item on a room
      *
      */
-    public void explore()
-    {
+    public void explore() {
         currentRoom.printItems();
     }
 
@@ -509,105 +481,12 @@ public class Game
      * possible
      *
      */
-    public void interact()
-    {
+    public void interact() {
 
-        if (!currentRoom.listRoomItem.isEmpty())
-        {
+        if (!currentRoom.listRoomItem.isEmpty()) {
             Interface.setDialog("What item do you want to interact with ?");
             currentRoom.printItems();
-
-            //gui.actionPerformed(ae);
-            
-//                // Player wishes to interact with object of index i
-//                if (n == i)
-//                {
-//                    Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
-//                    currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
-//                    gui.refresh();
-//                    currentRoom.listRoomItem.get(i).interactItem();
-//
-//                    if (dialogue.getStressDialogue() != 0)
-//                    {
-//
-//                        thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
-//                        gui.refresh();
-//                    }
-//
-//                    //if the NPC is not locked, you can have an important conversation
-//                    if (!currentRoom.listRoomItem.get(i).getLock())
-//                    {
-//                        switch (currentRoom.listRoomItem.get(i).getName())
-//                        {
-//                            case ("PGTD"):
-//                                PGTD.setHasDisappeared(true); //goes away
-//                                nolan.setLock(); //Conversation with Nolan in the toilet is available
-//                                martin.setLock(); //Conversation with Martin about the diploma is available
-//
-//                                break;
-//                            case ("Martin"):
-//                                annie.setLock(); //unlocks conversation with annie in the theatre
-//
-//                                break;
-//                            case ("Nolan"):
-//                                guardian.setLock();
-//
-//                                break;
-//                            case ("Mrs Geniet"):
-//                                annie.setLock(); //locks annie again
-//                                thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
-//                                break;
-//                            case ("Guardian"):
-//                                guardian.setLock();
-//                                thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
-//                                break;
-//                            case ("PGEnd"):
-//                                break;
-//                            default:
-//                                break;
-//                        }
-//                        currentRoom.listRoomItem.get(i).setInteracting(false);
-//                        gui.refresh();
-//                    }
-//
-//                    //if you interact with the buttons in the lift then you change floors
-//                    if (currentRoom.listRoomItem.get(i) == liftButton)
-//                    {
-//                        //allows to go upstairs
-//
-//                        if (currentRoom == upstairsLift)
-//                        {
-//                            currentRoom = downstairsLift;
-//                            Interface.setDialog("The lift is going down!");
-//                            Interface.setDialog("\n" + currentRoom.getDescription());
-//                        } else if (currentRoom == downstairsLift)
-//                        {
-//                            currentRoom = upstairsLift;
-//                            Interface.setDialog("The lift is going up!");
-//                            Interface.setDialog("\n" + currentRoom.getDescription());
-//                        }
-//                    }
-//                    //if you interact with the stairs then you change floors
-//                    if (currentRoom.listRoomItem.get(i) == stairs)
-//                    {
-//                        //allows to go upstairs
-//
-//                        if (currentRoom == upStairs)
-//                        {
-//                            currentRoom = downStairs;
-//                            Interface.setDialog("You are going down the stairs!");
-//                            Interface.setDialog("\n" + currentRoom.getDescription());
-//                        } else if (currentRoom == downStairs)
-//                        {
-//                            currentRoom = upStairs;
-//                            Interface.setDialog("You are climbing the stairs!");
-//                            Interface.setDialog("\n" + currentRoom.getDescription());
-//                        }
-//                    }
-//                }
-            
-        } else
-        {
+        } else {
             Interface.setDialog("There is nothing to interact with in this room...");
         }
     }
@@ -615,11 +494,9 @@ public class Game
     /**
      * Method beginning is the start of the game
      */
-    public void beginning()
-    {
+    public void beginning() {
 
-        if ((currentRoom == hall) && (axel.getLock() == false))
-        {
+        if ((currentRoom == hall) && (axel.getLock() == false)) {
             currentQuest = 0;
             printHelp(currentQuest); //to give instructions to the player at the beginning, mettre une touche a presser pour continuer
 
@@ -627,16 +504,14 @@ public class Game
             axel.interactItem();
 
             //at the end of the conversation, you have all the information you need, axel does not talk to you about that again
-            axel.setLock();
+            axel.setLock(true);
 
-            PGTD.setLock();
+            PGTD.setLock(false);
             //printing the room info again so the player is not lost
             Interface.setDialog("Current Location : " + currentRoom.getName());
             Interface.setDialog("Exits: ");
-            for (String key : currentRoom.getExits().keySet())
-            {
-                if (currentRoom.getExits().get(key) != null)
-                {
+            for (String key : currentRoom.getExits().keySet()) {
+                if (currentRoom.getExits().get(key) != null) {
                     Interface.setDialog(key + "\n");
                 }
             }
@@ -647,8 +522,7 @@ public class Game
      * Print out some help information. Contains all the information the user
      * needs to know about the game.
      */
-    public void printHelp(int q)
-    {
+    public void printHelp(int q) {
         Interface.setDialog("__________________HELP___________________");
         Interface.setDialog("You are wandering in the B2 building.");
         Interface.setDialog("Your goal is to deliver a project.");
@@ -670,8 +544,7 @@ public class Game
      * Print out some welcome text. Contains all the information the user needs
      * to know about the game.
      */
-    public void printWelcome()
-    {
+    public void printWelcome() {
         Interface.setDialog("\n\n\n");
         Interface.setDialog("<////////////////////////////////[]========0");
         Interface.setDialog("\n");
@@ -689,55 +562,40 @@ public class Game
     /**
      * allows the player to quit the game
      */
-    public boolean quit()
-    {
+    public boolean quit() {
         Interface.setDialog("Are you sure? [Y/N]");
         char character;
         Scanner reader;
         reader = new Scanner(System.in);
         character = reader.next().charAt(0);
-        if ((character != 'y') && (character != 'Y'))
-        {
+        if ((character != 'y') && (character != 'Y')) {
             Interface.setDialog("Thought so.");
             return (false);
-        } else
-        {
+        } else {
             Interface.setDialog("Hope you had a good time.");
             return (true);
         }
 
     }
 
-    public Item getItem(String name)
-    {
+    public Item getItem(String name) {
         int i;
         String n;
-        for (i = 0; i < currentRoom.listRoomItem.size(); i++)
-        {
+        for (i = 0; i < currentRoom.listRoomItem.size(); i++) {
             n = currentRoom.listRoomItem.get(i).getName();
-            if (name.equals(n))
-            {
+            if (name.equals(n)) {
                 return currentRoom.listRoomItem.get(i);
             }
         }
         return martin;
     }
 
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         return thePlayer;
     }
 
     public Interface getGui() {
         return gui;
-    }
-    
-    /**
-     * setter for the n
-     */
-    public void setChoice(int choice)
-    {
-        n = choice;
     }
 
     public boolean isAllanThere() {
@@ -747,105 +605,135 @@ public class Game
     public boolean isLucThere() {
         return lucThere;
     }
-    
-    
-    public void afterInteract(int choiceInteract)
-    {
-        n=choiceInteract; 
-    // Player wishes to interact with object of index i
-    for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
-            {
-                if (n == i)
-                {
-                    Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
-                    currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
+
+    public void afterInteract(int choiceInteract) {
+        n = choiceInteract;
+        // Player wishes to interact with object of index i
+        for (int i = 0; i < currentRoom.listRoomItem.size(); i++) {
+            if (n == i) {
+                Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+                currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
+                gui.refresh();
+                dialogue.setChoice(n);
+                currentRoom.listRoomItem.get(i).interactItem();
+
+                if (dialogue.getStressDialogue() != 0) {
+
+                    thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
                     gui.refresh();
-                    currentRoom.listRoomItem.get(i).interactItem();
+                }
 
-                    if (dialogue.getStressDialogue() != 0)
-                    {
-
-                        thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
-                        gui.refresh();
+                //if the NPC is not locked, you can have an important conversation
+                if (!currentRoom.listRoomItem.get(i).getLock()) {
+                    switch (currentRoom.listRoomItem.get(i).getName()) {
+                        case ("PGTD"):
+                            PGTD.setHasDisappeared(true); //goes away
+                            nolan.setLock(false); //Conversation with Nolan in the toilet is available
+                            martin.setLock(false); //Conversation with Martin about the diploma is available
+                            currentQuest = 2;
+                            break;
+                        case ("Martin"):
+                            annie.setLock(false); //unlocks conversation with annie in the theatre
+                            martin.setLock(true);
+                            currentQuest = 5;
+                            break;
+                        case ("Nolan"):
+                            guardian.setLock(false);
+                            nolan.setLock(true);
+                            break;
+                        case ("Mrs Geniet"):
+                            annie.setLock(true); //locks annie again
+                            thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
+                            break;
+                        case ("Guardian"):
+                            guardian.setLock(true);
+                            thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
+                            break;
+                        case ("computer"):
+                            Interface.setDialog("You are coding for your project it is gonna take a little moment...");
+                            Interface.setDialog("");
+                            Interface.setDialog("Here you go! Martin Nolan and you are really proud of what you have done, the next step is now to hand it over to PG!");
+                                PGEnd.setLock(false);
+                                currentQuest = 8;
+                            break;
+                        default:
+                            break;
+                    }
+                    currentRoom.listRoomItem.get(i).setInteracting(false);
+                    gui.refresh();
+                } else if (currentRoom.listRoomItem.get(i).getLock()) { //the NPC is locked
+                    switch (currentRoom.listRoomItem.get(i).getName()) {
+                        case "Nolan":
+                            if (thePlayer.getCrowbar()) //if you talked to the guardian
+                            {
+                                Interface.setDialog("[Nolan] Oh my god thanks, i thought I would be locked in here forever!");
+                                nolan.setHasDisappeared(true);
+                                if (!diploma.getLock()) //if you haven't finished the quests with martin
+                                {
+                                    Interface.setDialog("[Nolan] Now you need to find Martin so that we can finish this project!");
+                                    currentQuest = 3;
+                                    martin.setLock(false);
+                                } else {
+                                    Interface.setDialog("[Nolan] Oh you have found Martin? Ok, let's go finish this project!");
+                                    computer.setLock(false);
+                                    currentQuest = 7;
+                                }
+                            }
+                            break;
+                        case "Martin":
+                            if (diploma.isLock) { // if you have the diploma
+                                Interface.setDialog("[Martin] Oh thanks for my diploma, I owe you one!");
+                                if (!thePlayer.getCrowbar()) { //if you haven't finished the quests with Nolan
+                                    Interface.setDialog("[Martin] Now we need Nolan and we can start coding, so we can be home before midnight");
+                                    currentQuest = 4;
+                                    nolan.setLock(false);
+                                } else {
+                                    Interface.setDialog("[Martin] I saw Nolan, he said that you helped him, so now we are ready to code!");
+                                    computer.setLock(false);
+                                    currentQuest = 7;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
                     }
 
-                    //if the NPC is not locked, you can have an important conversation
-                    if (!currentRoom.listRoomItem.get(i).getLock())
-                    {
-                        switch (currentRoom.listRoomItem.get(i).getName())
-                        {
-                            case ("PGTD"):
-                                PGTD.setHasDisappeared(true); //goes away
-                                nolan.setLock(); //Conversation with Nolan in the toilet is available
-                                martin.setLock(); //Conversation with Martin about the diploma is available
+                }
 
-                                break;
-                            case ("Martin"):
-                                annie.setLock(); //unlocks conversation with annie in the theatre
+                //if you interact with the buttons in the lift then you change floors
+                if (currentRoom.listRoomItem.get(i) == liftButton) {
+                    //allows to go upstairs
 
-                                break;
-                            case ("Nolan"):
-                                guardian.setLock();
-
-                                break;
-                            case ("Mrs Geniet"):
-                                annie.setLock(); //locks annie again
-                                thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
-                                break;
-                            case ("Guardian"):
-                                guardian.setLock();
-                                thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
-                                break;
-                            case ("PGEnd"):
-                                break;
-                            default:
-                                break;
-                        }
-                        currentRoom.listRoomItem.get(i).setInteracting(false);
-                        gui.refresh();
+                    if (currentRoom == upstairsLift) {
+                        currentRoom = downstairsLift;
+                        Interface.setDialog("The lift is going down!");
+                        Interface.setDialog("\n" + currentRoom.getDescription());
+                    } else if (currentRoom == downstairsLift) {
+                        currentRoom = upstairsLift;
+                        Interface.setDialog("The lift is going up!");
+                        Interface.setDialog("\n" + currentRoom.getDescription());
                     }
+                }
+                //if you interact with the stairs then you change floors
+                if (currentRoom.listRoomItem.get(i) == stairs) {
+                    //allows to go upstairs
 
-                    //if you interact with the buttons in the lift then you change floors
-                    if (currentRoom.listRoomItem.get(i) == liftButton)
-                    {
-                        //allows to go upstairs
-
-                        if (currentRoom == upstairsLift)
-                        {
-                            currentRoom = downstairsLift;
-                            Interface.setDialog("The lift is going down!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downstairsLift)
-                        {
-                            currentRoom = upstairsLift;
-                            Interface.setDialog("The lift is going up!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        }
-                    }
-                    //if you interact with the stairs then you change floors
-                    if (currentRoom.listRoomItem.get(i) == stairs)
-                    {
-                        //allows to go upstairs
-
-                        if (currentRoom == upStairs)
-                        {
-                            currentRoom = downStairs;
-                            Interface.setDialog("You are going down the stairs!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downStairs)
-                        {
-                            currentRoom = upStairs;
-                            Interface.setDialog("You are climbing the stairs!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        }
+                    if (currentRoom == upStairs) {
+                        currentRoom = downStairs;
+                        Interface.setDialog("You are going down the stairs!");
+                        Interface.setDialog("\n" + currentRoom.getDescription());
+                    } else if (currentRoom == downStairs) {
+                        currentRoom = upStairs;
+                        Interface.setDialog("You are climbing the stairs!");
+                        Interface.setDialog("\n" + currentRoom.getDescription());
                     }
                 }
             }
+        }
     }
 
     public Dialogue getDialogue() {
         return dialogue;
     }
-    
 
 }

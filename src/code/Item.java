@@ -80,17 +80,9 @@ abstract public class Item
      * and if it is unlock the item becomes lock. 
      *
      */
-    public void setLock()
+    public void setLock(boolean b)
     {
-        if (isLock == true)
-        {
-            isLock = false;
-        }
-        else if (isLock == false)
-        {
-            isLock = true;
-        }
-        
+      isLock = b;
     }
     
         /**

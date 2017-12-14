@@ -51,7 +51,6 @@ public class SimpleObject extends Item
             case "coca":
                 Interface.setDialog("You should be careful, there is a lot of sugar in that drink...");
             default :
-            Interface.setDialog("You have found : "+itemName);
         }
     }
 }

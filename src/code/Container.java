@@ -63,12 +63,10 @@ public class Container extends Item
             Interface.setDialog("\n"+"The "+itemName+" contain these objects : " );
             for(int i = 0; i < listContent.size(); i++)
             {
-                Interface.setDialog("le for est appelé");
                 if (listContent.get(i).isLock == false)
                 {
                     Interface.setDialog("\n"+listContent.get(i).getName());
-                    Interface.setDialog("le if est appelé");
-                    //listContent.get(i).interactItem();
+                    listContent.get(i).interactItem();
                 }
             }
             
