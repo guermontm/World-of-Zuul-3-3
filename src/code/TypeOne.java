@@ -1,7 +1,8 @@
 package code;
 /**
- * This class inherits from player and represents a player of the first type
- * It means that the attributes are initialised with specific values
+ * This class inherits from player and represents a player of the first type, named Pierrot
+ * It means that the attributes are initialised with specific values.
+ * This character 
  *
  * @author (Group 5)
  * @version (09/11/17)
