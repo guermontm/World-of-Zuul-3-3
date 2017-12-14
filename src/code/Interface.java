@@ -69,7 +69,7 @@ public class Interface extends JFrame {
     private Player player1;
 
     //Textfield for the dialog box which display information to the player and allow him to interact with the game
-    private static final TextArea dialogBox = new TextArea("Welcome to the World of GPhy! \n \n The goal is simple : finish the COOPOO project before living the University\n You can interact with the people and the objects in different rooms.\n\n If you need more information on your player or on the game, click on help. \n\n Good luck !");
+    private static final TextArea dialogBox = new TextArea("Welcome to the World of GPhy! \n \n The goal is simple : finish the COOPOO project before living the University\n You can interact with the people and the objects in different rooms.\n\n If you need more information on your player or on the game, click on help. \n\n Good luck ! ");
 
     //Game 
     private Game game;
@@ -409,7 +409,7 @@ public class Interface extends JFrame {
         game.createRooms();
         game.addItems();
         Interface.setDialog(game.getInstructions().get(0));
-        Interface.setDialog("Press the interact button to be able to talk to him!");
+        Interface.setDialog("Press the interact button to be able to talk to him! (the open hand on your right)");
     }
 
     public void setLabelForce() {

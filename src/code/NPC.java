@@ -13,7 +13,6 @@ public class NPC extends Item
 {
 
     private Sentences sentences;
-    private boolean interacting;
 
     /**
      * Constructor for objects of subclass NPC Some item does not appears until

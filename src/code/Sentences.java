@@ -267,7 +267,7 @@ public class Sentences
        sentenceMainPGTD4="[PG] What is this behavior? Imagine yourself in a professional environment... You are not worthy of being a Gphy. Go away";//Game over
        sentenceMainPGTD5="[PG] Hum.. Ok, be careful next time...";
        sentenceMainPGTD6="[PG] Ah, because you're going to watch them and do nothing? Pff, go to work..."; // +1 stress
-       sentenceMainPGTD7="[PG] Yes... Do not waste your time remaining. This is not very serious...";
+       sentenceMainPGTD7="[PG] Yes... Do not waste your remaining time. This is not very serious...";
        
        sentenceMainPGEnd1="[PG] You ! Here ! What are you doing ?!";
        sentenceMainPGEnd2="[PG] How did you get this key?! My key.";

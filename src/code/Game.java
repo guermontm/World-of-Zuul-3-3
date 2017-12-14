@@ -20,9 +20,7 @@ public class Game {
     protected Room currentRoom;
     // this attribute represents the player 
     protected Player thePlayer;
-    // the CommandLetter attribute which analyse the command of the user 
-    private CommandLetter commandLetter;
-    TestTimer timerPlayer;
+    //random events that can happen
     RandomEvent event;
     //a character used to get the entries by the user
     char character;
@@ -93,8 +91,6 @@ public class Game {
 
         choosePlayer(playerChoice); //à laisser la?
         event = new RandomEvent(thePlayer);
-
-        commandLetter = new CommandLetter();
 
         //NPCs
         axel = new NPC("Axel", false, false);
