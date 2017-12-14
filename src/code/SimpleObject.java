@@ -48,6 +48,8 @@ public class SimpleObject extends Item
                 Interface.setDialog("There is a computer but you cannot interact with it");
             }
             break;
+            case "coca":
+                Interface.setDialog("You should be careful, there is a lot of sugar in that drink...");
             default :
             Interface.setDialog("You have found : "+itemName);
         }

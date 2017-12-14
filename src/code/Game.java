@@ -1,5 +1,4 @@
 package code;
-
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,13 +10,12 @@ import java.util.concurrent.ThreadLocalRandom;
  * to run.
  *
  * @author (Grp5)
- * @version (V4 - 23/11/17)
+ * @version (V5-13/12/2017)
  */
 public class Game
 {
     private Interface gui; 
-    //protected Interface gui;
-// this attribute represents the current room in which the player is located.
+    // this attribute represents the current room in which the player is located.
     protected Room currentRoom;
     // this attribute represents the player 
     protected Player thePlayer;
@@ -25,12 +23,17 @@ public class Game
     private CommandLetter commandLetter;
     TestTimer timerPlayer;
     RandomEvent event;
-
+    //a character used to get the entries by the user
     char character;
-
-    // an integer that can be changed randomly between 1
-    private int randomInt;
+    
+    //dialogue attribute to be able to call the dialogues for the NPCs
     protected Dialogue dialogue;
+    
+    //an int used for the choices
+    private int n;
+    //boolean used to display the NPCs during the random events
+    private boolean allanThere;
+    private boolean lucThere;
 
     private HashMap<Room, String> minimap;
 
@@ -71,11 +74,7 @@ public class Game
     private SimpleObject liftButton;
     private SimpleObject stairs;
 
-    private int player;
-
-    private GestionAction gestionAction;
-
-    // Attic & basement have been added to check the up & down directions.
+    // All the rooms for the B2 building where the game is set
     Room annieOffice, classRoom, downstairsCorridor1, downstairsCorridor2, upstairsCorridor1, upstairsCorridor2, upStairs, downStairs, pgOffice, tp1, td1, td4, wc, hall, theatre, downstairsLift, upstairsLift, restRoom;
 
     /**
@@ -83,18 +82,20 @@ public class Game
      * parameters for the game
      *
      *
+     * @param playerChoice an int that defines which character you want to play with
+     * @param w takes the interface to be able to display it during the game
      */
     public Game(int playerChoice, Interface w)
     {
         gui = w;
         
-        choosePlayer(playerChoice);
+        choosePlayer(playerChoice); //à laisser la?
         event = new RandomEvent(thePlayer);
 
         commandLetter = new CommandLetter();
 
         //NPCs
-        axel = new NPC("Axel", false, false);
+        axel = new NPC("Axel", true, false);
         nolan = new NPC("Nolan", true, false);
         martin = new NPC("Martin", true, false);
         annie = new NPC("Mrs Geniet", true, false);
@@ -134,6 +135,7 @@ public class Game
 
         dialogue = new Dialogue();
 
+        //intsructions given to the player to help him navigate throughout the game
         instructions = new ArrayList<>();
         instructions.add("You see someone coming to talk to you. It's your old friend, Axel.");
         instructions.add("You must look for PG so you can get your COOPOO project");
@@ -147,6 +149,11 @@ public class Game
 
     }
 
+    /**
+     * Method choosePlayer allows to chose between three types of player
+     * they differ by their stat and their special ability
+     * @param player 
+     */
     public void choosePlayer(int player)
     {
         // the constructor will define which player the user has chosen
@@ -232,6 +239,9 @@ public class Game
 
     }
 
+    /**
+     * Method createRooms is used to create the rooms of the game, it initialize them with a name and a description
+     */
     public void createRooms()
     {
 
@@ -298,12 +308,12 @@ public class Game
         minimap.put(classRoom, "Classroom");
         minimap.put(restRoom, "Resting Room");
 
-        currentRoom = hall;  // The game starts witht he plater located in the hall.
+        currentRoom = hall;  // The game starts with he player located in the hall.
 
     }
 
     /**
-     *
+     *Method addItems is used to add all the items in the specific rooms
      */
     public void addItems()
     {
@@ -329,7 +339,7 @@ public class Game
         td1.addItem(M2);
         //items for wc
         wc.addItem(nolan);
-        //items for restroom
+        //items for restingroom
         restRoom.addItem(couch);
         restRoom.addItem(thomas);
         //items for TP1
@@ -373,8 +383,7 @@ public class Game
                     Interface.setDialog("This office is locked, you need a key to open it...");
                 } else
                 {
-                    currentRoom = nextRoom;
-                    
+                    currentRoom = nextRoom;                    
                 }
             } else if ((currentRoom == downstairsCorridor2) && (nextRoom == pgOffice))
             {
@@ -390,7 +399,6 @@ public class Game
                 currentRoom = nextRoom;
                 gui.refresh();
             }
-            //System.out.println("Current location : \t " + currentRoom.getName());
             Interface.setDialog("Current location : \t " + currentRoom.getName());
             Interface.setDialog("" + currentRoom.getDescription());
 
@@ -448,8 +456,7 @@ public class Game
      * method that uses the randomInt attribute to call randomly a method in the
      * RandomEvent class (each number is linked to a method in RandomEvent)
      *
-     * @param give a random integer that allow to know if a randomEvent will
-     * appears
+     * @param randomInt a random integer that allow to know if a randomEvent will appear
      */
     public void rEvent(int randomInt)
     {
@@ -461,6 +468,7 @@ public class Game
                 break;
             case 3:
                 event.allanJoke();
+                allanThere = true;
                 gui.refresh();
                 break;
             case 4:
@@ -470,6 +478,7 @@ public class Game
             case 5:
                 event.adaHelp();
                 gui.refresh();
+                lucThere = false;
                 break;
             case 6:
                 event.penguinHug();
@@ -508,16 +517,15 @@ public class Game
             Interface.setDialog("What item do you want to interact with ?");
             currentRoom.printItems();
 
-            Scanner sc = new Scanner(System.in);
-
-            int n = Integer.parseInt(sc.next());
-
+            //gui.actionPerformed(ae);
             for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
             {
                 // Player wishes to interact with object of index i
                 if (n == i)
                 {
                     Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+                    currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
+                    gui.refresh();
                     currentRoom.listRoomItem.get(i).interactItem();
 
                     if (dialogue.getStressDialogue() != 0)
@@ -559,6 +567,7 @@ public class Game
                             default:
                                 break;
                         }
+                        currentRoom.listRoomItem.get(i).setInteracting(false);
                         gui.refresh();
                     }
 
@@ -623,7 +632,7 @@ public class Game
 
             PGTD.setLock();
             //printing the room info again so the player is not lost
-            Interface.setDialog("Cuurent Location : " + currentRoom.getName());
+            Interface.setDialog("Current Location : " + currentRoom.getName());
             Interface.setDialog("Exits: ");
             for (String key : currentRoom.getExits().keySet())
             {
@@ -723,5 +732,23 @@ public class Game
     public Interface getGui() {
         return gui;
     }
+    
+    /**
+     * setter for the n
+     */
+    public void setChoice(int choice)
+    {
+        n = choice;
+    }
+
+    public boolean isAllanThere() {
+        return allanThere;
+    }
+
+    public boolean isLucThere() {
+        return lucThere;
+    }
+    
+    
 
 }

@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Container extends Item 
 {
-    static protected ArrayList<SimpleObject> listContent; 
+    protected ArrayList<SimpleObject> listContent; 
     /**
      * Constructor for objects of class TypeOne
      * Some item does not appears until some quest are not achieved or appears randomly. 
@@ -63,11 +63,15 @@ public class Container extends Item
             Interface.setDialog("\n"+"The "+itemName+" contain these objects : " );
             for(int i = 0; i < listContent.size(); i++)
             {
+                Interface.setDialog("le for est appelé");
                 if (listContent.get(i).isLock == false)
                 {
-                    listContent.get(i).interactItem();
+                    Interface.setDialog("\n"+listContent.get(i).getName());
+                    Interface.setDialog("le if est appelé");
+                    //listContent.get(i).interactItem();
                 }
             }
+            
         }
         else 
         {

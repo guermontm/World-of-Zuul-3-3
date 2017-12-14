@@ -74,6 +74,11 @@ public class Dialogue
     {
         return gameOver;
     }
+    
+    public int getChoice()
+    {
+        return choice;
+    }
 
     /**
      * Method dialogueAxel is used to call the conversation between Axel and the

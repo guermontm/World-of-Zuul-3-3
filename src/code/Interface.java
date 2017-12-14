@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.SwingUtilities;
 
 public class Interface extends JFrame {
 
@@ -343,7 +342,6 @@ public class Interface extends JFrame {
         btnRamasser.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-
                 game.interact();
             }
 
@@ -378,12 +376,25 @@ public class Interface extends JFrame {
 
         setDialog("You play with " + game.getPlayer().getNamePlayer() + " ! \n You can see the points at the left or right of the screen");
 
+        //################  Numbers for the choices #######################
+        btnChoice1.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                game.setChoice(0);
+            }
+        });
+        btnChoice2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setChoice(1);
+            }
+        });
+
 //        myMainFrame.addKeyListener(l);
         //al the methods needed to launch the game
         game.printWelcome();
         game.createRooms();
         game.addItems();
-        
+
     }
 
     public void setLabelForce() {
@@ -529,58 +540,150 @@ public class Interface extends JFrame {
     public void affichageSalles() {
         switch (game.currentRoom.getName()) {
             case ("B2 entrance"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
+                if (game.getItem("Axel").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall_withaxel.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/hall.jpg")));
+                }
                 break;
             case ("Amphitheatre"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/theatre.jpg")));
+                if (game.getItem("Marie").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/theatre_withmarie.jpg")));
+                } else if (game.getItem("Mrs Geniet").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/theatre_withannie.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/theatre.jpg")));
+                }
                 break;
             case ("WC"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/wc.jpg")));
+                if (game.getItem("Nolan").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/wc_withnolan.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/wc.jpg")));
+                }
                 break;
             case ("TD4"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td4.jpg")));
+                if (game.getItem("PGTD").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td4_withpg.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td4.jpg")));
+                }
                 break;
             case ("TD1"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td1.jpg")));
+                if (game.getItem("M2").getInteracting()) {
+                    //MANQUE IMAGE
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/td1.jpg")));
+                }
                 break;
             case ("TP1"): //MANQUE IMAGE
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                if (game.getItem("Valentin").getInteracting()) {
+
+                } else if (game.getItem("Martin").getInteracting()) {
+
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                }
                 break;
             case ("Resting room"): //MANQUE IMAGE
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                if (game.getItem("Thomas").getInteracting()) {
+
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                }
                 break;
             case ("Corridor down1"):
+                if (game.isAllanThere())
+                {
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg"))); 
+                }
+                else if (game.isLucThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withluc.jpg")));
+                }
+                else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
+                }
                 break;
             case ("Corridor down2 "):
+                if (game.isAllanThere())
+                {
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg"))); 
+                }
+                else if (game.isLucThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withluc.jpg")));
+                }
+                else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
+                }
                 break;
             case ("Corridor upstairs1"):
+                if (game.isAllanThere())
+                {
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withallan.jpg"))); 
+                }
+                else if (game.isLucThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withluc.jpg")));
+                }
+                else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
+                }
                 break;
             case ("Corridor upstairs2"):
+                if (game.isAllanThere())
+                {
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withallan.jpg"))); 
+                }
+                else if (game.isLucThere())
+                {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withluc.jpg")));
+                }
+                else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1.jpg")));
+                }
                 break;
             case ("Lift down"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
+                if (game.getItem("Guardian").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift_withguardian.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
+                }
                 break;
             case ("Lift up"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
+                if (game.getItem("Guardian").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift_withguardian.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/lift.jpg")));
+                }
                 break;
             case ("Mrs. Geniet's Office"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
             case ("Staircase down"): //MANQUE IMAGE
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                if (game.getItem("Morgane").getInteracting()) {
+
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
+                }
                 break;
             case ("Staircase up"): //MANQUE IMAGE
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/amphi.jpg")));
                 break;
             case ("Classroom"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/salle_cours.jpg")));
+                if (game.getItem("Clément").getInteracting()) {
+                    //MANQUE IMAGE
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/salle_cours.jpg")));
+                }
                 break;
             case ("Mr. Girard's Office"):
-                myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/pgoffice.jpg")));
+                if (game.getItem("PGEnd").getInteracting()) {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/pgoffice_withpg.jpg")));
+                } else {
+                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/pgoffice.jpg")));
+                }
                 break;
             default:
                 break;
@@ -595,9 +698,25 @@ public class Interface extends JFrame {
         setLabelForce();
         setLabelEloquence();
         setLabelIntelligence();
-        
+
     }
-        public Game getGame() {
+
+    public Game getGame() {
         return game;
+    }
+
+    /**
+     * pour pouvoir faire interact, besoin de savoir ce que le user a rentré
+     */
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getActionCommand().equals("1")) {
+            game.setChoice(0);
+        } else if (ae.getActionCommand().equals("2")) {
+            game.setChoice(1);
+        } else if (ae.getActionCommand().equals("3")) {
+            game.setChoice(2);
+        } else if (ae.getActionCommand().equals("4")) {
+            game.setChoice(3);
+        }
     }
 }

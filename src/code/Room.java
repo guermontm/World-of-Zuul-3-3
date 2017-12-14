@@ -114,7 +114,7 @@ public class Room
         {
             if (!listRoomItem.get(i).getDisappeared())
             {
-               Interface.setDialog(""+i + "\t:\t"+listRoomItem.get(i).itemName);
+               Interface.setDialog(""+(i+1 )+ "\t:\t"+listRoomItem.get(i).itemName);
             }
         }
     }

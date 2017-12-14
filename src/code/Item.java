@@ -15,6 +15,7 @@ abstract public class Item
     // Some item does not appears until some quest are not achieved or appears randomly 
     protected boolean isLock;
     protected boolean hasDisappeared;
+    protected boolean interacting;
     
     protected Dialogue dialogue;
     
@@ -92,6 +93,18 @@ abstract public class Item
         
     }
     
+        /**
+     * getter
+     */
+    public boolean getInteracting()
+    {
+        return interacting;
+    }
+    
+    public void setInteracting(boolean b)
+    {
+        interacting = b;
+    }
     /**
      * method interact item which is rewritten in each subclass
      */

@@ -13,6 +13,7 @@ public class NPC extends Item
 {
 
     private Sentences sentences;
+    private boolean interacting;
 
     /**
      * Constructor for objects of subclass NPC Some item does not appears until
@@ -31,9 +32,9 @@ public class NPC extends Item
         super.isLock = isLock;
         super.hasDisappeared = hasDisappeared;
         
-        super.dialogue = new Dialogue();
-
+        super.dialogue = new Dialogue();        
         sentences = new Sentences();
+        super.interacting = false;
     }
     
 
@@ -44,7 +45,7 @@ public class NPC extends Item
      */
     public void interactItem()
     {
-        if (isLock == true)
+        if (isLock)
         {
             switch (itemName)
             {
@@ -109,5 +110,6 @@ public class NPC extends Item
             }
 
         }
+        interacting = false;
     }
 }
