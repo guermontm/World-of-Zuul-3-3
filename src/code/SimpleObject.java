@@ -29,9 +29,6 @@ public class SimpleObject extends Item {
      */
     public void interactItem() {
         switch (itemName) {
-            case "key":
-                Interface.setDialog("You have found a key !");
-                break;
             case "board":
                 Interface.setDialog("You can see a beautiful board that you your classmates use during the lessons.");
                 Interface.setDialog("Unfortunately, there is no pen in sight, you cannot write on it...");
@@ -39,14 +36,22 @@ public class SimpleObject extends Item {
             case "computer":
                 if (isLock == false) {
                     Interface.setDialog("You can access to the computer");
+                    Interface.setDialog("You are coding for your project it is gonna take a little moment...");
+                    Interface.setDialog("");
+                    Interface.setDialog("Here you go! Martin Nolan and you are really proud of what you have done, maybe you should go talk to Martin again!");
+                    hasDisappeared = true;
                 } else {
                     Interface.setDialog("There is a computer but you cannot interact with it");
                 }
                 break;
+            case "key":
+                Interface.setDialog("There is a key under the tissue! That is good thing that you looked, it might open a door you need to be opened...");
+                hasDisappeared = true; //to use to unlock the office
+                break;
             case "coca":
                 Interface.setDialog("You should be careful, there is a lot of sugar in that drink...");
                 break;
-            case"icetea":
+            case "icetea":
                 Interface.setDialog("Well, it is not red bull, but it will help you get through the day anyway");
                 break;
             case "kinderbueno":
@@ -54,6 +59,9 @@ public class SimpleObject extends Item {
                 break;
             case "croissant":
                 Interface.setDialog("patisserie à la Francaise, as they say in England");
+            case "tissue":
+                Interface.setDialog("There is an old tissue here, it is really dirty, you don't want to touch that!");
+                break;
             default:
         }
     }

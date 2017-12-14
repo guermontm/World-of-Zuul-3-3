@@ -72,9 +72,7 @@ public class Container extends Item
                     Interface.setDialog("\n"+"Oh well done you have found : "+listContent.get(i).getName());
                     listContent.get(i).interactItem();
                 }
-                else {
                     Interface.setDialog("But no, there nothing in here!");
-                }
             }
             
         }

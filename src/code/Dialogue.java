@@ -263,6 +263,8 @@ public class Dialogue {
                 }
             } else if (choice == 2) {
                 Interface.setDialog("\n"+sentences.getListMainNolan(2));
+                //leads to game over
+                popGameOver();
             }
         }
     }

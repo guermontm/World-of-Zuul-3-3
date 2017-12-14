@@ -75,6 +75,7 @@ public class Game {
     private SimpleObject diploma;
     private SimpleObject liftButton;
     private SimpleObject stairs;
+    private SimpleObject key;
 
     // All the rooms for the B2 building where the game is set
     Room annieOffice, classRoom, downstairsCorridor1, downstairsCorridor2, upstairsCorridor1, upstairsCorridor2, upStairs, downStairs, pgOffice, tp1, td1, td4, wc, hall, theatre, downstairsLift, upstairsLift, restRoom;
@@ -120,7 +121,7 @@ public class Game {
         cafet.addObject(kinderbueno);
         cafet.addObject(croissant);
         annieDesk = new Container("desk in Mrs Geniet's office", false);
-        diploma = new SimpleObject("Martin's diploma", true);
+        diploma = new SimpleObject("Martin's diploma", false);
         annieDesk.addObject(diploma);
         pgDesk = new SimpleObject("desk in PG's office", false);
         board = new SimpleObject("board", false);
@@ -129,8 +130,10 @@ public class Game {
         computer = new SimpleObject("computer", true);
         deskTp1.addObject(computer);
         wardrobe = new Container("wardrobe", false);
-        tissue = new SimpleObject("tissue", true);
+        tissue = new SimpleObject("tissue", false);
+        key = new SimpleObject("key", true);
         wardrobe.addObject(tissue);
+        wardrobe.addObject(key);
         liftButton = new SimpleObject("button", false);
         stairs = new SimpleObject("stairs", false);
 
@@ -287,6 +290,7 @@ public class Game {
         annieOffice.addItem(annieDesk);
         //items for PG's office
         pgOffice.addItem(pgDesk);
+        pgOffice.addItem(PGEnd);
         //items for TD4
         td4.addItem(board);
         td4.addItem(PGTD);
@@ -296,7 +300,6 @@ public class Game {
         wc.addItem(nolan);
         //items for restingroom
         restRoom.addItem(couch);
-        restRoom.addItem(thomas);
         //items for TP1
         tp1.addItem(martin);
         tp1.addItem(wardrobe);
@@ -335,18 +338,20 @@ public class Game {
                     Interface.setDialog("This office is locked, you need a key to open it...");
                 } else {
                     currentRoom = nextRoom;
+                    gui.refresh();
                 }
             } else if ((currentRoom == downstairsCorridor2) && (nextRoom == pgOffice)) {
-                if (!thePlayer.getKeyPG()) {
+                if (!key.getDisappeared()) {
                     Interface.setDialog("This office is locked, you need a key to open it...");
                 } else {
                     currentRoom = nextRoom;
+                    gui.refresh();
                 }
             } else {
                 currentRoom = nextRoom;
                 gui.refresh();
             }
-            Interface.setDialog("\n"+"Current location : \t " + currentRoom.getName());
+            Interface.setDialog("\n" + "Current location : \t " + currentRoom.getName());
             Interface.setDialog("" + currentRoom.getDescription());
 
             //random events that can appear in the corridors
@@ -552,11 +557,13 @@ public class Game {
                             annie.setLock(false); //unlocks conversation with annie in the theatre
                             martin.setLock(true);
                             nolan.setLock(true); //locks Nolan until you finish the quests
+                            nolan.setHasDisappeared(true);
                             currentQuest = 4;
                             break;
                         case ("Nolan"):
                             guardian.setLock(false);
                             nolan.setLock(true);
+                            currentQuest = 6;
                             break;
                         case ("Mrs Geniet"):
                             annie.setLock(true); //locks annie again
@@ -565,13 +572,6 @@ public class Game {
                         case ("Guardian"):
                             guardian.setLock(true);
                             thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
-                            break;
-                        case ("computer"):
-                            Interface.setDialog("You are coding for your project it is gonna take a little moment...");
-                            Interface.setDialog("");
-                            Interface.setDialog("Here you go! Martin Nolan and you are really proud of what you have done, the next step is now to hand it over to PG!");
-                            PGEnd.setLock(false);
-                            currentQuest = 8;
                             break;
                         default:
                             break;
@@ -584,7 +584,6 @@ public class Game {
                             if (thePlayer.getCrowbar()) //if you talked to the guardian
                             {
                                 Interface.setDialog("[Nolan] Oh my god thanks, i thought I would be locked in here forever!");
-                                nolan.setHasDisappeared(true);
                                 if (diploma.getLock()) //if you haven't finished the quests with martin
                                 {
                                     Interface.setDialog("[Nolan] Now you need to find Martin so that we can finish this project!");
@@ -592,6 +591,7 @@ public class Game {
                                     martin.setLock(false);
                                 } else {
                                     Interface.setDialog("[Nolan] Oh you have found Martin? Ok, let's go finish this project!");
+                                    Interface.setDialog("[Nolan] Let's Go to TP1 to use the computer");
                                     computer.setLock(false);
                                     currentQuest = 7;
                                 }
@@ -602,13 +602,20 @@ public class Game {
                                 Interface.setDialog("[Martin] Oh thanks for my diploma, I owe you one!");
                                 if (!thePlayer.getCrowbar()) { //if you haven't finished the quests with Nolan
                                     Interface.setDialog("[Martin] Now we need Nolan and we can start coding, so we can be home before midnight");
-                                    nolan.setLock(true);
                                     currentQuest = 5;
                                     nolan.setLock(false);
+                                    nolan.setHasDisappeared(false);
                                 } else {
-                                    Interface.setDialog("[Martin] I saw Nolan, he said that you helped him, so now we are ready to code!");
-                                    computer.setLock(false);
-                                    currentQuest = 7;
+                                    if (!computer.getDisappeared()) {
+                                        Interface.setDialog("[Martin] I saw Nolan, he said that you helped him, so now we are ready to code! Use the computer in this room");
+                                        computer.setLock(false);
+                                        currentQuest = 7;
+                                    } else {
+                                        PGEnd.setLock(false);
+                                        key.setLock(false);
+                                        currentQuest = 8;
+                                        Interface.setDialog("[Martin] Good job team! Now we need to hand it over to PG... I think you should do it, as you are the one that less worked!");
+                                    }
                                 }
                             }
                             break;

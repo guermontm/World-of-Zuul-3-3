@@ -703,15 +703,18 @@ public class Interface extends JFrame {
             case ("Corridor upstairs1"):
                 if (game.isAllanThere())
                 {
-                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withallan.jpg"))); 
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withallan.jpg")));
+                   game.setAllanThere(false);
                 }
                 else if (game.isLucThere())
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withl3.jpg")));
+                    game.setLucThere(false);
                 }
                 else if (game.getItem("M2").getInteracting())
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor1_withm2.jpg")));
+                    
                 }
                  else if (game.isPillowThere())
                 {
@@ -731,10 +734,12 @@ public class Interface extends JFrame {
                 if (game.isAllanThere())
                 {
                    myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg"))); 
+                   game.setAllanThere(false);
                 }
                 else if (game.isLucThere())
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withl3.jpg")));
+                    game.setLucThere(false);
                 }
                  else if (game.isPillowThere())
                 {

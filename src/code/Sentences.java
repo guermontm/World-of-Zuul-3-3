@@ -150,7 +150,7 @@ public class Sentences
        sentenceAxel3="[Axel] If you get tired, you can buy food here."; //trick
        
        sentenceMartin1="[Martin] Hurry up ! We have to code, what are you waiting for?";
-       sentenceMartin2="[Martin] Thanks for my L3 diploma mate";
+       sentenceMartin2="[Martin] Oh, here you are again...";
        sentenceMartin3="[Martin] Je vois pas pourquoi je parlerais anglais dans ton jeu, je suis un PNJ libre";
        
        sentenceNolan1="[Nolan] I have a toilet phobia now..";
