@@ -21,8 +21,11 @@ public class RandomEvent
     }
 
     /** 
-     *  This method modifies the energy of the player and adds 2 points.
+     *  This method modifies the energy of the player and adds 2 points, if his energy is smaller than 9.
+     *  Add 1 point if the energy is equal to 9.
+     *  Do not add anything if the energy is maximum
      *  it uses methods from the player class
+     *  Displays a sentence.
      */
     public void hiddenCandy()
     {
@@ -40,7 +43,8 @@ public class RandomEvent
     }
 
     /**
-     *  This method modifies the stress which is set to 0.
+     *  allanJoke method.
+     * This method modifies the stress which is set to 0 and displays a sentence.
      */
     public void allanJoke()
     {
@@ -49,7 +53,8 @@ public class RandomEvent
     }
 
     /** 
-     *  This method modifies the energy, it subtracts 1 point.
+     *  pillowAttack method
+     * This method modifies the energy, it subtracts 1 point and displays a sentence. Test if game over.
      */
     public void pillowAttack()
     {
@@ -63,8 +68,9 @@ public class RandomEvent
     }
 
     /** 
-     *  This method modifies the intelligence and stress, it adds 1 point for each.
-     *
+     *  adaHelp method.
+     * This method modifies the intelligence and stress, it adds 1 point for each and displays a sentence.
+     * Test if game over.
      */
     public void adaHelp()
     {
@@ -84,8 +90,9 @@ public class RandomEvent
     }
 
     /** 
-     *  This method modifies the energy (+1) and the stress (-1)
-     *
+     *  penguinHug method.
+     * This method modifies the energy (+1) and the stress (-1) and displays a sentence.
+     * 
      */
     public void penguinHug()
     {
@@ -104,7 +111,8 @@ public class RandomEvent
     }
 
     /** 
-     *  This one modifies the stress (+1)
+     *  teacherMeeting method.
+     * This one modifies the stress (+1) and displays a sentence. Test if game over.
      */
     public void teacherMeeting()
     {
@@ -117,7 +125,8 @@ public class RandomEvent
     }
 
     /** 
-     *  This method modifies the energy (-1) and speech ability (+1)
+     *  conversation method
+     * This method modifies the energy (-1) and speech ability (+1) and displays stences. Test if game over.
      */
     public void conversation()
     {
