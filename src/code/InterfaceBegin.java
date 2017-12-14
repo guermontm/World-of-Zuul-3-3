@@ -17,8 +17,12 @@ import javax.swing.JPanel;
 
 
 /**
- *
- * @author Adèle
+ * InterfaceBegin class.
+ * Contains all information and design about the home screen and the character selection 
+ * screen.
+ * 
+ * @author (Grp5)
+ * @version (14/12/2017)
  */
 public class InterfaceBegin extends JFrame {
     //***************************Welcome interface******************************
@@ -40,9 +44,13 @@ public class InterfaceBegin extends JFrame {
     private JPanel panelCenterText, panelChoicePlayer;
     protected JFrame myFrameChoosePlayer;
 
+    /**
+     * 
+     * Constructor of InterfaceBegin class
+     * Contains the buttons quit and play.
+     */
     public InterfaceBegin() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        // Game game peut etre en parametre du constructeur de l'interface sauf qu'on a besoin de game = new Game (1) dans GestionAction
         //*************************************WELCOME INTERFACE***************************************************************
         myFrameWelcome = new JFrame("Welcome");
         myFrameWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,9 +82,16 @@ public class InterfaceBegin extends JFrame {
         myFrameWelcome.pack();
     }
 
+    /**
+     * Interface_ChoosePlayer method.
+     * Called after after clicking on "play".
+     * There are three buttons, one for each character you can play, represented
+     * by a picture : pierre.png , elie.png , luc.png
+     * Has a gif image : intro_v5.gif
+     */
     public void Interface_ChoosePlayer() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        // Fermeture de l'interface chooseplayer
+        // Close the chooseplayer interface
         myFrameChoosePlayer = myFrameWelcome;
         myFrameChoosePlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
