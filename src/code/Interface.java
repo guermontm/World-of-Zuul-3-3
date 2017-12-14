@@ -75,6 +75,7 @@ public class Interface extends JFrame {
 
     //actions of the buttons
     private int option;
+    private int choiceInteract; 
 
 //    for the listener
 //    private Listener l;
@@ -378,14 +379,30 @@ public class Interface extends JFrame {
 
         //################  Numbers for the choices #######################
         btnChoice1.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(0);
+                choiceInteract=0; 
+                game.afterInteract(0);
             }
         });
         btnChoice2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(1);
+                choiceInteract=1; 
+                game.afterInteract(1);
+            }
+        });
+        btnChoice3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setChoice(2);
+                game.afterInteract(2);
+            }
+        });
+        btnChoice4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                game.setChoice(3);
+                choiceInteract=3; 
+                game.afterInteract(3);
             }
         });
 
@@ -705,18 +722,23 @@ public class Interface extends JFrame {
         return game;
     }
 
+    public int getChoiceInteract() {
+        return choiceInteract;
+    }
+
+    
     /**
      * pour pouvoir faire interact, besoin de savoir ce que le user a rentré
      */
-    public void actionPerformed(ActionEvent ae) {
-        if (ae.getActionCommand().equals("1")) {
-            game.setChoice(0);
-        } else if (ae.getActionCommand().equals("2")) {
-            game.setChoice(1);
-        } else if (ae.getActionCommand().equals("3")) {
-            game.setChoice(2);
-        } else if (ae.getActionCommand().equals("4")) {
-            game.setChoice(3);
-        }
-    }
+//    public void actionPerformed(ActionEvent ae) {
+//        if (ae.getActionCommand().equals("1")) {
+//            game.setChoice(0);
+//        } else if (ae.getActionCommand().equals("2")) {
+//            game.setChoice(1);
+//        } else if (ae.getActionCommand().equals("3")) {
+//            game.setChoice(2);
+//        } else if (ae.getActionCommand().equals("4")) {
+//            game.setChoice(3);
+//        }
+//    }
 }
