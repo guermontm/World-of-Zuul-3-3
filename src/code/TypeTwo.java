@@ -23,8 +23,8 @@ public class TypeTwo extends Player
         setStr(5);
         setSpe(5);
         setInt(5);
-        setSta(5);
-        setStress(5);
+        setSta(1);
+        setStress(9);
     }
     
     public boolean getFurtif()

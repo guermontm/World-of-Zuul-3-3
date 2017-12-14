@@ -735,5 +735,26 @@ public class Game {
     public Dialogue getDialogue() {
         return dialogue;
     }
+    
+    /**
+     * a method to display the GO interface
+     */
+    public void gameOver()
+    {
+        if ((thePlayer.getStressStat() == 10) || (thePlayer.getStaStat() == 0) || (dialogue.getGameOver()))
+        {
+            new InterfaceGameOver();
+        }
+    }
+
+    public void setAllanThere(boolean allanThere) {
+        this.allanThere = allanThere;
+    }
+
+    public void setLucThere(boolean lucThere) {
+        this.lucThere = lucThere;
+    }
+    
+    
 
 }

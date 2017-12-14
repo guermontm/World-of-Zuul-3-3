@@ -1,6 +1,4 @@
 package code;
-
-import java.util.*;
 /**
  * a lot of randomEvent that appears randomly in the corridors. The methods of this class always return a list with the statistic that could be changed during the event.
  * The statistics of the player will be changed in the game class by calling the addStat method from the player class. 
@@ -47,7 +45,7 @@ public class RandomEvent
     public void allanJoke()
     {
         player.setStress(0);
-        Interface.setDialog("Allan tells you a joke so funny that you are not stressed anymore!");
+        Interface.setDialog("Allan appears from the corner of the corridor, he tells you a joke so funny that you are not stressed anymore!");
     }
 
     /** 
@@ -55,6 +53,7 @@ public class RandomEvent
      */
     public void pillowAttack()
     {
+        Interface.setDialog("A huge pillow is comming right at you!");
         if (player.getStaStat() >= 1) 
         {
             player.addStat("staStat", -1);
@@ -69,16 +68,17 @@ public class RandomEvent
      */
     public void adaHelp()
     {
+        Interface.setDialog("A L3 student sudendly appears, he needs advice on his ADA project!");
         if (player.getIntStat() <= 9) 
         {
             player.addStat("intStat", 1);
-            Interface.setDialog("You are helping a little L3 student, your intelligence increases");
+             Interface.setDialog("You are helping him, your intelligence increases");
         }
         else Interface.setDialog("You are as clever as Einstein, no need to gain more!");
         if (player.getStrStat() <= 9) 
         {
             player.addStat("stressStat", 1);
-            Interface.setDialog("You are talking about ada, of course you are getting stressed...");
+            Interface.setDialog("You are talking about ADA, of course you are getting stressed...");
         }
         else Interface.setDialog("GAME OVER");
     }
@@ -89,6 +89,7 @@ public class RandomEvent
      */
     public void penguinHug()
     {
+        Interface.setDialog("You see the mascot of the student association walking in the hallway");
         if (player.getStaStat() <=9) 
         {
             player.addStat("staStat", 1);
@@ -107,6 +108,7 @@ public class RandomEvent
      */
     public void teacherMeeting()
     {
+        Interface.setDialog("One of you teachers saw you in the corridor and came to talk to you about your exams...");
         if (player.getStrStat() <=9) {
             player.addStat("stressStat", 1);
             Interface.setDialog("You gain one stress point because of this meeting!");
@@ -119,6 +121,8 @@ public class RandomEvent
      */
     public void conversation()
     {
+        Interface.setDialog("One of your friends from Gphy is here looking lost, so you go talk to him.");
+        Interface.setDialog("You have a very interesting conversation with him (as always), it was exhausting but enlightening!");
         if (player.getStaStat() >= 1) {
             player.addStat("staStat", -1);
             Interface.setDialog("You lose one energy point!");

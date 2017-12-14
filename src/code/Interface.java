@@ -607,11 +607,13 @@ public class Interface extends JFrame {
             case ("Corridor down1"):
                 if (game.isAllanThere())
                 {
-                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg"))); 
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg")));
+                   game.setAllanThere(false);
                 }
                 else if (game.isLucThere())
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withluc.jpg")));
+                    game.setLucThere(false);
                 }
                 else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
@@ -620,11 +622,13 @@ public class Interface extends JFrame {
             case ("Corridor down2 "):
                 if (game.isAllanThere())
                 {
-                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg"))); 
+                   myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withallan.jpg")));
+                   game.setAllanThere(false);
                 }
                 else if (game.isLucThere())
                 {
                     myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2_withluc.jpg")));
+                    game.setLucThere(false);
                 }
                 else{
                 myGame.setIcon(new ImageIcon(this.getClass().getResource("images/salles/corridor2.jpg")));
@@ -710,6 +714,7 @@ public class Interface extends JFrame {
         setLabelForce();
         setLabelEloquence();
         setLabelIntelligence();
+        game.gameOver();
 
     }
 
