@@ -401,7 +401,7 @@ public class Interface extends JFrame {
         btnChoice4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 game.setChoice(3);
-                choiceInteract=3; 
+                choiceInteract=3;
                 game.afterInteract(3);
             }
         });

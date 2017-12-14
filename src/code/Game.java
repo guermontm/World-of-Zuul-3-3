@@ -30,7 +30,7 @@ public class Game
     protected Dialogue dialogue;
     
     //an int used for the choices
-    private int n;
+    private int n =-1;
     //boolean used to display the NPCs during the random events
     private boolean allanThere;
     private boolean lucThere;
@@ -518,95 +518,94 @@ public class Game
             currentRoom.printItems();
 
             //gui.actionPerformed(ae);
-            for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
-            {
-                // Player wishes to interact with object of index i
-                if (n == i)
-                {
-                    Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
-                    currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
-                    gui.refresh();
-                    currentRoom.listRoomItem.get(i).interactItem();
-
-                    if (dialogue.getStressDialogue() != 0)
-                    {
-
-                        thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
-                        gui.refresh();
-                    }
-
-                    //if the NPC is not locked, you can have an important conversation
-                    if (!currentRoom.listRoomItem.get(i).getLock())
-                    {
-                        switch (currentRoom.listRoomItem.get(i).getName())
-                        {
-                            case ("PGTD"):
-                                PGTD.setHasDisappeared(true); //goes away
-                                nolan.setLock(); //Conversation with Nolan in the toilet is available
-                                martin.setLock(); //Conversation with Martin about the diploma is available
-
-                                break;
-                            case ("Martin"):
-                                annie.setLock(); //unlocks conversation with annie in the theatre
-
-                                break;
-                            case ("Nolan"):
-                                guardian.setLock();
-
-                                break;
-                            case ("Mrs Geniet"):
-                                annie.setLock(); //locks annie again
-                                thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
-                                break;
-                            case ("Guardian"):
-                                guardian.setLock();
-                                thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
-                                break;
-                            case ("PGEnd"):
-                                break;
-                            default:
-                                break;
-                        }
-                        currentRoom.listRoomItem.get(i).setInteracting(false);
-                        gui.refresh();
-                    }
-
-                    //if you interact with the buttons in the lift then you change floors
-                    if (currentRoom.listRoomItem.get(i) == liftButton)
-                    {
-                        //allows to go upstairs
-
-                        if (currentRoom == upstairsLift)
-                        {
-                            currentRoom = downstairsLift;
-                            Interface.setDialog("The lift is going down!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downstairsLift)
-                        {
-                            currentRoom = upstairsLift;
-                            Interface.setDialog("The lift is going up!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        }
-                    }
-                    //if you interact with the stairs then you change floors
-                    if (currentRoom.listRoomItem.get(i) == stairs)
-                    {
-                        //allows to go upstairs
-
-                        if (currentRoom == upStairs)
-                        {
-                            currentRoom = downStairs;
-                            Interface.setDialog("You are going down the stairs!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        } else if (currentRoom == downStairs)
-                        {
-                            currentRoom = upStairs;
-                            Interface.setDialog("You are climbing the stairs!");
-                            Interface.setDialog("\n" + currentRoom.getDescription());
-                        }
-                    }
-                }
-            }
+            
+//                // Player wishes to interact with object of index i
+//                if (n == i)
+//                {
+//                    Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+//                    currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
+//                    gui.refresh();
+//                    currentRoom.listRoomItem.get(i).interactItem();
+//
+//                    if (dialogue.getStressDialogue() != 0)
+//                    {
+//
+//                        thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
+//                        gui.refresh();
+//                    }
+//
+//                    //if the NPC is not locked, you can have an important conversation
+//                    if (!currentRoom.listRoomItem.get(i).getLock())
+//                    {
+//                        switch (currentRoom.listRoomItem.get(i).getName())
+//                        {
+//                            case ("PGTD"):
+//                                PGTD.setHasDisappeared(true); //goes away
+//                                nolan.setLock(); //Conversation with Nolan in the toilet is available
+//                                martin.setLock(); //Conversation with Martin about the diploma is available
+//
+//                                break;
+//                            case ("Martin"):
+//                                annie.setLock(); //unlocks conversation with annie in the theatre
+//
+//                                break;
+//                            case ("Nolan"):
+//                                guardian.setLock();
+//
+//                                break;
+//                            case ("Mrs Geniet"):
+//                                annie.setLock(); //locks annie again
+//                                thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
+//                                break;
+//                            case ("Guardian"):
+//                                guardian.setLock();
+//                                thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
+//                                break;
+//                            case ("PGEnd"):
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                        currentRoom.listRoomItem.get(i).setInteracting(false);
+//                        gui.refresh();
+//                    }
+//
+//                    //if you interact with the buttons in the lift then you change floors
+//                    if (currentRoom.listRoomItem.get(i) == liftButton)
+//                    {
+//                        //allows to go upstairs
+//
+//                        if (currentRoom == upstairsLift)
+//                        {
+//                            currentRoom = downstairsLift;
+//                            Interface.setDialog("The lift is going down!");
+//                            Interface.setDialog("\n" + currentRoom.getDescription());
+//                        } else if (currentRoom == downstairsLift)
+//                        {
+//                            currentRoom = upstairsLift;
+//                            Interface.setDialog("The lift is going up!");
+//                            Interface.setDialog("\n" + currentRoom.getDescription());
+//                        }
+//                    }
+//                    //if you interact with the stairs then you change floors
+//                    if (currentRoom.listRoomItem.get(i) == stairs)
+//                    {
+//                        //allows to go upstairs
+//
+//                        if (currentRoom == upStairs)
+//                        {
+//                            currentRoom = downStairs;
+//                            Interface.setDialog("You are going down the stairs!");
+//                            Interface.setDialog("\n" + currentRoom.getDescription());
+//                        } else if (currentRoom == downStairs)
+//                        {
+//                            currentRoom = upStairs;
+//                            Interface.setDialog("You are climbing the stairs!");
+//                            Interface.setDialog("\n" + currentRoom.getDescription());
+//                        }
+//                    }
+//                }
+            
         } else
         {
             Interface.setDialog("There is nothing to interact with in this room...");
@@ -749,6 +748,100 @@ public class Game
         return lucThere;
     }
     
+    
+    public void afterInteract(int choiceInteract)
+    {
+        n=choiceInteract; 
+    // Player wishes to interact with object of index i
+    for (int i = 0; i < currentRoom.listRoomItem.size(); i++)
+            {
+                if (n == i)
+                {
+                    Interface.setDialog("You are interacting with the item " + currentRoom.listRoomItem.get(i).itemName);
+                    currentRoom.listRoomItem.get(i).setInteracting(true); //you are interacting with the NPC so he appears on the screen
+                    gui.refresh();
+                    currentRoom.listRoomItem.get(i).interactItem();
+
+                    if (dialogue.getStressDialogue() != 0)
+                    {
+
+                        thePlayer.addStat("stressStat", currentRoom.listRoomItem.get(i).dialogue.getStressDialogue());
+                        gui.refresh();
+                    }
+
+                    //if the NPC is not locked, you can have an important conversation
+                    if (!currentRoom.listRoomItem.get(i).getLock())
+                    {
+                        switch (currentRoom.listRoomItem.get(i).getName())
+                        {
+                            case ("PGTD"):
+                                PGTD.setHasDisappeared(true); //goes away
+                                nolan.setLock(); //Conversation with Nolan in the toilet is available
+                                martin.setLock(); //Conversation with Martin about the diploma is available
+
+                                break;
+                            case ("Martin"):
+                                annie.setLock(); //unlocks conversation with annie in the theatre
+
+                                break;
+                            case ("Nolan"):
+                                guardian.setLock();
+
+                                break;
+                            case ("Mrs Geniet"):
+                                annie.setLock(); //locks annie again
+                                thePlayer.setKeyAnnie(true); //you get the key to open the door, unlocks the door to her office, you can get the diploma and then go back to Martin
+                                break;
+                            case ("Guardian"):
+                                guardian.setLock();
+                                thePlayer.setCrowbar(true); //you get the crowbar that will allow you to open the door for Nolan
+                                break;
+                            case ("PGEnd"):
+                                break;
+                            default:
+                                break;
+                        }
+                        currentRoom.listRoomItem.get(i).setInteracting(false);
+                        gui.refresh();
+                    }
+
+                    //if you interact with the buttons in the lift then you change floors
+                    if (currentRoom.listRoomItem.get(i) == liftButton)
+                    {
+                        //allows to go upstairs
+
+                        if (currentRoom == upstairsLift)
+                        {
+                            currentRoom = downstairsLift;
+                            Interface.setDialog("The lift is going down!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
+                        } else if (currentRoom == downstairsLift)
+                        {
+                            currentRoom = upstairsLift;
+                            Interface.setDialog("The lift is going up!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
+                        }
+                    }
+                    //if you interact with the stairs then you change floors
+                    if (currentRoom.listRoomItem.get(i) == stairs)
+                    {
+                        //allows to go upstairs
+
+                        if (currentRoom == upStairs)
+                        {
+                            currentRoom = downStairs;
+                            Interface.setDialog("You are going down the stairs!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
+                        } else if (currentRoom == downStairs)
+                        {
+                            currentRoom = upStairs;
+                            Interface.setDialog("You are climbing the stairs!");
+                            Interface.setDialog("\n" + currentRoom.getDescription());
+                        }
+                    }
+                }
+            }
+    }
     
 
 }
