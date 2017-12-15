@@ -37,6 +37,8 @@ public class Room
 
     /**
      * Constructor for objects of class Room
+     * @param name
+     * @param description
      */
     public Room(String name, String description)
     {

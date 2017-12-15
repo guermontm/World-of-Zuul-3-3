@@ -311,14 +311,14 @@ public class Game {
         upstairsCorridor1.addItem(M2);
     }
 
-    //**
+    /**
      * allows the player to change room, depends on the exits that exists in the
      * current room. Depends on what character the player types : N, S, E, W
      * when the player enter in the new room, depending of the room, some random
      * event can appear
      *
      * @param direction The direction in which the player is trying to go.
-     */
+     **/
     public void changeRoom(String direction) {
         Room nextRoom = null;
         // Planning to go to the next room. (hashmap browsing) 
@@ -373,13 +373,13 @@ public class Game {
                 break;
             case 3:
                 allanThere = true;
-                gui.refresh();
                 event.allanJoke();
+                gui.refresh();
                 break;
             case 4:
                 pillowThere = true;
-                gui.refresh();
                 event.pillowAttack();
+                gui.refresh();
                 break;
             case 5:
                 lucThere = true;
@@ -430,6 +430,7 @@ public class Game {
     /**
      * Print out some help information. Contains all the information the user
      * needs to know about the game.
+     * @param q is int 
      */
     public void printHelp(int q) {
         Interface.setDialog("__________________HELP___________________");
@@ -474,6 +475,7 @@ public class Game {
      * allows the player to quit the game
      * return a boolean.
      * If yes, leave the game.
+     * @return a boolean if you want to quit
      */
     public boolean quit() {
         Interface.setDialog("Are you sure? [Y/N]");
@@ -493,7 +495,7 @@ public class Game {
 
     /**
      * getItem method, allowing to access items in a room.
-     * @param String name, the name of the item.
+     * @param name is the name of the item 
      * @return an Item object.
      * By default, return martin Item.
      */
@@ -546,7 +548,8 @@ public class Game {
      * afterInteract method. Allows to interact with an item chosen in the current room.
      * A tab containing all the items of the current room is called. 
      * With a loop, search the selected item (choiceInteract) into the tab.
-     * @parameters 
+     * @param choiceInteract is the number of the interaction
+     *  
      */
     public void afterInteract(int choiceInteract) {
         n = choiceInteract;
@@ -713,7 +716,7 @@ public class Game {
 
     /**
      * setLucThere method. allows set the boolean lucThere with a new value
-     * @param LucThere a boolean
+     * @param lucThere
      */
     public void setLucThere(boolean lucThere) {
         this.lucThere = lucThere;

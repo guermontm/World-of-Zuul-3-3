@@ -541,6 +541,7 @@ public class Sentences
      /**
      * randomNumber method
      * Choose a number between 0 and the size of the list and return it. (As a list can consist of only 4 sentences maximum).
+     * @param size
      * @return an integer, being the random number chosen.
      */
     public int randomNumber(int size)
@@ -670,6 +671,7 @@ public class Sentences
     /**
      * Method getListMainAxel allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainAxel(int index)
@@ -681,6 +683,7 @@ public class Sentences
     /**
      * Method getListMainMrsGeniet allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainMrsGeniet(int index)
@@ -692,6 +695,7 @@ public class Sentences
     /**
      * Method getListMainNolan allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainNolan(int index)
@@ -703,6 +707,7 @@ public class Sentences
     /**
      * Method getListMainMartin allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainMartin(int index)
@@ -714,6 +719,7 @@ public class Sentences
     /**
      * Method getListMainGuardian allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainGuardian(int index)
@@ -725,6 +731,7 @@ public class Sentences
     /**
      * Method getListMainPG allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainPGTD(int index)
@@ -736,6 +743,7 @@ public class Sentences
     /**
      * Method getListMainPG allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainPGEnd(int index)
@@ -748,6 +756,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToAxel allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainPlayerToAxel(int index)
@@ -759,6 +768,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToMrsGeniet allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     
@@ -772,6 +782,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToNolan allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainPlayerToNolan(int index)
@@ -783,6 +794,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToMartin allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainPlayerToMartin(int index)
@@ -794,6 +806,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToGuardian allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListMainPlayerToGuardian(int index)
@@ -805,6 +818,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToPG allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListPlayerToMainPGTD(int index)
@@ -816,6 +830,7 @@ public class Sentences
     /**
      * Method getListMainPlayerToPG allow to have an access to the list
      *
+     * @param index
      * @return The sentences of the list 
      */
     public String getListPlayerToMainPGEnd(int index)

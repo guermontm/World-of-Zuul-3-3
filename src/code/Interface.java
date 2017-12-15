@@ -289,6 +289,7 @@ public class Interface extends JFrame {
         myGbcPlay.fill = GridBagConstraints.VERTICAL;
         myHelpQuit.add(btnPower, myGbcPlay);
         btnPower.setPreferredSize(new Dimension(59, 59));
+        btnPower.setEnabled(false); 
 
         //help button
         myGbcPlay.gridx = 1;

@@ -42,7 +42,7 @@ abstract class Player
     
     /**
      * setNamePlayer Method, allowing to set the name of the player with a new name
-     * @param the String newName, being the new name of the player
+     * @param newName String newName, being the new name of the player
      */
     public void setNamePlayer (String newName)
     {
@@ -250,8 +250,8 @@ abstract class Player
     /**
      * substractStat Method, allowing to substract a value for a current 
      * whatStat stat.
-     * @param whatStat String, being the stat to decrease ; value integer, being
-     * the value to substract to the stat.
+     * @param whatStat String, being the stat to decrease ; 
+     * @param value value integer, being the value to substract to the stat.
      */
     public void substractStat (String whatStat, int value)
     {
